@@ -1,11 +1,23 @@
 
-<div layout="row" layout-wrap>
-    <div flex="33">[flex=33]</div>
-    <div flex="66">{{title}}</div>
-</div>
-
-<!--<div layout="row" layout-fill>
-    <div flex class="row-navbar-menuPrincipal center">
-        <h1 class="col-xs-12 title">{{title}}</h1>
+<div class="container-fluid">
+    <div class="row row-navbar-menuPrincipal">
+        <h1 class="col-xs-12 title center">
+            Nebulah Notes
+        </h1>
     </div>
-</div>-->
+    <div class="row">
+        <aside class="col-lg-3 col-md-3 asideNotes">
+            <div class="blockNote">
+                <h3>Senza Titolo</h3>
+                <h6>Data di creazione - Data ultima modifica</h6>
+                <span>Breve descrizione</span>
+            </div>
+        </aside>
+    
+        <section class="col-lg-9 col-md-9 sectionNotes">
+            <textarea placeholder="Scriviti la tua cazzo di nota stronzo!"></textarea>
+            <button>Carica</button>
+            <button>Salva</button>
+        </section>
+    </div>
+</div>
