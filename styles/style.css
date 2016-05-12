@@ -21,10 +21,33 @@ body {
     font-size:35pt;
 }
 
+.divEditor {
+    margin-top:10px;
+    display:none;
+}
+
+    .divEditor button {
+        font-size:15pt;
+        font-weight:bold;
+    }
+
+.grassetto:hover {
+    font-weight: bold;
+}
+.corsivo:hover {
+    font-style: italic;
+}
+.sottolineato:hover {
+    text-decoration: underline;
+}
+.barrato:hover {
+    text-decoration: line-through;
+}
+
 .row-navbar-menuPrincipal {
     background:#8C9EFF;
     color:white;
-    border-bottom:solid 5px #ccd4ff;
+    border-bottom:solid 8px #c7d3d5;
 }
 
 .asideNotes {
@@ -38,6 +61,11 @@ body {
     padding-left:10px;
     padding-bottom:10px;
     border-bottom:solid 1px black;
+    display:none;
+}
+
+.no-display {
+    display:none;
 }
 
 .sectionNotes{
@@ -46,21 +74,25 @@ body {
 }
 
     .sectionNotes textarea {
-        width:50%;
-        height:100px;
+        margin-top:1%;
+        width:80%;
+        height:200px;
         resize:vertical;
-        border:solid 1px black;
         padding-left:10px;
         padding-top:10px;
-        font-size:15pt;
+        font-size:20pt;
         font-family:Open Sans Condensed;
     }
+
+.inputArea {
+    font-size:30pt;
+    width:80%;
+}
 
 .circleFeatures {
     font-size:20pt;
     text-align:center;
     margin-bottom:2%;
-    background:#8C9EFF;
     color:black;
     width:70px;
     height:70px;
@@ -68,9 +100,33 @@ body {
     border-radius:35px;
 }
 
+#addFeatures {
+    background: #8C9EFF;
+}
+
+#customFeatures {
+    background:#ccd4ff;
+    margin-left:10px;
+}
+
+#deleteFeatures {
+    background:#ff5100;
+    margin-left:10px;
+}
+
+#shareFeatures {
+    float:right;
+    margin-right:3%;
+}
+
     .circleFeatures:hover {
-        color:black;
+        color:black; 
     }
+
+.inputArea {
+    border:solid 1px transparent;
+    border-bottom:dotted 1px black;
+}
 
 .crea {
     font-size:40pt;

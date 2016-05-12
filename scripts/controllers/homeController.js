@@ -3,6 +3,22 @@ angular.module('routerApp')
 
         $scope.title = "Nebula Notes";
 
+        $(document).ready(function () {
+            $("#addFeatures").click(function () {
+                $(".out").addClass("animated bounceOut");
+                $(".blockNote").css("display", "block");
+                $(".blockNote").addClass("animated bounceInLeft");
+                $("#addFeatures").removeClass("animated infinite bounce");
+                setTimeout(function () {
+                    $(".divEditor").css("display", "block");
+                    $(".divEditor").addClass("animated bounceInDown");
+                    $(".no-display").css("display", "block");
+                    $(".no-display").addClass("hvr-box-shadow-inset animated bounceInDown");
+                }, 600);
+                
+            });
+        });
+
         var loadingNotes = true;
         var localStoredNotes = {};
 
@@ -47,7 +63,7 @@ angular.module('routerApp')
         }
 
         function init(){
-            alert("Vai");
+            //alert("Vai");
             dbLocal = new PouchDB('nebulanotes');
             dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
             dbLocal.sync(dbRemote);
@@ -63,5 +79,6 @@ angular.module('routerApp')
         }
 
         init();
+
 
     });
