@@ -1,0 +1,23 @@
+body {
+    font-family: Open Sans Condensed, sans-serif;
+    overflow-x: hidden;
+}
+
+.centered {
+    float:null;
+    margin:0 auto;
+}
+
+.center {
+    text-align:center;
+}
+
+.title {
+    margin-top:-1px;
+}
+
+.row-navbar-menuPrincipal {
+    height:100px;
+    background:#0094ff;
+    color:white;
+}
