@@ -38,6 +38,7 @@ angular.module('routerApp')
                     alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
                     dbLocal.changes().on('change', function() {
                         console.log('Basta');
+                        localStoredNotes = $scope.read();
                     });
                 }
                 else {
@@ -46,6 +47,7 @@ angular.module('routerApp')
                 }
 
             });
+
             //syncPouch();
         }
 
@@ -58,6 +60,7 @@ angular.module('routerApp')
                     console.log("L'oggetto:" + doc);*/
                     console.log(doc);
                     $scope.text = doc.rows[0].doc.txt;
+                    return doc.rows;
                 }
             });
         }
@@ -65,8 +68,10 @@ angular.module('routerApp')
         function init(){
             //alert("Vai");
             dbLocal = new PouchDB('nebulanotes');
-            dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
-            dbLocal.sync(dbRemote);
+            localStoredNotes = $scope.read();
+            console.log(localStoredNotes);
+            //dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
+            //dbLocal.sync(dbRemote);
         }
 
         function syncPouch(){
