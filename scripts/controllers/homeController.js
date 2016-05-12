@@ -6,14 +6,10 @@ angular.module('routerApp')
         var loadingNotes = true;
         var localStoredNotes = {};
 
-        var db = {};
+        var dbLocal = {};
+        var dbRemote = {};
 
         $scope.text = "asd";
-
-        function init(){
-            alert("Vai");
-            db = new PouchDB('nebulaNotes');
-        }
 
         $scope.write = function dummyWrite(){
             console.log("Scrittura");
@@ -21,10 +17,10 @@ angular.module('routerApp')
                 _id: new Date().toISOString(),
                 txt: $scope.text
             };
-            db.put(t, function callback(err, result) {
+            dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    db.changes().on('change', function() {
+                    dbLocal.changes().on('change', function() {
                         console.log('Basta');
                     });
                 }
@@ -34,18 +30,35 @@ angular.module('routerApp')
                 }
 
             });
+            //syncPouch();
         }
 
         $scope.read = function dummyRead(){
             console.log("Lettura");
-            db.allDocs({include_docs: true, descending: true}, function(err, doc) {
+            dbLocal.allDocs({include_docs: true, descending: true}, function(err, doc) {
                 if (!err) {
                     /*alert("Oh vai a vedere la console");
                     console.log(err);
                     console.log("L'oggetto:" + doc);*/
                     console.log(doc);
-                    $scope.text = doc.rows[parseInt(Math.random() * doc.rows.length)].doc.txt;
+                    $scope.text = doc.rows[0].doc.txt;
                 }
+            });
+        }
+
+        function init(){
+            alert("Vai");
+            dbLocal = new PouchDB('nebulanotes');
+            dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
+            dbLocal.sync(dbRemote);
+        }
+
+        function syncPouch(){
+            console.log("Sincronizzo");
+            dbLocal.replicate.to(dbRemote).on('complete', function () {
+                console.log("Ce la facciamo?");
+            }).on('error', function (err) {
+                console.log(err);
             });
         }
 
