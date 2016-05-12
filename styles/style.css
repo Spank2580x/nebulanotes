@@ -55,14 +55,29 @@ body {
     border:solid 1px #8C9EFF;
     border-top-color:transparent;
     height:95vh;
+    overflow-y:scroll;
+}
+
+.asideNotes h3{
+    width:80%;
+    height:auto;
 }
 
 .blockNote {
+    -webkit-transition:all 0.3s ease-in-out;
+    padding-top:5px;
     padding-left:10px;
     padding-bottom:10px;
     border-bottom:solid 1px black;
     display:none;
+    width:100%;
 }
+
+    .blockNote:hover {
+        -webkit-transition:all 0.3s ease-in-out;
+        cursor:pointer;
+        background:#8C9EFF;
+    }
 
 .no-display {
     display:none;
@@ -74,7 +89,6 @@ body {
 }
 
     .sectionNotes textarea {
-        margin-top:1%;
         width:80%;
         height:200px;
         resize:vertical;
@@ -87,6 +101,12 @@ body {
 .inputArea {
     font-size:30pt;
     width:80%;
+}
+
+.saveButton {
+    background:#8C9EFF;
+    color:black;
+    font-size:15pt;
 }
 
 .circleFeatures {
@@ -134,6 +154,7 @@ body {
 .inputArea {
     border:solid 1px transparent;
     border-bottom:dotted 1px black;
+    margin-bottom:1%;
 }
 
 .crea {
@@ -176,5 +197,9 @@ body {
 .grey {
     background:#ccd4ff;
     color:black;
+}
+
+.btn:focus, .btn:active, .btn:visited {
+  outline: none;
 }
 

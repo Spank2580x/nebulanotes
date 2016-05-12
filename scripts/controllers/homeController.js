@@ -1,7 +1,7 @@
 angular.module('routerApp')
     .controller('homeController', function ($scope, NotesFactory, StorageFactory, NotesService){
 
-        $scope.title = "Nebula Notes";
+        $scope.asideTitle = "Senza Titolo";
 
         $(document).ready(function () {
             $("#addFeatures").click(function () {
@@ -13,10 +13,12 @@ angular.module('routerApp')
                     $(".divEditor").css("display", "block");
                     $(".divEditor").addClass("animated bounceInDown");
                     $(".no-display").css("display", "block");
-                    $(".no-display").addClass("hvr-box-shadow-inset animated bounceInDown");
+                    $(".no-display").addClass("hvr-box-shadow-inset animated bounceInRight");
                 }, 600);
                 
             });
+
+           
         });
 
         var loadingNotes = true;
@@ -25,9 +27,10 @@ angular.module('routerApp')
         var dbLocal = {};
         var dbRemote = {};
 
-        $scope.text = "asd";
+        $scope.text = "";
 
-        $scope.write = function dummyWrite(){
+        $scope.write = function dummyWrite() {
+            
             console.log("Scrittura");
             var t = {
                 _id: new Date().toISOString(),
@@ -35,7 +38,7 @@ angular.module('routerApp')
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
-                    alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    
                     dbLocal.changes().on('change', function() {
                         console.log('Basta');
                         localStoredNotes = $scope.read();
@@ -47,7 +50,7 @@ angular.module('routerApp')
                 }
 
             });
-
+            
             //syncPouch();
         }
 
