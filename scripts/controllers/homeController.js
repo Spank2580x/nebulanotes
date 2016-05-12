@@ -6,30 +6,47 @@ angular.module('routerApp')
         var loadingNotes = true;
         var localStoredNotes = {};
 
+        var db = {};
+
+        $scope.text = "asd";
+
         function init(){
             alert("Vai");
-            StorageFactory.loadStorage("TODO", function(err, result){
-                if (err) offlineLoading();
-                else {
-                    console.log("Caricamento delle note online");
-                    localStoredNotes = result;
-                }
-            })
-            loadingNotes = false;
+            db = new PouchDB('nebulaNotes');
         }
 
-        function offlineLoading(){
-            console.log("Caricamento delle note offline");
-            NotesFactory.loadNotes("TODO", function(err, result){
-                if (err){
-                    //Caricamento delle note fallito
-                    alert("Caricamento delle note fallito");
+        $scope.write = function dummyWrite(){
+            console.log("Scrittura");
+            var t = {
+                _id: new Date().toISOString(),
+                txt: $scope.text
+            };
+            db.put(t, function callback(err, result) {
+                if (!err) {
+                    alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    db.changes().on('change', function() {
+                        console.log('Basta');
+                    });
                 }
                 else {
-                    //Caricamento delle note offline
-                    localStoredNotes = result;
+                    alert(err);
+                    alert("Fail");
                 }
-            })
+
+            });
+        }
+
+        $scope.read = function dummyRead(){
+            console.log("Lettura");
+            db.allDocs({include_docs: true, descending: true}, function(err, doc) {
+                if (!err) {
+                    /*alert("Oh vai a vedere la console");
+                    console.log(err);
+                    console.log("L'oggetto:" + doc);*/
+                    console.log(doc);
+                    $scope.text = doc.rows[parseInt(Math.random() * doc.rows.length)].doc.txt;
+                }
+            });
         }
 
         init();
