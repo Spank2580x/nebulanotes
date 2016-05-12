@@ -7,7 +7,6 @@ routerApp.factory('StorageFactory', function($http){
 
     var storageFactory = {};
 
-
     storageFactory.loadStorage = function(args, callback){
         callback(true);
     };
