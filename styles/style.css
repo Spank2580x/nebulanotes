@@ -14,10 +14,13 @@ body {
 
 .title {
     margin-top:-1px;
+    color:black;
+    font-family:Exo;
+    font-size:15pt;
 }
 
 .row-navbar-menuPrincipal {
-    height:100px;
-    background:#0094ff;
+    height:50px;
+    background:#8C9EFF;
     color:white;
 }
