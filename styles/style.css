@@ -119,6 +119,14 @@ body {
     margin-right:3%;
 }
 
+.dropdown-menu-right {
+    margin-top:70px;
+}
+    .dropdown-menu-right li {
+        font-size:18pt;
+        padding-left:5px;
+    }
+
     .circleFeatures:hover {
         color:black; 
     }
