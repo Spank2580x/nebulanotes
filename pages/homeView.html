@@ -18,7 +18,7 @@
             <div class="blockNote">
                 <h1>{{asideTitle}}</h1>
                 <h4>Creato il 13/06/2016 - Ultima modifica il 13/06/2016</h4>
-                <h3>Questa nota è molto importante perchè deve ricordarmi di..</h3>
+                <h3>Questa nota ï¿½ molto importante perchï¿½ deve ricordarmi di..</h3>
             </div> 
         </aside>
     <div class="col-md-1">
@@ -57,10 +57,10 @@
                 <textarea class="no-display" placeholder="Scrivi qui la tua nota" ng-model="text"></textarea>
                 <button type="button" class="btn saveButton no-display" ng-click="write()">Salva</button>
 
-               <!-- <div class="col-xs-12 no-display" ng-repeat="x in localStoredNotes">
+                <div class="col-xs-12" ng-repeat="x in localStoredNotes">
                     <span>test</span>
-                    <span>{{x.rows.doc.txt}}</span>
-                </div> -->
+                    <span>{{x.doc.txt}}</span>
+                </div>
 
            <span class="col-md-5 crea out">Crea la tua prima nota</span>
 
