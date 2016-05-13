@@ -2,15 +2,11 @@
 <div class="container-fluid">
     <div class="row row-navbar-menuPrincipal">
         <h1 class="col-xs-12 col-md-4 title">
-            Notes on Nebula
+            Notenebulas
         </h1>
         <div class="col-xs-12 col-md-8 divEditor">
-            <button class="btn btn-default grassetto">Grassetto</button>
-            <button class="btn btn-default corsivo">Corsivo</button>
-            <button class="btn btn-default sottolineato">Sottolineato</button>
-            <button class="btn btn-default barrato">Barrato</button>
-            <button class="btn btn-default"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
-            <button class="btn btn-default"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+            <input type="text" placeholder="Cerca.." class="findNotes" />
+            <button class="btn circleFeaturesSettings"><i class="fa fa-cog" aria-hidden="true"></i></button>
         </div>
     </div>
     <div class="row">
@@ -20,7 +16,28 @@
                 <h4>Creato il 13/06/2016 - Ultima modifica il 13/06/2016</h4>
                 <h3>Questa nota &egrave molto importante perch&egrave deve ricordarmi di..</h3>
             </div> 
+            
+            <div id="preview1">
+                <article>
+                    
+                    Con Notenebulas potrai :<br /><br />
+                    - gestire i tuoi impegni ed appunti <br />
+                    - permanenti sul nostro spazio web <br />
+                    - potrai cancellarle quando vorrai
+                </article>
+            </div>
+
+            <div id="preview2">
+                <article><br />
+                    - allegare immagini, audio o testi <br />
+                    - salvataggio automatico delle modifiche<br />
+                    - personalizzare le tue sticky notes
+                </article>
+            </div>
+           
         </aside>
+
+       
     <div class="col-md-1">
 
     </div>
@@ -41,12 +58,33 @@
             </button>
 
             <button class="col-xs-3 btn circleFeatures no-display" id="uploadFeatures" name="personalize">
-                <i class="fa fa-upload" aria-hidden="true"></i>
+                <i class="fa fa-paperclip" aria-hidden="true"></i>
             </button>
 
-            <button class="col-xs-3 btn circleFeatures no-display" id="deleteFeatures" name="delete">
+            <button class="col-xs-3 btn circleFeatures no-display" id="deleteFeatures" name="delete" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Sei sicuro?</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Sicuro di voler eliminare questa nota? </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-warning delete-yes" ng-click="delete()">Si, eliminala</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
 
             <div class="dropdown">
             <button class="col-xs-3 btn circleFeatures dropdown-toggle no-display" type="button" data-toggle="dropdown" id="shareFeatures" name="share">
@@ -56,15 +94,15 @@
               <ul class="dropdown-menu dropdown-menu-right">
                 <li><a href="#">Facebook <i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
                 <li><a href="#">Twitter <i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-                <li><a href="#">Orazio</a></li>
+                <li><a href="#">Orazio <i class="fa fa-user-secret" aria-hidden="true"></i> </a></li>
               </ul>
                 </div>
                 <!-- campo di testo -->
                 <!-- si bugga se non metti uno spazio xd -->
 
-                <input type="text" class="col-xs-12 inputArea no-display" maxlength="80" placeholder="Senza Titolo" ng-model="asideTitle" />
+                <input type="text" class="col-xs-12 inputArea no-text" maxlength="80" placeholder="Senza Titolo" ng-model="asideTitle" />
                 
-                <div class="no-show">
+                <div class="no-show" style="float:none; clear:both">
                 
                 <div class="no-text textField" text-angular placeholder="Scrivi qui la tua nota" ng-model="text"></div>
                 <button type="button" class="btn saveButton" ng-click="write()">Salva</button>
@@ -113,7 +151,7 @@
         </section>
         
     </div>
-      <footer class="row">
+      <footer class="row no-text">
         <span class="col-xs-12">Amazzati ...</span>
             </footer>
 </div>
