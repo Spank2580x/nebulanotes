@@ -96,7 +96,9 @@ angular.module('routerApp')
         $scope.delete = function(){
             console.log("Cancellazione");
             for (var i = 0; i < $scope.localStoredNotes.length; i++){
-                dbLocal.remove($scope.localStoredNotes[i]);
+                console.log("Provo a rimuovere");
+                console.log($scope.localStoredNotes[i].doc);
+                dbLocal.remove($scope.localStoredNotes[i].doc);
             }
             $scope.localStoredNotes = [];
         };
