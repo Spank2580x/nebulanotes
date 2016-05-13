@@ -11,13 +11,15 @@
     </div>
     <div class="row">
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes"><!-- hidden-xs -->
-            <div class="blockNote">
+            <div class="no-text">
+            <div class="blockNote" ng-repeat="x in localStoredNotes">
                 <h1>{{asideTitle}}</h1>
                 <h4>Creato il 13/06/2016 - Ultima modifica il 13/06/2016</h4>
-                <h3>Questa nota &egrave molto importante perch&egrave deve ricordarmi di..</h3>
+                <h3>{{x.doc.txt}}</h3>
             </div> 
-            
-            <div id="preview1">
+            </div>
+
+            <div id="preview1" class="hvr-curl-top-right">
                 <article>
                     
                     Con Notenebulas potrai :<br /><br />
@@ -27,7 +29,7 @@
                 </article>
             </div>
 
-            <div id="preview2">
+            <div id="preview2" class="hvr-curl-top-right">
                 <article><br />
                     - allegare immagini, audio o testi <br />
                     - salvataggio automatico delle modifiche<br />
@@ -79,7 +81,7 @@
                         <p>Sicuro di voler eliminare questa nota? </p>
                       </div>
                       <div class="modal-footer">
-                        <button class="btn btn-warning delete-yes" ng-click="delete()">Si, eliminala</button>
+                        <button class="btn btn-warning delete-yes" ng-click="delete()" data-dismiss="modal">Si, eliminala</button>
                       </div>
                     </div>
 
@@ -104,12 +106,9 @@
                 
                 <div class="no-show" style="float:none; clear:both">
                 
-                <div class="no-text textField" text-angular placeholder="Scrivi qui la tua nota" ng-model="text"></div>
+                <div class="no-text textField" text-angular placeholder="{{text}}" ng-model="text"></div>
                 <button type="button" class="btn saveButton" ng-click="write()">Salva</button>
                 
-                <div class="col-xs-12" ng-repeat="x in localStoredNotes">
-                    <span>{{x.doc.txt}}</span>
-                </div>
                 </div>
 
            <span class="col-md-5 crea out">Crea la tua prima nota</span>

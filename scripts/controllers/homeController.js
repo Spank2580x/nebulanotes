@@ -1,7 +1,7 @@
 angular.module('routerApp')
     .controller('homeController', function ($scope, NotesFactory, StorageFactory, NotesService){
 
-        $scope.title = "Nebula Notes";
+        $scope.asideTitle = "Senza Titolo";
 
         var debugging = true;
 
@@ -33,8 +33,9 @@ angular.module('routerApp')
         var dbLocal = {};
         var dbRemote = {};
 
-        $scope.text = "asd";
-        $scope.a = [1,2,3,4,5];
+        $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte";
+        $scope.a = [1, 2, 3, 4, 5];
+
         $scope.write = function(){
             console.log("Scrittura");
             var t = {
@@ -43,7 +44,7 @@ angular.module('routerApp')
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
-                    alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
                     dbLocal.changes().on('change', function() {
                         $scope.read();
                     });
@@ -58,6 +59,7 @@ angular.module('routerApp')
             });
 
             //syncPouch();
+            
         }
 
         $scope.read = function(){

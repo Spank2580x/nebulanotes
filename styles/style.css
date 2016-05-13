@@ -115,7 +115,6 @@ body {
     padding-left: 10px;
     padding-bottom: 10px;
     border-bottom: solid 1px black;
-    display: none;
 }
 
     .blockNote:hover {
@@ -150,6 +149,7 @@ body {
 .sectionNotes {
     font-size: 15pt;
     margin-top: 2%;
+    left:15px;
 }
 
     .textField {
@@ -189,7 +189,7 @@ body {
     background: rgb(48,48,48);
     color: white;
     float:right;
-    margin-right: 2%;
+    margin-right: 1%;
 }
 
     .circleFeaturesSettings:hover, .circleFeaturesSettings:visited, .circleFeaturesSettings:active, .circleFeaturesSettings:focus {
