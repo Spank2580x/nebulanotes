@@ -26,16 +26,16 @@ body {
 }
 
 .findNotes {
-    width:50%;
-    font-size:13pt;
-    color:black;
-    padding:5px;
+    width: 50%;
+    font-size: 13pt;
+    color: black;
+    padding: 5px;
 }
 
-    .divEditor button {
-        font-size: 15pt;
-        font-weight: bold;
-    }
+.divEditor button {
+    font-size: 15pt;
+    font-weight: bold;
+}
 
 .grassetto:hover {
     font-weight: bold;
@@ -61,7 +61,7 @@ body {
 
 .asideNotes {
     border-top-color: transparent;
-    height: 900px;   
+    height: 900px;
 }
 
 .asidev2 {
@@ -71,42 +71,41 @@ body {
 }
 
 #preview1 {
-    margin-top:15%;
-    background:rgb(48,48,48);
-    width:100%;
-    min-height:400px;
+    margin-top: 15%;
+    background: rgb(48,48,48);
+    width: 100%;
+    min-height: 400px;
 }
 
-    #preview1 article{
-        font-size:20pt;
-        text-align:center;
-        color:white;
-        padding:10px;
-        font-family:Gloria Hallelujah;
-        font-weight:lighter;
+    #preview1 article {
+        font-size: 20pt;
+        text-align: center;
+        color: white;
+        padding: 10px;
+        font-family: Gloria Hallelujah;
+        font-weight: lighter;
     }
 
 #preview2 article {
-        font-size:20pt;
-        text-align:center;
-        padding:10px;
-        font-family:Gloria Hallelujah;
-        font-weight:lighter;
-        color: black;
+    font-size: 20pt;
+    text-align: center;
+    padding: 10px;
+    font-family: Gloria Hallelujah;
+    font-weight: lighter;
+    color: black;
 }
 
 #preview2 {
-    
-    background:#8C9EFF;
-    width:100%;
-    min-height:400px;
-    color:black;
+    background: #8C9EFF;
+    width: 100%;
+    min-height: 400px;
+    color: black;
 }
 
-    .asideNotes h3 {
-        width: 80%;
-        height: auto;
-    }
+.asideNotes h3 {
+    width: 80%;
+    height: auto;
+}
 
 .blockNote {
     margin-left: -15px;
@@ -149,12 +148,12 @@ body {
 .sectionNotes {
     font-size: 15pt;
     margin-top: 2%;
-    left:15px;
+    left: 15px;
 }
 
-    .textField {
-        width: 80%;
-    }
+.textField {
+    width: 80%;
+}
 
 .inputArea {
     font-size: 30pt;
@@ -188,7 +187,7 @@ body {
     border-radius: 25px;
     background: rgb(48,48,48);
     color: white;
-    float:right;
+    float: right;
     margin-right: 1%;
 }
 
@@ -308,6 +307,34 @@ footer {
         padding-bottom: 5px;
     }
 
-.btn:focus, .btn:active, .btn:visited, .inputArea:focus, .inputArea:active, .inputArea:visited{
+.btn:focus, .btn:active, .btn:visited, .inputArea:focus, .inputArea:active, .inputArea:visited {
     outline: none;
 }
+
+/*
+    starting loading contents page
+*/
+
+.rowPrincipal {
+    background:#8C9EFF;
+    color:black;
+    min-height:100vh;
+    text-align:center;
+}
+
+.titlePrincipal {
+    margin-top:10%;
+    font-size:120pt;
+    font-family:Gloria Hallelujah;
+}
+
+.rowPrincipal h2 { 
+    margin-top:5%;
+    font-family:Poiret One;
+    font-weight:bold;
+}
+
+.rowPrincipal h3 { 
+    margin-top:10%;   
+}
+
