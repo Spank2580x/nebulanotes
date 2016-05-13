@@ -7,7 +7,7 @@ angular.module('routerApp')
 
         $(document).ready(function () {
             $("#addFeatures").click(function () {
-                $(".out").addClass("animated bounceOut");
+                $(".out").hide(300);
                 $(".blockNote").css("display", "block");
                 $(".blockNote").addClass("animated bounceInLeft");
                 $("#addFeatures").removeClass("animated infinite bounce");
@@ -16,6 +16,10 @@ angular.module('routerApp')
                     $(".divEditor").addClass("animated bounceInDown");
                     $(".no-display").css("display", "block");
                     $(".no-display").addClass("hvr-box-shadow-inset animated bounceInDown");
+                    $(".no-text").css("display", "block");
+                   // $(".no-text").addClass("animated bounceInRight");
+                    $(".no-show").css("display", "block");
+                    
                 }, 600);
 
             });

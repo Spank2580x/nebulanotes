@@ -47,14 +47,14 @@ body {
 .row-navbar-menuPrincipal {
     background:#8C9EFF;
     color:white;
-    border-bottom:solid 8px #c7d3d5;
+    border-bottom:solid 3px rgb(48,48,48);
 }
 
 .asideNotes {
     background:#ccd4ff;
     border:solid 1px #8C9EFF;
     border-top-color:transparent;
-    height:95vh;
+    height:900px;
     overflow-y:scroll;
 }
 
@@ -64,13 +64,13 @@ body {
 }
 
 .blockNote {
+    margin-left:-15px;
     -webkit-transition:all 0.3s ease-in-out;
     padding-top:5px;
     padding-left:10px;
     padding-bottom:10px;
     border-bottom:solid 1px black;
-    display:none;
-    width:100%;
+    display:none;   
 }
 
     .blockNote:hover {
@@ -79,8 +79,22 @@ body {
         background:#8C9EFF;
     }
 
-.no-display {
+.no-display, .no-show, .no-text {
     display:none;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
 .sectionNotes{
@@ -124,8 +138,17 @@ body {
     background: #8C9EFF;
 }
 
+#editFeatures {
+    background:#fddf00;
+    margin-left:10px;
+}
+
+#uploadFeatures {  
+    margin-left:10px;
+}
+
 #customFeatures {
-    background:#ccd4ff;
+    background:#89f646;
     margin-left:10px;
 }
 
@@ -136,6 +159,8 @@ body {
 
 #shareFeatures {
     float:right;
+    background:rgb(48,48,48);
+    color:white;
     margin-right:3%;
 }
 
@@ -150,6 +175,10 @@ body {
     .circleFeatures:hover {
         color:black; 
     }
+
+.rangeColors {
+    margin-top:8%;
+}
 
 .inputArea {
     border:solid 1px transparent;
@@ -198,6 +227,20 @@ body {
     background:#ccd4ff;
     color:black;
 }
+
+footer {
+    text-align:center;
+    background:rgb(48,48,48);
+    color:#8C9EFF;
+    font-size:15pt;
+    position:relative;
+    bottom:0;
+}
+
+    footer span {
+        padding-top:5px;
+        padding-bottom:5px;
+    }
 
 .btn:focus, .btn:active, .btn:visited {
   outline: none;
