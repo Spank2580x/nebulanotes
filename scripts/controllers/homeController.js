@@ -1,46 +1,34 @@
 angular.module('routerApp')
-    .controller('homeController', function ($scope, NotesFactory, StorageFactory, NotesService){
+    .controller('homeController', function ($scope, NotesFactory, StorageFactory, NotesService, AnimationService){
 
-        $scope.asideTitle = "Senza Titolo";
+        $scope.asideTitle = "Nuovo titolo";
 
         var debugging = true;
 
         $(document).ready(function () {
-            $("#addFeatures").click(function () {
-                $(".out").hide(300);
-                $("#preview1, #preview2, #preview3").hide(1);
-                $(".asideNotes").addClass("asidev2");
-                $(".blockNote").css("display", "block");
-                $(".blockNote").addClass("animated bounceInLeft");
-                $("#addFeatures").removeClass("animated infinite bounce");
-                setTimeout(function () {
-                    $(".divEditor").css("display", "block");
-                    $(".divEditor").addClass("animated fadeIn");
-                    $(".no-display").css("display", "block");
-                    $(".no-display").addClass("hvr-box-shadow-inset animated rotateIn");
-                    $(".no-text").css("display", "block");
-                    $(".no-text").addClass("animated bounceInRight");
-                    $(".no-show").css("display", "block");
-                }, 600);
-
-            });
+            //La tua roba e' in animationService
         });
 
         var loadingNotes = true;
         var errorOnLoadingNotes = false;
         $scope.localStoredNotes = [];
+        $scope.currentNote;
 
         var dbLocal = {};
-        var dbRemote = {};
+        var firstTimeApp;
 
-        $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte";
-        $scope.a = [1, 2, 3, 4, 5];
+        $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
+        $scope.title;
 
         $scope.write = function(){
-            console.log("Scrittura");
+            console.log("Creazione nuova nota");
             var t = {
                 _id: new Date().toISOString(),
-                txt: $scope.text
+                content: "",
+                previewContent: "",
+                title: "Senza titolo",
+                creationDate: new Date().toISOString(),
+                lastEditDate: new Date().toISOString()
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -48,7 +36,7 @@ angular.module('routerApp')
                     dbLocal.changes().on('change', function() {
                         $scope.read();
                     });
-                    console.log($scope.localStoredNotes);
+                    console.log("Creazione riuscita?" + result);
                     $scope.$apply()
                 }
                 else {
@@ -59,7 +47,40 @@ angular.module('routerApp')
             });
 
             //syncPouch();
-            
+        }
+
+        $scope.edit = function(){
+            console.log("Modifica di ")
+            console.log($scope.currentNote);
+            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            var t = {
+                _id: $scope.currentNote.doc._id,
+                _rev: $scope.currentNote.doc._rev,
+                content: $scope.text,
+                previewContent: $scope.text.substring(0, $scope.text.length > 20 ? 20 : $scope.text.length) + ($scope.text.length > 20 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
+                title: $scope.title,
+                creationDate: $scope.currentNote.doc.creationDate,
+                lastEditDate: new Date().toISOString()
+            };
+            dbLocal.put(t, function callback(err, result) {
+                if (!err) {
+                    //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    dbLocal.changes().on('change', function() {
+                        $scope.read();
+                    });
+                    console.log("Modifica riuscita?")
+                    console.log(result);
+                    singleRead(t._id, function(err, data){
+                        if (!err) $scope.open({doc: data});
+                        $scope.$apply()
+                    });
+                }
+                else {
+                    alert(err);
+                    alert("Fail");
+                }
+
+            });
         }
 
         $scope.read = function(){
@@ -78,6 +99,14 @@ angular.module('routerApp')
                 }
             });
         };
+
+        $scope.open = function(obj){
+            console.log("Visualizzazione di ")
+            console.log(obj);
+            $scope.currentNote = obj;
+            $scope.text = obj.doc.content;
+            $scope.title = obj.doc.title;
+        }
 
         function backRead(callback){
             console.log("Lettura");
@@ -100,6 +129,15 @@ angular.module('routerApp')
             });
         }
 
+        function singleRead(doc, callback){
+            dbLocal.get(doc, function(err, doc) {
+                if (err){
+                    alert (err);
+                }
+                else callback(err, doc);
+            });
+        }
+
         $scope.delete = function(){
             console.log("Cancellazione");
             for (var i = 0; i < $scope.localStoredNotes.length; i++){
@@ -110,32 +148,40 @@ angular.module('routerApp')
             $scope.localStoredNotes = [];
         };
 
+        $scope.addButtonPressed = function(){
+            AnimationService.animateAddButton();
+            if (firstTimeApp){
+                $scope.write();
+                backRead(function(err, notes){
+                    $scope.currentNote = notes[0];
+                })
+            }
+        }
+
         function init(){
             //alert("Vai");
             dbLocal = new PouchDB('nebulanotes');
+            NotesService.isFirstTimeUsingApp(dbLocal, function(err, result){
+                console.log("Prima volta che si usa l'app?");
+                if (err) console.log("Buh.. non va un cazzo qua");
+                else console.log(result);
+                firstTimeApp = true; //TODO dovrebbe essere result
+            });
             backRead(function (err, notes){
                 if (err) errorOnLoadingNotes = true;
                 else loadingNotes = false;
-                console.log("Me ne frego e vado avanti");
                 //$scope.delete();
                 console.log($scope.localStoredNotes);
+                $scope.delete();
                 $scope.$apply()
             });
             //dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
             //dbLocal.sync(dbRemote);
         }
 
-        function syncPouch(){
-            console.log("Sincronizzo");
-            dbLocal.replicate.to(dbRemote).on('complete', function () {
-                console.log("Ce la facciamo?");
-            }).on('error', function (err) {
-                console.log(err);
-            });
+        $scope.dio = function(){
+            alert("Dio");
         }
-
-
-
 
         init();
 

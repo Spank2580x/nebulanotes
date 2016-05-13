@@ -13,26 +13,27 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes"><!-- hidden-xs -->
             <div class="no-text">
             <div class="blockNote" ng-repeat="x in localStoredNotes">
-                <h1>{{asideTitle}}</h1>
-                <h4>Creato il 13/06/2016 - Ultima modifica il 13/06/2016</h4>
-                <h3>{{x.doc.txt}}</h3>
+                <div ng-click="open(x)">
+                    <h1>{{x.doc.title}}</h1>
+                    <h4>Creato il {{x.doc.creationDate}} - Ultima modifica il 13/06/2016</h4>
+                    <h3>{{x.doc.previewContent}}</h3>
+                </div>
             </div> 
             </div>
 
             <div id="preview1" class="hvr-curl-top-right">
                 <article>
-                    
                     Con Notenebulas potrai :<br /><br />
                     - gestire i tuoi impegni ed appunti <br />
                     - permanenti sul nostro spazio web <br />
-                    - potrai cancellarle quando vorrai
+                    - potrai cancellarlI quando vorrai
                 </article>
             </div>
 
             <div id="preview2" class="hvr-curl-top-right">
                 <article><br />
                     - allegare immagini, audio o testi <br />
-                    - salvataggio automatico delle modifiche<br />
+                    - ssssssh!<br />
                     - personalizzare le tue sticky notes
                 </article>
             </div>
@@ -47,7 +48,7 @@
             <div class="row">
 
             
-            <button class="col-xs-3 btn circleFeatures animated infinite bounce hvr-box-shadow-inset" id="addFeatures" name="add">
+            <button class="col-xs-3 btn circleFeatures animated infinite bounce hvr-box-shadow-inset" id="addFeatures" name="add" ng-click="addButtonPressed()">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
 
@@ -102,12 +103,12 @@
                 <!-- campo di testo -->
                 <!-- si bugga se non metti uno spazio xd -->
 
-                <input type="text" class="col-xs-12 inputArea no-text" maxlength="80" placeholder="Senza Titolo" ng-model="asideTitle" />
+                <input type="text" class="col-xs-12 inputArea no-text" maxlength="80" placeholder="Senza Titolo" ng-model="title" />
                 
                 <div class="no-show" style="float:none; clear:both">
                 
                 <div class="no-text textField" text-angular placeholder="{{text}}" ng-model="text"></div>
-                <button type="button" class="btn saveButton" ng-click="write()">Salva</button>
+                <button type="button" class="btn saveButton" ng-click="edit()">Salva</button>
                 
                 </div>
 
