@@ -278,19 +278,68 @@ body {
     height: 200px;
 }
 
+.modalColors {
+    opacity:0.8;
+    color:white;
+    margin-left:5%;
+}
+
+    .modalColors:hover, .modalColors:active, .modalColors:visited, .modalColors:focus {
+        opacity:1;
+        color:white;
+    }
+
 .orange {
     background: #ff6a00;
-    color: black;
+}
+
+.red {
+    background:red;
+}
+
+.dark {
+    background:rgb(48, 48, 48);
+}
+
+.beige{
+    background:#c68e47;
+}
+
+.green {
+    background:#89f646;
 }
 
 .blue {
     background: #8C9EFF;
-    color: black;
+    
 }
 
-.grey {
+.light {
     background: #ccd4ff;
-    color: black;
+    
+}
+
+.white {
+    background:white;
+    color:black;
+    float:right;
+}
+
+    .white:hover, .white:visited, .white:active, .white:focus {
+        border:solid 1px black;
+        color:black;
+    }
+
+.yellow {
+    background:#f9ff26;
+}
+
+.black {
+    background:black;
+}
+
+.purple {
+    background:#a000ff;
 }
 
 footer {
@@ -337,4 +386,5 @@ footer {
 .rowPrincipal h3 { 
     margin-top:10%;   
 }
+
 

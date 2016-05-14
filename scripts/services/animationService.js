@@ -21,5 +21,10 @@ routerApp.service('AnimationService', function() {
         }, 600);
     }
 
+    this.animateBlack = function () {
+        $(".blockNote").addClass("black");
+        $(".blockNote").css("color","white");
+    }
+
 
 });

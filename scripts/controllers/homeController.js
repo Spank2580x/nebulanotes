@@ -1,7 +1,7 @@
 angular.module('routerApp')
     .controller('homeController', function ($scope, NotesFactory, StorageFactory, NotesService, AnimationService){
 
-        $scope.asideTitle = "Nuovo titolo";
+        $scope.title = "Senza titolo";
 
         var debugging = true;
 
@@ -35,9 +35,11 @@ angular.module('routerApp')
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
                     dbLocal.changes().on('change', function() {
                         $scope.read();
+                        
                     });
                     console.log("Creazione riuscita?" + result);
                     $scope.$apply()
+
                 }
                 else {
                     alert(err);
@@ -57,7 +59,7 @@ angular.module('routerApp')
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
                 content: $scope.text,
-                previewContent: $scope.text.substring(0, $scope.text.length > 20 ? 20 : $scope.text.length) + ($scope.text.length > 20 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
+                previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: new Date().toISOString()
@@ -154,8 +156,13 @@ angular.module('routerApp')
                 $scope.write();
                 backRead(function(err, notes){
                     $scope.currentNote = notes[0];
+                    
                 })
             }
+        }
+
+        $scope.goBlack = function () {
+            AnimationService.animateBlack();
         }
 
         function init(){

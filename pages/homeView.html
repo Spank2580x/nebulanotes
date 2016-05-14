@@ -26,7 +26,7 @@
                     Con Notenebulas potrai :<br /><br />
                     - gestire i tuoi impegni ed appunti <br />
                     - permanenti sul nostro spazio web <br />
-                    - potrai cancellarlI quando vorrai
+                    - potrai cancellarli quando vorrai
                 </article>
             </div>
 
@@ -56,7 +56,7 @@
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
 
-            <button class="col-xs-3 btn circleFeatures no-display" id="customFeatures" name="personalize">
+            <button class="col-xs-3 btn circleFeatures no-display" id="customFeatures" name="personalize" data-toggle="modal" data-target="#myModal2">
                 <i class="fa fa-paint-brush" aria-hidden="true"></i>
             </button>
 
@@ -67,6 +67,33 @@
             <button class="col-xs-3 btn circleFeatures no-display" id="deleteFeatures" name="delete" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
+                <!-- Modal -->
+                <div id="myModal2" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button class="modalColors btn circleFeatures black" ng-click="goBlack()"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures dark"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures red"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures orange"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures yellow"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures green"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures blue"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures grey"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures beige"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures purple"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        
+                      </div>       
+                      <div class="modal-footer">
+                        <button class="modalColors btn circleFeatures white" data-dismiss="modal"> <i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
@@ -103,7 +130,7 @@
                 <!-- campo di testo -->
                 <!-- si bugga se non metti uno spazio xd -->
 
-                <input type="text" class="col-xs-12 inputArea no-text" maxlength="80" placeholder="Senza Titolo" ng-model="title" />
+                <input type="text" class="col-xs-12 inputArea no-text" maxlength="80" placeholder="Nuovo Titolo" ng-model="title" />
                 
                 <div class="no-show" style="float:none; clear:both">
                 
