@@ -1,5 +1,12 @@
 angular.module('routerApp')
-    .controller('homeController', function ($scope, NotesFactory, StorageFactory, NotesService, AnimationService){
+    .controller('homeController', function ($scope,
+                                            $interval,
+                                            NotesFactory,
+                                            StorageFactory,
+                                            NotesService,
+                                            AnimationService,
+                                            TrafficLightService
+    ){
 
         $scope.title = "Senza titolo";
 
@@ -11,6 +18,7 @@ angular.module('routerApp')
 
         var loadingNotes = true;
         var errorOnLoadingNotes = false;
+
         $scope.localStoredNotes = [];
         $scope.currentNote;
 
@@ -19,6 +27,9 @@ angular.module('routerApp')
 
         $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
         $scope.title;
+
+        var comparingText;
+        var comparingTitle;
 
         $scope.write = function(){
             console.log("Creazione nuova nota");
@@ -108,6 +119,8 @@ angular.module('routerApp')
             $scope.currentNote = obj;
             $scope.text = obj.doc.content;
             $scope.title = obj.doc.title;
+            comparingText = $scope.text;
+            comparingTitle = $scope.title;
         }
 
         function backRead(callback){
@@ -131,6 +144,40 @@ angular.module('routerApp')
             });
         }
 
+        function backEdit(callbackk){
+            console.log("Modifica di ")
+            console.log($scope.currentNote);
+            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            var t = {
+                _id: $scope.currentNote.doc._id,
+                _rev: $scope.currentNote.doc._rev,
+                content: $scope.text,
+                previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
+                title: $scope.title,
+                creationDate: $scope.currentNote.doc.creationDate,
+                lastEditDate: new Date().toISOString()
+            };
+            dbLocal.put(t, function callback(err, result) {
+                if (!err) {
+                    //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    dbLocal.changes().on('change', function() {
+                        $scope.read();
+                    });
+                    console.log("Modifica riuscita?")
+                    console.log(result);
+                    singleRead(t._id, function(err, data){
+                        if (!err) $scope.open({doc: data});
+                        $scope.$apply()
+                    });
+                }
+                else {
+                    alert(err);
+                    alert("Fail");
+                }
+                callbackk(err, result);
+            });
+        }
+
         function singleRead(doc, callback){
             dbLocal.get(doc, function(err, doc) {
                 if (err){
@@ -142,23 +189,34 @@ angular.module('routerApp')
 
         $scope.delete = function(){
             console.log("Cancellazione");
-            for (var i = 0; i < $scope.localStoredNotes.length; i++){
-                console.log("Provo a rimuovere");
-                console.log($scope.localStoredNotes[i].doc);
-                dbLocal.remove($scope.localStoredNotes[i].doc);
-            }
-            $scope.localStoredNotes = [];
+            dbLocal.remove($scope.currentNote.doc, function(err, result){
+                if (err){
+                    alert(err);
+                    console.error("Cancellazione fallita");
+                    console.error("Poi buh io ho provato ad usare: ");
+                    console.error($scope.currentNote.doc);
+                    return -1;
+                }
+                backRead(function(err, result){
+                    if (err) alert(err);
+                    else {
+                        $scope.localStoredNotes = result;
+                        if ($scope.currentNote.length > 0) {
+                            $scope.currentNote = $scope.localStoredNotes[$scope.localStoredNotes.length -1];
+                            $scope.open($scope.currentNote);
+                        }
+                    }
+                })
+            });
+
         };
 
         $scope.addButtonPressed = function(){
             AnimationService.animateAddButton();
-            if (firstTimeApp){
-                $scope.write();
-                backRead(function(err, notes){
+            $scope.write();
+            backRead(function(err, notes){
                     $scope.currentNote = notes[0];
-                    
-                })
-            }
+            })
         }
 
         $scope.goBlack = function () {
@@ -167,19 +225,21 @@ angular.module('routerApp')
 
         function init(){
             //alert("Vai");
+            TrafficLightService.init();
             dbLocal = new PouchDB('nebulanotes');
             NotesService.isFirstTimeUsingApp(dbLocal, function(err, result){
                 console.log("Prima volta che si usa l'app?");
                 if (err) console.log("Buh.. non va un cazzo qua");
                 else console.log(result);
-                firstTimeApp = true; //TODO dovrebbe essere result
+                firstTimeApp = result;
+                showingFirstTime = result;
             });
             backRead(function (err, notes){
                 if (err) errorOnLoadingNotes = true;
                 else loadingNotes = false;
                 //$scope.delete();
                 console.log($scope.localStoredNotes);
-                $scope.delete();
+                //$scope.delete();
                 $scope.$apply()
             });
             //dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
@@ -188,6 +248,26 @@ angular.module('routerApp')
 
         $scope.dio = function(){
             alert("Dio");
+        }
+
+        $interval(function(){
+            if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
+            console.log("Autosalvataggio");
+            TrafficLightService.addLight("Autosave");
+            backEdit(function (err, data){
+                TrafficLightService.removeLight("Autosave");
+                updateComparing();
+            })
+        }, 1000);
+
+        function hasBeenEdited(){
+            return $scope.text != comparingText ||
+                    $scope.title != comparingTitle;
+        }
+
+        function updateComparing(){
+            comparingText = $scope.text;
+            comparingTitle = $scope.title;
         }
 
         init();

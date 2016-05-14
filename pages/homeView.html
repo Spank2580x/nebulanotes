@@ -134,7 +134,9 @@
                 
                 <div class="no-show" style="float:none; clear:both">
                 
-                <div class="no-text textField" text-angular placeholder="{{text}}" ng-model="text"></div>
+                <div class="no-text textField" text-angular
+                     ta-toolbar="[['p','pre','quote','bold','italics','underline','strikeThrough','ul','ol','undo','redo','clear','justifyLeft','justifyCenter','justifyRight','indent','outdent','html','insertImage','insertLink','insertVideo']]"
+                     placeholder="{{text}}" ng-model="text"></div>
                 <button type="button" class="btn saveButton" ng-click="edit()">Salva</button>
                 
                 </div>
