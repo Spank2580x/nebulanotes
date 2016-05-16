@@ -1,10 +1,10 @@
 
 <div class="container-fluid">
     <div class="row row-navbar-menuPrincipal">
-        <h1 class="col-xs-12 col-md-4 title">
-            Notenebulas
+        <h1 class="col-xs-2 col-md-4 title">
+           <img src="images/N.png" class="logoMinimal visible-xs visible-sm" /> <span class="hidden-xs hidden-sm animated fadeIn" >Notenebulas</span>
         </h1>
-        <div class="col-xs-12 col-md-8 divEditor">
+        <div class="col-xs-9 col-md-8 divEditor">
             <input type="text" placeholder="Cerca.." class="findNotes" />
             <button class="btn circleFeaturesSettings"><i class="fa fa-cog" aria-hidden="true"></i></button>
         </div>
@@ -47,7 +47,6 @@
         <section class="col-md-8 sectionNotes">
             <div class="row">
 
-            
             <button class="col-xs-3 btn circleFeatures animated infinite bounce hvr-box-shadow-inset" id="addFeatures" name="add" ng-click="addButtonPressed()">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
@@ -75,16 +74,16 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <button class="modalColors btn circleFeatures black" ng-click="goBlack()"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures dark"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures red"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures orange"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures yellow"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures green"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures blue"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures grey"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures beige"><i class="fa fa-heart" aria-hidden="true"></i></button>
-                        <button class="modalColors btn circleFeatures purple"><i class="fa fa-heart" aria-hidden="true"></i></button>
+                        <button class="modalColors btn circleFeatures black" ng-click="goBlack()"></button>
+                        <button class="modalColors btn circleFeatures dark"></button>
+                        <button class="modalColors btn circleFeatures red"></button>
+                        <button class="modalColors btn circleFeatures orange"></button>
+                        <button class="modalColors btn circleFeatures yellow"></button>
+                        <button class="modalColors btn circleFeatures green"></button>
+                        <button class="modalColors btn circleFeatures blue"></button>
+                        <button class="modalColors btn circleFeatures grey"></button>
+                        <button class="modalColors btn circleFeatures beige"></button>
+                        <button class="modalColors btn circleFeatures purple"></button>
                         
                       </div>       
                       <div class="modal-footer">
@@ -134,8 +133,8 @@
                 
                 <div class="no-show" style="float:none; clear:both">
                 
-                <div class="no-text textField" text-angular
-                     ta-toolbar="[['p','pre','quote','bold','italics','underline','strikeThrough','ul','ol','undo','redo','clear','justifyLeft','justifyCenter','justifyRight','indent','outdent','html','insertImage','insertLink','insertVideo']]"
+                <div class="no-text textField" text-angular 
+                    ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','indent','outdent','insertImage','insertLink','insertVideo']]"
                      placeholder="{{text}}" ng-model="text"></div>
                 <button type="button" class="btn saveButton" ng-click="edit()">Salva</button>
                 
