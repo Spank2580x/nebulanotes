@@ -199,7 +199,7 @@ body {
     border-radius: 25px;
     background: rgb(48,48,48);
     color: white;
-    margin-left:5%;
+    margin-left:1%;
 }
 
     .circleFeaturesSettings:hover, .circleFeaturesSettings:visited, .circleFeaturesSettings:active, .circleFeaturesSettings:focus {
@@ -233,6 +233,8 @@ body {
     background: rgb(48,48,48);
     margin-left: 10px;
     color:white;
+    float:right;
+    right:20px;
 }
 
 .dropdown-menu-right {
@@ -354,14 +356,15 @@ body {
 
 footer {
     text-align: center;
-    background: white;
+    background: #8C9EFF;
     color: black;
     font-size: 18pt;
     position: relative;
-    bottom: 0;
+    margin-top: 5%;
 }
 
     footer span {
+        background: #8C9EFF;
         padding-top: 5px;
         padding-bottom: 5px;
     }
