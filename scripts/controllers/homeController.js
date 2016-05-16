@@ -52,7 +52,7 @@ angular.module('routerApp')
                         
                     });
                     console.log("Creazione riuscita?" + result);
-                    $scope.$apply()
+                    //$scope.$apply()
 
                 }
                 else {
@@ -88,7 +88,7 @@ angular.module('routerApp')
                     console.log(result);
                     singleRead(t._id, function(err, data){
                         if (!err) $scope.open({doc: data});
-                        $scope.$apply()
+                        //$scope.$apply()
                     });
                 }
                 else {
@@ -108,7 +108,7 @@ angular.module('routerApp')
                      console.log("L'oggetto:" + doc);*/
                     //$scope.text = doc.rows[0].doc.txt;
                     $scope.localStoredNotes = doc.rows;
-                    $scope.$apply()
+                    //$scope.$apply()
                 }
                 else {
                     $scope.localStoredNotes = [-1];
@@ -144,7 +144,7 @@ angular.module('routerApp')
                     console.log(doc);
                     //$scope.text = doc.rows[0].doc.txt;
                     $scope.localStoredNotes = doc.rows;
-                    $scope.$apply()
+                    //$scope.$apply()
                     callback(null, doc.rows);
                 }
                 else {
@@ -185,7 +185,7 @@ angular.module('routerApp')
                                 noteOnQueue = undefined;
                             }
                         }
-                        $scope.$apply()
+                        //$scope.$apply()
                     });
                 }
                 else {
@@ -259,7 +259,7 @@ angular.module('routerApp')
                 //$scope.delete();
                 console.log($scope.localStoredNotes);
                 //$scope.delete();
-                $scope.$apply()
+                //$scope.$apply()
             });
             //dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
             //dbLocal.sync(dbRemote);
