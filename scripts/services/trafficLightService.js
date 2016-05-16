@@ -27,4 +27,8 @@ routerApp.service('TrafficLightService', function() {
         console.error("Non ce nessun " + property);
     }
 
+    this.getAllLights = function(){
+        return this.lights;
+    }
+
 });

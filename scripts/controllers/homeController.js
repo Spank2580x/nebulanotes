@@ -11,6 +11,7 @@ angular.module('routerApp')
         $scope.title = "Senza titolo";
 
         var debugging = true;
+        var autoSaveEnabled = true; //TODO fare in modo che funzioni senza
 
         var loadingNotes = true;
         var errorOnLoadingNotes = false;
@@ -22,6 +23,7 @@ angular.module('routerApp')
         var firstTimeApp;
         var noteOnQueue;
 
+        $scope.footerMessage = "Tutto a posto ^.^";
 
         $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
         $scope.title;
@@ -117,6 +119,7 @@ angular.module('routerApp')
         };
 
         $scope.open = function(obj){
+            console.log("Provo ad aprire " + obj.doc.title);
             if (TrafficLightService.busy() || hasBeenEdited()){
                 console.log("Ehi tu!");
                 console.log(obj);
@@ -272,6 +275,7 @@ angular.module('routerApp')
         $interval(function(){
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
+            $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " + JSON.stringify($scope.footerMessage) : "Tutto a posto ^.^";
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
             console.log("Autosalvataggio");
             TrafficLightService.addLight("Autosave");
