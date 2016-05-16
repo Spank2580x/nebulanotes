@@ -12,10 +12,6 @@ angular.module('routerApp')
 
         var debugging = true;
 
-        $(document).ready(function () {
-            //La tua roba e' in animationService
-        });
-
         var loadingNotes = true;
         var errorOnLoadingNotes = false;
 
@@ -24,6 +20,8 @@ angular.module('routerApp')
 
         var dbLocal = {};
         var firstTimeApp;
+        var noteOnQueue;
+
 
         $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
         $scope.title;
@@ -33,6 +31,11 @@ angular.module('routerApp')
 
         $scope.write = function(){
             console.log("Creazione nuova nota");
+            if (TrafficLightService.busy()) {
+                console.error("Non mi rompere");
+                return;
+            }
+            TrafficLightService.addLight("Create");
             var t = {
                 _id: new Date().toISOString(),
                 content: "",
@@ -56,7 +59,7 @@ angular.module('routerApp')
                     alert(err);
                     alert("Fail");
                 }
-
+                TrafficLightService.removeLight("Create");
             });
 
             //syncPouch();
@@ -114,6 +117,13 @@ angular.module('routerApp')
         };
 
         $scope.open = function(obj){
+            if (TrafficLightService.busy() || hasBeenEdited()){
+                console.log("Ehi tu!");
+                console.log(obj);
+                console.log("Aspetta il tuo turno!");
+                noteOnQueue = obj;
+                return;
+            }
             console.log("Visualizzazione di ")
             console.log(obj);
             $scope.currentNote = obj;
@@ -144,7 +154,7 @@ angular.module('routerApp')
             });
         }
 
-        function backEdit(callbackk){
+        function backEdit(callbackk, show){
             console.log("Modifica di ")
             console.log($scope.currentNote);
             if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
@@ -166,7 +176,15 @@ angular.module('routerApp')
                     console.log("Modifica riuscita?")
                     console.log(result);
                     singleRead(t._id, function(err, data){
-                        if (!err) $scope.open({doc: data});
+                        if (!err && show) {
+                            console.log("Ora ti mostro")
+                            $scope.open({doc: data});
+                            if (noteOnQueue != undefined){
+                                console.log("Eccomi eccomi arrivo!");
+                                $scope.open(noteOnQueue);
+                                noteOnQueue = undefined;
+                            }
+                        }
                         $scope.$apply()
                     });
                 }
@@ -201,8 +219,8 @@ angular.module('routerApp')
                     if (err) alert(err);
                     else {
                         $scope.localStoredNotes = result;
-                        if ($scope.currentNote.length > 0) {
-                            $scope.currentNote = $scope.localStoredNotes[$scope.localStoredNotes.length -1];
+                        if ($scope.localStoredNotes.length > 0) {
+                            $scope.currentNote = $scope.localStoredNotes[0];
                             $scope.open($scope.currentNote);
                         }
                     }
@@ -227,6 +245,7 @@ angular.module('routerApp')
             //alert("Vai");
             TrafficLightService.init();
             dbLocal = new PouchDB('nebulanotes');
+            noteOnQueue = undefined;
             NotesService.isFirstTimeUsingApp(dbLocal, function(err, result){
                 console.log("Prima volta che si usa l'app?");
                 if (err) console.log("Buh.. non va un cazzo qua");
@@ -251,13 +270,15 @@ angular.module('routerApp')
         }
 
         $interval(function(){
+            //console.log("Mio padre mi ha insegnato a salvare da solo:")
+            //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
             console.log("Autosalvataggio");
             TrafficLightService.addLight("Autosave");
             backEdit(function (err, data){
                 TrafficLightService.removeLight("Autosave");
                 updateComparing();
-            })
+            }, true)
         }, 1000);
 
         function hasBeenEdited(){
