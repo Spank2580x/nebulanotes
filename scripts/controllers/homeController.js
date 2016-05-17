@@ -12,7 +12,7 @@ angular.module('routerApp')
         $scope.title = "Senza titolo";
 
         var debugging = true;
-        var autoSaveEnabled = true; //TODO fare in modo che funzioni senza
+        var autoSaveEnabled = false;
 
         var loadingNotes = true;
         var errorOnLoadingNotes = false;
@@ -126,7 +126,10 @@ angular.module('routerApp')
                 console.log(obj);
                 console.log("Aspetta il tuo turno!");
                 noteOnQueue = obj;
-                return;
+                if (!TrafficLightService.enabled && hasBeenEdited()){
+                    console.error("Buh io cambio pero' guarda che ci sono modifiche non salvate");
+                }
+                else return;
             }
             console.log("Visualizzazione di ")
             console.log(obj);
@@ -271,7 +274,7 @@ angular.module('routerApp')
 
         function init() {
             //alert("Vai");
-            TrafficLightService.init();
+            TrafficLightService.init(autoSaveEnabled);
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
             NotesService.isFirstTimeUsingApp(dbLocal, function (err, result) {
@@ -300,6 +303,7 @@ angular.module('routerApp')
         $interval(function () {
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
+            if (!autoSaveEnabled) return;
             $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " + JSON.stringify($scope.footerMessage) : "Tutto a posto ^.^";
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
             console.log("Autosalvataggio");

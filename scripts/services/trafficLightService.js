@@ -3,14 +3,16 @@
  */
 routerApp.service('TrafficLightService', function() {
 
+    this.enabled;
     this.lights;
 
-    this.init = function(){
+    this.init = function(enable){
         this.lights = [];
+        this.enabled = enable;
     }
 
     this.busy = function(){
-        return this.lights.length > 0;
+        return this.enabled && this.lights.length > 0;
     }
 
     this.addLight = function(property){
