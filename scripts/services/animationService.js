@@ -7,6 +7,8 @@ routerApp.service('AnimationService', function () {
         $('[data-toggle="tooltip"]').tooltip();
         $("#addFeatures").attr("data-toggle", "tooltip");
         $("#addFeatures").attr("title", "Crea nota");
+        $("#addFeatures").addClass("hidden-xs hidden-sm");
+
         $(".out").hide(300);
         $("#preview1, #preview2, #preview3").hide(1);
         $(".asideNotes").addClass("asidev2");
@@ -21,6 +23,7 @@ routerApp.service('AnimationService', function () {
             $(".no-text").css("display", "block");
             $(".no-text").addClass("animated bounceInRight");
             $(".no-show").css("display", "block");
+            $("#sidebarIcon").addClass("visible-xs visible-sm");
         }, 600);
     }
 
@@ -34,5 +37,29 @@ routerApp.service('AnimationService', function () {
         $(".blockNote:nth-child(1)").css("color", "black");
     }
 
-    
+    this.checkFirstTouch = function () {
+
+        $(".out").css("display", "none");
+        $("#preview1, #preview2, #preview3").css("display", "none");
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $("#addFeatures").attr("data-toggle", "tooltip");
+        $("#addFeatures").attr("title", "Crea nota");
+        $("#addFeatures").addClass("hidden-xs hidden-sm");
+        
+        $(".asideNotes").addClass("asidev2");
+        $("#addFeatures").removeClass("animated infinite bounce");
+        setTimeout(function () {
+            $(".divEditor").css("display", "block");
+            $(".divEditor").addClass("animated fadeIn");
+            $(".no-display").css("display", "block");
+            $(".no-display").addClass("hvr-box-shadow-inset animated rotateIn");
+            $(".no-text").css("display", "block");
+            $(".no-text").addClass("animated bounceInRight");
+            $(".no-show").css("display", "block");
+            $("#sidebarIcon").addClass("visible-xs visible-sm");
+        }, 600);
+    }
+
+
 });

@@ -51,8 +51,8 @@ body {
 #myModal3 .btnOptions {
     /*color: white;
     background: rgb(48,48,48);*/
-    color:black;
-    font-size:14pt;
+    color: black;
+    font-size: 14pt;
     margin-bottom: 5px;
 }
 
@@ -137,13 +137,12 @@ body {
     padding-left: 10px;
     padding-bottom: 10px;
     border-bottom: solid 1px black;
-    
 }
 
     .blockNote:hover {
         -webkit-transition: all 0.3s ease-in-out;
         cursor: pointer;
-        background:#8C9EFF;
+        background: #8C9EFF;
     }
 
 .delete-yes {
@@ -233,6 +232,11 @@ body {
     .rectFeaturesSettings:hover, .rectFeaturesSettings:visited, .rectFeaturesSettings:active, .rectFeaturesSettings:focus {
         color: white;
     }
+
+#sidebarIcon {
+    margin-left: 2%;
+    font-size: 15pt;
+}
 
 #addFeatures {
     background: #8C9EFF;
@@ -414,6 +418,88 @@ footer {
     outline: none;
 }
 
+.active {
+    left: 0;
+}
+
+/*
+    roba non mia sotto
+    
+*/
+
+
+.navbar-header {
+    float: none;
+    text-align: center;
+}
+
+/* top bar */
+.navbar {
+    text-transform: uppercase;
+    background-color: #ccd4ff;
+    border: none;
+}
+
+    .navbar a {
+        color: #fff;
+        font-weight: 300;
+        text-decoration: none;
+    }
+
+.navbar-default .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    margin: 0;
+    line-height: 50px;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60px;
+    float: none;
+}
+
+
+/* toggle button */
+.navbar-toggle {
+    border: none;
+    color: #fff;
+    margin: 0;
+    padding: 18px 15px;
+    border-radius: 0px;
+    float: left;
+}
+
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #ccd4ff;
+}
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+
+
+/* Position where the element is fixed */
+.affix {
+    top: 50px;
+    width: 200px;
+}
+
+#affix {
+    width: 200px;
+}
+
+.nav li a {
+    border-bottom: 1px solid #ddd;
+    color: #ccd4ff;
+}
+
+    .nav li a i {
+        margin-right: 20px;
+    }
+
+
 /*
     starting loading contents page
 */
@@ -439,4 +525,41 @@ footer {
 
 .rowPrincipal h3 {
     margin-top: 10%;
+}
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 992px) {
+ 
+     
+    .affix {position: static;}
+    #affix{width: 100%;}
+   
+    .sidebar-offcanvas{-webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+         
+        width:70%;
+        background-color: #ccd4ff;
+        z-index: 51;
+        margin: 0; padding: 0;
+        position: fixed;
+        top:120px;
+        left: -70%;
+        font-size:15pt;
+        padding-left:10px;
+    }
+     
+    .sidebar-offcanvas ul li{margin:0}
+    .sidebar-offcanvas ul li a{color:#fff;padding: 15px 20px;margin:0;font-size: 15px;border-bottom: 1px solid #d6474d}
+    .sidebar-offcanvas ul li a:hover{background:#54303a;border:none; border-radius:0}
+     
+    .nav{margin-top: 0px;}
+    .nav > li > a:hover, 
+    .nav > li > a:focus{background-color: #ff625f}
+     
+    .active {left: 0;}
+     
+  
 }
