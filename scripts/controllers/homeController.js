@@ -80,14 +80,22 @@ angular.module('routerApp')
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    dbLocal.changes().on('change', function () {
-                        $scope.read();
-                    });
+                    /*dbLocal.changes().on('change', function () {
+                        $scope.read();                                  //<---- flickera
+                    });*/
                     console.log("Modifica riuscita?")
                     console.log(result);
-                    singleRead(t._id, function (err, data) {
-                        if (!err) $scope.open({ doc: data });
-                        //$scope.$apply()
+                    backRead(function(err, result){
+                        if (err){
+                            alert(err);
+                            alert("Fail");
+                        }
+                        else {
+                            singleRead(t._id, function (err, data) {
+                                if (!err) $scope.open({ doc: data });
+                                //$scope.$apply()
+                            });
+                        }
                     });
                 }
                 else {
