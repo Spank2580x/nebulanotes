@@ -213,8 +213,6 @@ angular.module('routerApp')
         }
 
         $scope.delete = function () {
-            $scope.deleteAll();
-            return;
             console.log("Cancellazione");
             dbLocal.remove($scope.currentNote.doc, function (err, result) {
                 if (err) {
