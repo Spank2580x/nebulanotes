@@ -50,10 +50,6 @@ angular.module('routerApp')
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    dbLocal.changes().on('change', function () {
-                        $scope.read();
-
-                    });
                     console.log("Creazione riuscita?" + result);
                     //$scope.$apply()
 
@@ -110,6 +106,7 @@ angular.module('routerApp')
                      console.log(err);
                      console.log("L'oggetto:" + doc);*/
                     //$scope.text = doc.rows[0].doc.txt;
+                    console.log("Dystopia!");
                     $scope.localStoredNotes = doc.rows;
                     //$scope.$apply()
                 }
@@ -225,6 +222,8 @@ angular.module('routerApp')
                 backRead(function (err, result) {
                     if (err) alert(err);
                     else {
+                        console.log("Esco fresco da un backRead, queste sono le note:");
+                        console.log(result);
                         $scope.localStoredNotes = result;
                         if ($scope.localStoredNotes.length > 0) {
                             $scope.currentNote = $scope.localStoredNotes[0];
@@ -286,6 +285,7 @@ angular.module('routerApp')
                 if (err) errorOnLoadingNotes = true;
                 else loadingNotes = false;
                 //$scope.delete();
+                console.log("Sono il primo backRead");
                 console.log($scope.localStoredNotes);
                 //$scope.delete();
                 //$scope.$apply()
