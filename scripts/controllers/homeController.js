@@ -1,5 +1,6 @@
 angular.module('routerApp')
     .controller('homeController', function ($scope,
+                                            $state,
                                             $interval,
                                             NotesFactory,
                                             StorageFactory,
@@ -209,6 +210,8 @@ angular.module('routerApp')
         }
 
         $scope.delete = function () {
+            $scope.deleteAll();
+            return;
             console.log("Cancellazione");
             dbLocal.remove($scope.currentNote.doc, function (err, result) {
                 if (err) {
@@ -230,6 +233,28 @@ angular.module('routerApp')
                 })
             });
 
+        };
+
+        $scope.deleteAll = function(){
+            console.log("La nostra ora e' giunta")
+            console.log($scope.localStoredNotes);
+            $scope.localStoredNotes.forEach(function(x, idx, array){
+                dbLocal.remove(x.doc, function (err, result) {
+                    if (err) {
+                        alert(err);
+                        console.error("Cancellazione fallita");
+                        console.error("Poi buh io ho provato ad usare: ");
+                        console.error(x.doc);
+                    }
+                    else {
+                        console.log("Cancellato");
+                        console.log(x.doc);
+                        if (idx === array.length - 1){
+                            //$state.go('home', {session: result.session});
+                        }
+                    }
+                });
+            });
         };
 
         $scope.addButtonPressed = function () {
