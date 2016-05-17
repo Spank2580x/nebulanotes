@@ -1,14 +1,17 @@
 /**
  * Created by Luca on 14/05/2016.
  */
-routerApp.service('AnimationService', function() {
+routerApp.service('AnimationService', function () {
 
-    this.animateAddButton = function(){
+    this.animateAddButton = function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $("#addFeatures").attr("data-toggle", "tooltip");
+        $("#addFeatures").attr("title", "Crea nota");
         $(".out").hide(300);
         $("#preview1, #preview2, #preview3").hide(1);
         $(".asideNotes").addClass("asidev2");
-        $(".blockNote").css("display", "block");
-        $(".blockNote").addClass("animated bounceInLeft");
+        /*$(".blockNote").css("display", "block");
+        $(".blockNote").addClass("animated bounceInLeft");*/
         $("#addFeatures").removeClass("animated infinite bounce");
         setTimeout(function () {
             $(".divEditor").css("display", "block");
@@ -22,9 +25,14 @@ routerApp.service('AnimationService', function() {
     }
 
     this.animateBlack = function () {
-        $(".blockNote").addClass("black");
-        $(".blockNote").css("color","white");
+        $(".blockNote:nth-child(1)").addClass("black");
+        $(".blockNote:nth-child(1)").css("color", "white");
     }
 
+    this.animateRed = function () {
+        $(".blockNote:nth-child(1)").addClass("red");
+        $(".blockNote:nth-child(1)").css("color", "black");
+    }
 
+    
 });

@@ -13,44 +13,52 @@ body {
 }
 
 .title {
-    margin-top: 5px;
+    margin: 0;
+    top: 5px;
     color: black;
-    font-family: Gloria Hallelujah;
+    font-family: NTR;
     letter-spacing: 2px;
-    font-size: 28pt;
+    font-size: 24pt;
 }
 
 .divEditor {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     display: none;
 }
 
-.findNotes {
-    width: 70%;
-    font-size: 13pt;
+    .divEditor input {
+        height: 40px;
+        font-size: 13pt;
+        color: black;
+        /* border-bottom-left-radius:30px;
+        border-top-left-radius:30px;
+        border-bottom-right-radius:30px;
+        border-top-right-radius:30px;
+        padding-left:15px;*/
+    }
+
+/*.modal-vertical-centered {
+        transform: translate(0, 40%) !important;
+        -ms-transform: translate(0, 40%) !important; 
+        -webkit-transform: translate(0, 40%) !important; 
+    }*/
+
+#myModal3 h4 {
     color: black;
-    padding: 5px;
+}
+
+
+#myModal3 .btnOptions {
+    /*color: white;
+    background: rgb(48,48,48);*/
+    color:black;
+    font-size:14pt;
+    margin-bottom: 5px;
 }
 
 .divEditor button {
     font-size: 15pt;
     font-weight: bold;
-}
-
-.grassetto:hover {
-    font-weight: bold;
-}
-
-.corsivo:hover {
-    font-style: italic;
-}
-
-.sottolineato:hover {
-    text-decoration: underline;
-}
-
-.barrato:hover {
-    text-decoration: line-through;
 }
 
 .row-navbar-menuPrincipal {
@@ -64,21 +72,28 @@ body {
     height: 900px;
 }
 
+    .asideNotes::-webkit-scrollbar-button:vertical {
+        background-color: red;
+        border: 1px dashed blue;
+    }
+
 .logoMinimal {
     width: 50px;
     height: 40px;
-    cursor:pointer;
-    margin-top:8px;
+    cursor: pointer;
+    margin-top: -3px;
+    margin-bottom: 5px;
 }
 
 .asidev2 {
     background: #ccd4ff;
     border: solid 1px #8C9EFF;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #preview1 {
-    margin-top: 15%;
+    margin-top: 12%;
     background: rgb(48,48,48);
     width: 100%;
     min-height: 400px;
@@ -107,6 +122,7 @@ body {
     width: 100%;
     min-height: 400px;
     color: black;
+    margin-top: 5%;
 }
 
 .asideNotes h3 {
@@ -121,12 +137,13 @@ body {
     padding-left: 10px;
     padding-bottom: 10px;
     border-bottom: solid 1px black;
+    
 }
 
     .blockNote:hover {
         -webkit-transition: all 0.3s ease-in-out;
         cursor: pointer;
-        background: #8C9EFF;
+        background:#8C9EFF;
     }
 
 .delete-yes {
@@ -138,7 +155,7 @@ body {
     display: none;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 12px;
 }
 
@@ -150,7 +167,7 @@ body {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
+}*/
 
 .sectionNotes {
     font-size: 15pt;
@@ -160,7 +177,7 @@ body {
 
 .textField {
     width: 80%;
-    margin-top:3%;
+    margin-top: 3%;
 }
 
 .inputArea {
@@ -182,10 +199,10 @@ body {
     color: black;
     /*width: 70px;
     height: 70px;*/
-    min-width:60px;
-    min-height:60px;
-    max-width:10%;
-    max-height:10%;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 65px;
+    max-height: 65px;
     padding: 10px 16px;
     border-radius: 35px;
 }
@@ -195,14 +212,25 @@ body {
     text-align: center;
     width: 50px;
     height: 50px;
-    margin-bottom:5px;
+    margin-bottom: 5px;
     border-radius: 25px;
     background: rgb(48,48,48);
     color: white;
-    margin-left:1%;
+    margin-left: 1%;
 }
 
-    .circleFeaturesSettings:hover, .circleFeaturesSettings:visited, .circleFeaturesSettings:active, .circleFeaturesSettings:focus {
+.rectFeaturesSettings {
+    font-size: 20pt;
+    text-align: center;
+    width: 50px;
+    height: 40px;
+    margin-bottom: 5px;
+    background: rgb(48,48,48);
+    color: white;
+    margin-left: -25px;
+}
+
+    .rectFeaturesSettings:hover, .rectFeaturesSettings:visited, .rectFeaturesSettings:active, .rectFeaturesSettings:focus {
         color: white;
     }
 
@@ -232,9 +260,9 @@ body {
 #shareFeatures {
     background: rgb(48,48,48);
     margin-left: 10px;
-    color:white;
-    float:right;
-    right:20px;
+    color: white;
+    float: right;
+    right: 20px;
 }
 
 .dropdown-menu-right {
@@ -291,67 +319,80 @@ body {
 }
 
 .modalColors {
-    opacity:0.8;
-    color:white;
-    margin-left:5%;
+    opacity: 0.8;
+    color: white;
+    margin-left: 5%;
 }
 
-    .modalColors:hover, .modalColors:active, .modalColors:visited, .modalColors:focus {
-        opacity:1;
-        color:white;
+.input-icon {
+    position: relative;
+}
+
+    .input-icon i {
+        float: right;
+        position: absolute;
+        display: block;
+        margin: 0;
+        top: 8px;
+        right: 17px;
+        font-size: 17pt;
+        color: black;
     }
+
+.modalColors:hover, .modalColors:active, .modalColors:visited, .modalColors:focus {
+    opacity: 1;
+    color: white;
+}
 
 .orange {
     background: #ff6a00;
 }
 
 .red {
-    background:red;
+    background: red;
 }
 
 .dark {
-    background:rgb(48, 48, 48);
+    background: rgb(48, 48, 48);
 }
 
-.beige{
-    background:#c68e47;
+.beige {
+    background: #c68e47;
 }
 
 .green {
-    background:#89f646;
+    background: #89f646;
 }
 
 .blue {
     background: #8C9EFF;
-    
 }
 
 .light {
     background: #ccd4ff;
-    
 }
 
 .white {
-    background:white;
-    color:black;
-    float:right;
+    background: white;
+    color: black;
+    float: right;
 }
 
     .white:hover, .white:visited, .white:active, .white:focus {
-        border:solid 1px black;
-        color:black;
+        border: solid 1px black;
+        color: black;
     }
 
 .yellow {
-    background:#f9ff26;
+    background: #f9ff26;
 }
 
 .black {
-    background:black;
+    background: black;
 }
 
 .purple {
-    background:#a000ff;
+    background: #a000ff;
 }
 
 footer {
@@ -378,26 +419,24 @@ footer {
 */
 
 .rowPrincipal {
-    background:#8C9EFF;
-    color:black;
-    min-height:100vh;
-    text-align:center;
+    background: #8C9EFF;
+    color: black;
+    min-height: 100vh;
+    text-align: center;
 }
 
 .titlePrincipal {
-    margin-top:10%;
-    font-size:120pt;
-    font-family:Gloria Hallelujah;
+    margin-top: 10%;
+    font-size: 120pt;
+    font-family: Gloria Hallelujah;
 }
 
-.rowPrincipal h2 { 
-    margin-top:5%;
-    font-family:Poiret One;
-    font-weight:bold;
+.rowPrincipal h2 {
+    margin-top: 5%;
+    font-family: Poiret One;
+    font-weight: bold;
 }
 
-.rowPrincipal h3 { 
-    margin-top:10%;   
+.rowPrincipal h3 {
+    margin-top: 10%;
 }
-
-

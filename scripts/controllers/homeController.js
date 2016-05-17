@@ -6,7 +6,7 @@ angular.module('routerApp')
                                             NotesService,
                                             AnimationService,
                                             TrafficLightService
-    ){
+    ) {
 
         $scope.title = "Senza titolo";
 
@@ -31,7 +31,7 @@ angular.module('routerApp')
         var comparingText;
         var comparingTitle;
 
-        $scope.write = function(){
+        $scope.write = function () {
             console.log("Creazione nuova nota");
             if (TrafficLightService.busy()) {
                 console.error("Non mi rompere");
@@ -49,9 +49,9 @@ angular.module('routerApp')
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    dbLocal.changes().on('change', function() {
+                    dbLocal.changes().on('change', function () {
                         $scope.read();
-                        
+
                     });
                     console.log("Creazione riuscita?" + result);
                     //$scope.$apply()
@@ -67,7 +67,7 @@ angular.module('routerApp')
             //syncPouch();
         }
 
-        $scope.edit = function(){
+        $scope.edit = function () {
             console.log("Modifica di ")
             console.log($scope.currentNote);
             if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
@@ -83,13 +83,13 @@ angular.module('routerApp')
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    dbLocal.changes().on('change', function() {
+                    dbLocal.changes().on('change', function () {
                         $scope.read();
                     });
                     console.log("Modifica riuscita?")
                     console.log(result);
-                    singleRead(t._id, function(err, data){
-                        if (!err) $scope.open({doc: data});
+                    singleRead(t._id, function (err, data) {
+                        if (!err) $scope.open({ doc: data });
                         //$scope.$apply()
                     });
                 }
@@ -101,9 +101,9 @@ angular.module('routerApp')
             });
         }
 
-        $scope.read = function(){
+        $scope.read = function () {
             //console.log("Lettura");
-            dbLocal.allDocs({include_docs: true, descending: true}, function(err, doc) {
+            dbLocal.allDocs({ include_docs: true, descending: true }, function (err, doc) {
                 if (!err) {
                     /*alert("Oh vai a vedere la console");
                      console.log(err);
@@ -118,9 +118,9 @@ angular.module('routerApp')
             });
         };
 
-        $scope.open = function(obj){
+        $scope.open = function (obj) {
             console.log("Provo ad aprire " + obj.doc.title);
-            if (TrafficLightService.busy() || hasBeenEdited()){
+            if (TrafficLightService.busy() || hasBeenEdited()) {
                 console.log("Ehi tu!");
                 console.log(obj);
                 console.log("Aspetta il tuo turno!");
@@ -136,9 +136,9 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
-        function backRead(callback){
+        function backRead(callback) {
             console.log("Lettura");
-            dbLocal.allDocs({include_docs: true, descending: true}, function(err, doc) {
+            dbLocal.allDocs({ include_docs: true, descending: true }, function (err, doc) {
                 if (!err) {
                     /*alert("Oh vai a vedere la console");
                      console.log(err);
@@ -157,7 +157,7 @@ angular.module('routerApp')
             });
         }
 
-        function backEdit(callbackk, show){
+        function backEdit(callbackk, show) {
             console.log("Modifica di ")
             console.log($scope.currentNote);
             if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
@@ -173,16 +173,16 @@ angular.module('routerApp')
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    dbLocal.changes().on('change', function() {
+                    dbLocal.changes().on('change', function () {
                         $scope.read();
                     });
                     console.log("Modifica riuscita?")
                     console.log(result);
-                    singleRead(t._id, function(err, data){
+                    singleRead(t._id, function (err, data) {
                         if (!err && show) {
                             console.log("Ora ti mostro")
-                            $scope.open({doc: data});
-                            if (noteOnQueue != undefined){
+                            $scope.open({ doc: data });
+                            if (noteOnQueue != undefined) {
                                 console.log("Eccomi eccomi arrivo!");
                                 $scope.open(noteOnQueue);
                                 noteOnQueue = undefined;
@@ -199,26 +199,26 @@ angular.module('routerApp')
             });
         }
 
-        function singleRead(doc, callback){
-            dbLocal.get(doc, function(err, doc) {
-                if (err){
-                    alert (err);
+        function singleRead(doc, callback) {
+            dbLocal.get(doc, function (err, doc) {
+                if (err) {
+                    alert(err);
                 }
                 else callback(err, doc);
             });
         }
 
-        $scope.delete = function(){
+        $scope.delete = function () {
             console.log("Cancellazione");
-            dbLocal.remove($scope.currentNote.doc, function(err, result){
-                if (err){
+            dbLocal.remove($scope.currentNote.doc, function (err, result) {
+                if (err) {
                     alert(err);
                     console.error("Cancellazione fallita");
                     console.error("Poi buh io ho provato ad usare: ");
                     console.error($scope.currentNote.doc);
                     return -1;
                 }
-                backRead(function(err, result){
+                backRead(function (err, result) {
                     if (err) alert(err);
                     else {
                         $scope.localStoredNotes = result;
@@ -232,31 +232,31 @@ angular.module('routerApp')
 
         };
 
-        $scope.addButtonPressed = function(){
+        $scope.addButtonPressed = function () {
             AnimationService.animateAddButton();
             $scope.write();
-            backRead(function(err, notes){
-                    $scope.currentNote = notes[0];
+            backRead(function (err, notes) {
+                $scope.currentNote = notes[0];
             })
         }
 
-        $scope.goBlack = function () {
-            AnimationService.animateBlack();
+        $scope.goRed = function () {
+            AnimationService.animateRed();
         }
 
-        function init(){
+        function init() {
             //alert("Vai");
             TrafficLightService.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
-            NotesService.isFirstTimeUsingApp(dbLocal, function(err, result){
+            NotesService.isFirstTimeUsingApp(dbLocal, function (err, result) {
                 console.log("Prima volta che si usa l'app?");
                 if (err) console.log("Buh.. non va un cazzo qua");
                 else console.log(result);
                 firstTimeApp = result;
                 showingFirstTime = result;
             });
-            backRead(function (err, notes){
+            backRead(function (err, notes) {
                 if (err) errorOnLoadingNotes = true;
                 else loadingNotes = false;
                 //$scope.delete();
@@ -268,34 +268,47 @@ angular.module('routerApp')
             //dbLocal.sync(dbRemote);
         }
 
-        $scope.dio = function(){
+        $scope.dio = function () {
             alert("Dio");
         }
 
-        $interval(function(){
+        $interval(function () {
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " + JSON.stringify($scope.footerMessage) : "Tutto a posto ^.^";
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
             console.log("Autosalvataggio");
             TrafficLightService.addLight("Autosave");
-            backEdit(function (err, data){
+            backEdit(function (err, data) {
                 TrafficLightService.removeLight("Autosave");
                 updateComparing();
             }, true)
         }, 1000);
 
-        function hasBeenEdited(){
+        function hasBeenEdited() {
             return $scope.text != comparingText ||
                     $scope.title != comparingTitle;
         }
 
-        function updateComparing(){
+        function updateComparing() {
             comparingText = $scope.text;
             comparingTitle = $scope.title;
         }
 
         init();
 
+        $(document).ready(function () {
+            $('body').tooltip({
+                selector: "[data-tooltip=tooltip]",
+                container: "body"
+            });
+
+           $(function () {
+               $('[data-tooltip="tooltip"]').click(function () {
+                    $(this).tooltip("destroy");
+                })
+            });
+ 
+        });
 
     });
