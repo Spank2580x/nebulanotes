@@ -258,6 +258,7 @@ angular.module('routerApp')
                         console.log("Cancellato");
                         console.log(x.doc);
                         if (idx === array.length - 1){
+                            location.reload();
                             //$state.go('home', {session: result.session});
                         }
                     }
@@ -288,6 +289,9 @@ angular.module('routerApp')
                 else console.log(result);
                 firstTimeApp = result;
                 showingFirstTime = result;
+                if (!showingFirstTime){
+                    AnimationService.checkFirstTouch();
+                }
             });
             backRead(function (err, notes) {
                 if (err) errorOnLoadingNotes = true;
