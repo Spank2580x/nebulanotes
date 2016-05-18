@@ -3,13 +3,13 @@ body {
     overflow-x: hidden;
 }
 
-.fullPage, .fullPageNotes {
+.fullPageNotes {
     display:none;
 }
 
 .centered {
-    float: null;
-    margin: 0 auto;
+    display: block;    
+    margin:0 auto;
 }
 
 .center {
@@ -82,7 +82,7 @@ body {
     }
 
 .logoMinimal {
-    width: 50px;
+    width: 45px;
     height: 40px;
     cursor: pointer;
     margin-top: -3px;
@@ -304,10 +304,8 @@ body {
 }
 
 .imageFirstNode {
-    font-size: 150pt;
-    color: black;
-    text-align: center;
-    margin-top: -2%;
+    margin-top:10px;
+    height:150px;
 }
 
 .rowExamples h1 {
@@ -319,11 +317,8 @@ body {
     border-bottom-left-radius: 40px;
 }
 
-.notesExamples {
-    padding: 1%;
-    font-size: 15pt;
-    border: solid 20px white;
-    height: 200px;
+.notesExamples img{
+    height:400px;
 }
 
 .modalColors {
@@ -568,8 +563,72 @@ footer {
   
 }
 
-@media screen and (max-width: 544) {
+@media screen and (max-width: 725px) {
 .titlePrincipal{
-    font-size: 20px;
+    font-size: 35pt;
   }
+
+    .crea {
+        font-size:25pt;
+    }
+
+    #addFeatures {
+    font-size: 15pt;
+    text-align: center;
+    color: black;
+    /*width: 70px;
+    height: 70px;*/
+    width:30px;
+    height:30px;
+    padding: 10px 16px;
+    border-radius: 25px;
+  
 }
+
+    .notesExample img {
+        width:100px;
+        height:150px;
+    }
+
+    .imageFirstNode {
+        height:80px;
+    }
+
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) { 
+
+    .titlePrincipal{
+    font-size: 35pt;
+  }
+
+    .crea {
+        font-size:25pt;
+    }
+
+    #addFeatures {
+    font-size: 15pt;
+    text-align: center;
+    color: black;
+    /*width: 70px;
+    height: 70px;*/
+    width:25px;
+    height:25px;
+    padding: 10px 16px;
+    border-radius: 25px;
+  
+}
+    .notesExamples img {
+        height:250px;
+    }
+
+    .imageFirstNode {
+        height:60px;
+    }
+
+    .rowExamples h1 {
+        font-size:15pt;
+    }
+
+}
+

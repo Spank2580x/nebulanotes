@@ -52,7 +52,7 @@ routerApp.service('AnimationService', function () {
         $("#addFeatures").addClass("hidden-xs hidden-sm");
         
         $(".asideNotes").addClass("asidev2");
-        $("#addFeatures").removeClass("animated infinite bounce");
+       
         $(".fullPageNotes").css("display", "block");
         $(".fullPageNotes").fadeIn(500);
         setTimeout(function () {
