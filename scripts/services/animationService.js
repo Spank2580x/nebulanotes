@@ -38,9 +38,13 @@ routerApp.service('AnimationService', function () {
     }
 
     this.checkFirstTouch = function () {
-
+        /*$(".out").css("position", "absolute");
+        $(".out").css("margin-left", "-999px");*/
         $(".out").css("display", "none");
-        $("#preview1, #preview2, #preview3").css("display", "none");
+
+        /*$("#preview1, #preview2, #preview3").css("position", "absolute");
+        $("#preview1, #preview2, #preview3").css("display", "none");*/
+        $("#preview1, #preview2, #preview3").css("margin-left", "-999px");
 
         $('[data-toggle="tooltip"]').tooltip();
         $("#addFeatures").attr("data-toggle", "tooltip");
@@ -49,6 +53,8 @@ routerApp.service('AnimationService', function () {
         
         $(".asideNotes").addClass("asidev2");
         $("#addFeatures").removeClass("animated infinite bounce");
+        $(".fullPageNotes").css("display", "block");
+        $(".fullPageNotes").fadeIn(500);
         setTimeout(function () {
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
@@ -58,8 +64,14 @@ routerApp.service('AnimationService', function () {
             $(".no-text").addClass("animated bounceInRight");
             $(".no-show").css("display", "block");
             $("#sidebarIcon").addClass("visible-xs visible-sm");
-        }, 600);
+        }, 1);
     }
+
+    this.isFirstTouch = function () {
+        $(".fullPageNotes").css("display", "block");
+        $(".fullPageNotes").fadeIn(500);
+    }
+
 
 
 });

@@ -289,8 +289,12 @@ angular.module('routerApp')
                 else console.log(result);
                 firstTimeApp = result;
                 showingFirstTime = result;
-                if (!showingFirstTime){
+                if (!showingFirstTime) {
                     AnimationService.checkFirstTouch();
+                }
+                else {
+                    AnimationService.isFirstTouch();
+                    alert("this one");
                 }
             });
             backRead(function (err, notes) {
@@ -334,8 +338,6 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
-        init();
-
         $(document).ready(function () {
             $('body').tooltip({
                 selector: "[data-tooltip=tooltip]",
@@ -353,6 +355,8 @@ angular.module('routerApp')
                    $('.sidebar-offcanvas').toggleClass('active', 1000);
                });
            });
+
+           init();
 
         });
 

@@ -3,6 +3,10 @@ body {
     overflow-x: hidden;
 }
 
+.fullPage, .fullPageNotes {
+    display:none;
+}
+
 .centered {
     float: null;
     margin: 0 auto;
@@ -562,4 +566,10 @@ footer {
     .active {left: 0;}
      
   
+}
+
+@media screen and (max-width: 544) {
+.titlePrincipal{
+    font-size: 20px;
+  }
 }
