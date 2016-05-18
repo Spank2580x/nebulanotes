@@ -6,7 +6,8 @@ angular.module('routerApp')
                                             StorageFactory,
                                             NotesService,
                                             AnimationService,
-                                            TrafficLightService
+                                            TrafficLightService,
+                                            ColorService
     ) {
 
         $scope.title = "Senza titolo";
@@ -46,7 +47,7 @@ angular.module('routerApp')
                 title: "Senza titolo",
                 creationDate: new Date().toISOString(),
                 lastEditDate: new Date().toISOString(),
-                color: getRandomColor()
+                color: "rgba(255, 255, 255, .0);"
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -65,7 +66,7 @@ angular.module('routerApp')
             //syncPouch();
         }
 
-        $scope.edit = function () {
+        $scope.edit = function(){
             console.log("Modifica di ")
             console.log($scope.currentNote);
             if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
@@ -108,6 +109,48 @@ angular.module('routerApp')
             });
         }
 
+        $scope.editColor = function(color){
+            console.log("Modifica colore di ")
+            console.log($scope.currentNote);
+            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            var t = {
+                _id: $scope.currentNote.doc._id,
+                _rev: $scope.currentNote.doc._rev,
+                content: $scope.text,
+                previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
+                title: $scope.title,
+                creationDate: $scope.currentNote.doc.creationDate,
+                lastEditDate: new Date().toISOString(),
+                color: color
+            };
+            dbLocal.put(t, function callback(err, result) {
+                if (!err) {
+                    //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    /*dbLocal.changes().on('change', function () {
+                     $scope.read();                                  //<---- flickera
+                     });*/
+                    console.log("Modifica riuscita?")
+                    console.log(result);
+                    backRead(function(err, result){
+                        if (err){
+                            alert(err);
+                            alert("Fail");
+                        }
+                        else {
+                            singleRead(t._id, function (err, data) {
+                                if (!err) $scope.open({ doc: data });
+                                //$scope.$apply()
+                            });
+                        }
+                    });
+                }
+                else {
+                    alert(err);
+                    alert("Fail");
+                }
+
+            });
+        }
 
         $scope.read = function () {
             //console.log("Lettura");
@@ -365,12 +408,5 @@ angular.module('routerApp')
            init();
 
         });
-
-        function getRandomColor() {
-            var r = (255*Math.random()) | 0,
-                g = (255*Math.random()) | 0,
-                b = (255*Math.random()) | 0;
-            return 'rgb(' + r + ',' + g + ',' + b + ')';
-        }
 
     });
