@@ -157,6 +157,7 @@ angular.module('routerApp')
         }
 
         $scope.isNoteOpaque = function(x){
+            if (x.doc.color == undefined) return;
             return ColorService.isOpaque(x.doc.color);
         }
 
