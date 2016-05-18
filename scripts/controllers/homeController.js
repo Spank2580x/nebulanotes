@@ -69,7 +69,7 @@ angular.module('routerApp')
         $scope.edit = function(){
             console.log("Modifica di ")
             console.log($scope.currentNote);
-            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            if ($scope.currentNote == undefined) console.error("Si sta cercando di modificare una nota che non esiste wtf");
             var t = {
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
@@ -95,7 +95,10 @@ angular.module('routerApp')
                         }
                         else {
                             singleRead(t._id, function (err, data) {
-                                if (!err) $scope.open({ doc: data });
+                                if (!err) {
+                                    $scope.open({ doc: data });
+                                    $scope.sortByLastEdit();
+                                }
                                 //$scope.$apply()
                             });
                         }
@@ -129,7 +132,7 @@ angular.module('routerApp')
                     /*dbLocal.changes().on('change', function () {
                      $scope.read();                                  //<---- flickera
                      });*/
-                    console.log("Modifica riuscita?")
+                    console.log("Modifica del colore riuscita?")
                     console.log(result);
                     backRead(function(err, result){
                         if (err){
@@ -322,11 +325,19 @@ angular.module('routerApp')
             $scope.write();
             backRead(function (err, notes) {
                 $scope.currentNote = notes[0];
+                $scope.open($scope.currentNote);
+                $scope.sortByLastEdit();
             })
         }
 
         $scope.goRed = function () {
             AnimationService.animateRed();
+        }
+
+        $scope.sortByLastEdit = function(){
+            $scope.localStoredNotes.sort(function(a,b) {
+                return (a.doc.lastEditDate < b.doc.lastEditDate) ? 1 : ((b.doc.lastEditDate < a.doc.lastEditDate) ? -1 : 0);}
+            );
         }
 
         function init() {
@@ -345,14 +356,20 @@ angular.module('routerApp')
                 }
                 else {
                     AnimationService.isFirstTouch();
+
                 }
             });
             backRead(function (err, notes) {
-                if (err) errorOnLoadingNotes = true;
+                if (err) errorOnLoadingNotes = true;        //TODO GESTIRE SCHERMATA DI ERRORE
                 else loadingNotes = false;
                 //$scope.delete();
                 console.log("Sono il primo backRead");
                 console.log($scope.localStoredNotes);
+                if ($scope.localStoredNotes.length > 0){
+                    $scope.sortByLastEdit();
+                    $scope.currentNote = $scope.localStoredNotes[0];
+                    $scope.open($scope.currentNote);
+                }
                 //$scope.delete();
                 //$scope.$apply()
             });
