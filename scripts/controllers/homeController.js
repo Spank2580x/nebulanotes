@@ -45,7 +45,8 @@ angular.module('routerApp')
                 previewContent: "",
                 title: "Senza titolo",
                 creationDate: new Date().toISOString(),
-                lastEditDate: new Date().toISOString()
+                lastEditDate: new Date().toISOString(),
+                color: getRandomColor()
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -75,14 +76,15 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().toISOString()
+                lastEditDate: new Date().toISOString(),
+                color: getRandomColor()
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
                     /*dbLocal.changes().on('change', function () {
-                        $scope.read();                                  //<---- flickera
-                    });*/
+                     $scope.read();                                  //<---- flickera
+                     });*/
                     console.log("Modifica riuscita?")
                     console.log(result);
                     backRead(function(err, result){
@@ -105,6 +107,7 @@ angular.module('routerApp')
 
             });
         }
+
 
         $scope.read = function () {
             //console.log("Lettura");
@@ -237,6 +240,9 @@ angular.module('routerApp')
                             $scope.currentNote = $scope.localStoredNotes[0];
                             $scope.open($scope.currentNote);
                         }
+                        else {
+                            location.reload();
+                        }
                     }
                 })
             });
@@ -246,6 +252,7 @@ angular.module('routerApp')
         $scope.deleteAll = function(){
             console.log("La nostra ora e' giunta")
             console.log($scope.localStoredNotes);
+            if ($scope.localStoredNotes.length == 0) location.reload();
             $scope.localStoredNotes.forEach(function(x, idx, array){
                 dbLocal.remove(x.doc, function (err, result) {
                     if (err) {
@@ -294,7 +301,6 @@ angular.module('routerApp')
                 }
                 else {
                     AnimationService.isFirstTouch();
-                    alert("this one");
                 }
             });
             backRead(function (err, notes) {
@@ -359,5 +365,12 @@ angular.module('routerApp')
            init();
 
         });
+
+        function getRandomColor() {
+            var r = (255*Math.random()) | 0,
+                g = (255*Math.random()) | 0,
+                b = (255*Math.random()) | 0;
+            return 'rgb(' + r + ',' + g + ',' + b + ')';
+        }
 
     });
