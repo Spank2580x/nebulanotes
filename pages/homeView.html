@@ -84,11 +84,11 @@
             <div class="no-text">
                 <div class="blockNote" ng-repeat="x in localStoredNotes" style="background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
-                        <h1>{{x.doc.title}}</h1>
-                        <h4>Creato il {{x.doc.creationDate}}
+                        <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">{{x.doc.title}}</h1>
+                        <h4 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">Creato il {{x.doc.creationDate}}
                             - Ultima modifica il 13/06/2016
                         </h4>
-                        <h3>{{x.doc.previewContent}}</h3>
+                        <h3 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">{{x.doc.previewContent}}</h3>
                     </div>
                 </div>
             </div>

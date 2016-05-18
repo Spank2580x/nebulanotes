@@ -47,7 +47,8 @@ angular.module('routerApp')
                 title: "Senza titolo",
                 creationDate: new Date().toISOString(),
                 lastEditDate: new Date().toISOString(),
-                color: "rgba(255, 255, 255, .0);"
+                //color: "rgba(255, 255, 255, .0);"
+                color: ColorService.getRandomColor()
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -153,6 +154,10 @@ angular.module('routerApp')
                 }
 
             });
+        }
+
+        $scope.isNoteOpaque = function(x){
+            return ColorService.isOpaque(x.doc.color);
         }
 
         $scope.read = function () {
