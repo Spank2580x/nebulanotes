@@ -238,7 +238,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().getFullYear(),
+                lastEditDate: getNow(),
                 color: $scope.currentNote.color
             };
             dbLocal.put(t, function callback(err, result) {
