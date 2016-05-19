@@ -142,8 +142,11 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
+                <div class="blockNote" id="blockNoteError">
+                    <h2><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <br />Oops, non ho trovato note quindi AMMAZZATI</h2>
+                </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
-                    style="-webkit-transition:all 0.3s ease-in-out; background: {{x.doc.color}}">
+                    style="transition:background 0.3s ease-in-out; background: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
