@@ -19,10 +19,9 @@
                 <a href="#" class="hidden-xs hidden-sm">
                     <i class="fa fa-search"></i>
                 </a>
-                <input type="text" placeholder="Ricerca note ..."
+                <input ng-model="searchText" type="text" placeholder="Ricerca note ..."
                     class="form-control hidden-xs hidden-sm">
             </div>
-
         </div>
         <div class="col-xs-4 col-md-1 divEditor"
             style="float: left;" id="settings">
@@ -142,7 +141,7 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
-                <div class="blockNote" ng-repeat="x in localStoredNotes"
+                <div class="blockNote" ng-repeat="x in localStoredNotes | filter: searchFilter"
                     style="-webkit-transition:all 0.3s ease-in-out; background: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
@@ -348,7 +347,7 @@
                     <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}" >
                         <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">Senza Titolo</h1>
                         <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
-                            Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili. Se si decide di utilizzare un passaggio del Lorem Ipsum, è bene essere certi che non contenga nulla di imbarazzante. In genere, i generatori di testo segnaposto disponibili su internet tendono a ripetere paragrafi predefiniti, rendendo questo il primo vero generatore automatico su intenet. Infatti utilizza un dizionario di oltre 200 vocaboli latini, combinati con un insieme di modelli di strutture di periodi, per generare passaggi di testo verosimili. Il testo così generato è sempre privo di ripetizioni, parole imbarazzanti o fuori luogo ecc.
+                            Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dellï¿½inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili. Se si decide di utilizzare un passaggio del Lorem Ipsum, ï¿½ bene essere certi che non contenga nulla di imbarazzante. In genere, i generatori di testo segnaposto disponibili su internet tendono a ripetere paragrafi predefiniti, rendendo questo il primo vero generatore automatico su intenet. Infatti utilizza un dizionario di oltre 200 vocaboli latini, combinati con un insieme di modelli di strutture di periodi, per generare passaggi di testo verosimili. Il testo cosï¿½ generato ï¿½ sempre privo di ripetizioni, parole imbarazzanti o fuori luogo ecc.
                         </article>
                     </div>
                 </div>

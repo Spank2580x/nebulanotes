@@ -22,6 +22,8 @@ angular.module('routerApp')
         $scope.localStoredNotes = [];
         $scope.currentNote;
 
+        $scope.searchText;
+
         var dbLocal = {};
         var firstTimeApp;
         var noteOnQueue;
@@ -158,7 +160,7 @@ angular.module('routerApp')
         }
 
         $scope.isNoteOpaque = function(x){
-            if (x.doc.color == undefined) return;
+            if (x == undefined || x.doc == undefined || x.doc.color == undefined) return;
             return ColorService.isOpaque(x.doc.color);
         }
 
@@ -434,13 +436,21 @@ angular.module('routerApp')
             var difference = now.millis - time.millis;
             difference = Math.round(difference / 1000);
             if (difference < 60) return "Pochi secondi fa";
-            if (difference < 120) return "Un minuto di fa";
+            if (difference < 120) return "Un minuto fa";
             if (difference < 3600) return Math.round(difference / 60) + " minuti fa";
             if (difference < 7200) return "Un ora fa";
             if (difference < 86400) return Math.round(difference / 3600) + " ore fa";
             if (difference < 172800) return "Ieri";
             else return Math.round(difference / 86400) + " giorni fa";
             return difference;
+        }
+
+        $scope.searchFilter = function(x){
+            if ($scope.searchText == undefined || $scope.searchText == "") return true;
+            var title = x.doc.title.toLowerCase();
+            var content = x.doc.content.toLowerCase();
+            var toSearch = $scope.searchText.toLowerCase();
+            return title.includes(toSearch) || content.includes(toSearch);
         }
 
         $(document).ready(function () {
