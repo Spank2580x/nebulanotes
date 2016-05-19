@@ -339,6 +339,10 @@ angular.module('routerApp')
             })
         }
 
+        $scope.editButtonPressed = function () {
+            AnimationService.animateEditButton();
+        }
+
         $scope.goRed = function () {
             AnimationService.animateRed();
         }
@@ -352,6 +356,7 @@ angular.module('routerApp')
         function init() {
             //alert("Vai");
             TrafficLightService.init(autoSaveEnabled);
+            AnimationService.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
             NotesService.isFirstTimeUsingApp(dbLocal, function (err, result) {
