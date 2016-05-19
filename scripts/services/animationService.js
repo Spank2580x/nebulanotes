@@ -55,7 +55,7 @@ routerApp.service('AnimationService', function () {
        
         $(".fullPageNotes").css("display", "block");
         $(".fullPageNotes").fadeIn(500);
-        setTimeout(function () {
+        setTimeout(function () {         
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
             $(".no-display").css("display", "block");
