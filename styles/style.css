@@ -135,6 +135,18 @@ body {
         background: #8C9EFF;
     }
 
+#blockNoteError {
+    display:none;
+    background: #d4d4d4;
+    color: black;
+    height: 900px;
+    text-align: center;
+}
+
+    #blockNoteError h2 i {
+        font-size:40pt;
+    }
+
 .delete-yes {
     background: #ff6a00;
     font-size: 13pt;
