@@ -3,15 +3,18 @@
  */
 routerApp.service('AnimationService', function () {
 
+    this.checkAdd;
+    this.checkEdit;
+
     this.init = function () {
-        this.checkAdd = false;
-        this.checkEdit = false;
+        setCheckAdd(false);
+        setCheckEdit(false);
     }
 
     this.animateAddButton = function () {
-        console.log("Edit " + this.checkEdit + " add: " + this.checkAdd);
-        if (this.checkEdit | this.checkAdd) { return; }
-        this.checkAdd = true;
+        console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
+        if (getCheckEdit() || getCheckAdd()) return;
+        setCheckAdd(true);
 
             $('[data-toggle="tooltip"]').tooltip();
             $("#addFeatures").attr("data-toggle", "tooltip");
@@ -34,24 +37,40 @@ routerApp.service('AnimationService', function () {
                 $(".no-show").css("display", "block");
                 $("#sidebarIcon").addClass("visible-xs visible-sm");
                 $(".blockNoteContainer").addClass("animated bounceInRight");
-                console.log("Vediamo dio");
-                this.checkAdd = false;
-            }, 600);
+                console.log("Adesso checkAdd diventera' false!");
+                setCheckAdd(false);
+            }, 600, this.checkEdit, this.checkAdd);
     }
 
     this.animateEditButton = function () {
-        console.log("Edit " + this.checkEdit + " add: " + this.checkAdd);
-        if (this.checkEdit | this.checkAdd) { return; }
-        this.checkEdit = true;
+        console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
+        if (getCheckEdit() || getCheckAdd()) return;
+        setCheckEdit(true);
 
             $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
 
             setTimeout(function () {
                 $(".blockNoteContainer").css("display", "none");
                 $(".editArea").stop().css("display", "block");
-                console.log("Cristo cristo");
-                this.checkEdit = false;
-            }, 500);
+                console.log("Adesso checkEdit diventera' false");
+                setCheckEdit(false);
+            }, 500, this.checkEdit, this.checkAdd);
+    }
+
+    function setCheckEdit(b){
+        this.checkEdit = b;
+    }
+
+    function getCheckEdit(){
+        return this.checkEdit;
+    }
+
+    function setCheckAdd(b){
+        this.checkAdd = b;
+    }
+
+    function getCheckAdd(b){
+        return this.checkAdd;
     }
 
     this.animateBlack = function () {
