@@ -145,7 +145,10 @@ angular.module('routerApp')
                         }
                         else {
                             singleRead(t._id, function (err, data) {
-                                if (!err) $scope.open({ doc: data });
+                                if (!err) {
+                                    $scope.open({ doc: data });
+                                    $scope.sortByLastEdit();
+                                }
                                 //$scope.$apply()
                             });
                         }
