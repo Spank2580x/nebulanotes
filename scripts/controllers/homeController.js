@@ -10,9 +10,7 @@ angular.module('routerApp')
                                             ColorService
     ) {
 
-        $scope.title = "Senza titolo";
-        $scope.category = "Categoria";
-
+        
         var debugging = true;
         var autoSaveEnabled = false;
 
@@ -46,8 +44,8 @@ angular.module('routerApp')
                 content: "",
                 previewContent: "",
                 title: "Senza titolo",
-                creationDate: (new Date()).getFullYear(),
-                lastEditDate: (new Date()).getFullYear(),
+                creationDate: new Date().toISOString(),
+                lastEditDate: new Date().toISOString(),
                 //color: "rgba(255, 255, 255, .0);"
                 color: ColorService.getRandomColor()
             };
@@ -79,7 +77,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().getFullYear(),
+                lastEditDate: new Date().toISOString(),
                 color: $scope.currentNote.color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -125,7 +123,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().getFullYear(),
+                lastEditDate: new Date().toISOString(),
                 color: color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -233,7 +231,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().getFullYear(),
+                lastEditDate: new Date().toISOString(),
                 color: $scope.currentNote.color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -412,25 +410,12 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
-        $scope.formatLastEditTime = function(time){
-            var t = (new Date()).getDate();
-            console.log(time);
-            var e = time.getDate();
-            var difference = e - t;
-            //var day = time.getDate();
-            //var month = time.getMonth();
-            //var year = time.getFullYear();
-            console.log(difference);
-            return difference;
-        }
-
         $(document).ready(function () {
             $('body').tooltip({
                 selector: "[data-tooltip=tooltip]",
                 container: "body"
             });
 
-           
                $('[data-tooltip="tooltip"]').click(function () {
                     $(this).tooltip("destroy");
                 })
