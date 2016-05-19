@@ -45,8 +45,8 @@ angular.module('routerApp')
                 content: "",
                 previewContent: "",
                 title: "Senza titolo",
-                creationDate: new Date().toISOString(),
-                lastEditDate: new Date().toISOString(),
+                creationDate: (new Date()).getFullYear(),
+                lastEditDate: (new Date()).getFullYear(),
                 //color: "rgba(255, 255, 255, .0);"
                 color: ColorService.getRandomColor()
             };
@@ -78,7 +78,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().toISOString(),
+                lastEditDate: new Date().getFullYear(),
                 color: $scope.currentNote.color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -124,7 +124,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().toISOString(),
+                lastEditDate: new Date().getFullYear(),
                 color: color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -232,7 +232,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().toISOString(),
+                lastEditDate: new Date().getFullYear(),
                 color: $scope.currentNote.color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -409,6 +409,18 @@ angular.module('routerApp')
         function updateComparing() {
             comparingText = $scope.text;
             comparingTitle = $scope.title;
+        }
+
+        $scope.formatLastEditTime = function(time){
+            var t = (new Date()).getDate();
+            console.log(time);
+            var e = time.getDate();
+            var difference = e - t;
+            //var day = time.getDate();
+            //var month = time.getMonth();
+            //var year = time.getFullYear();
+            console.log(difference);
+            return difference;
         }
 
         $(document).ready(function () {
