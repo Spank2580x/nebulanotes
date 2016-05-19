@@ -55,8 +55,12 @@
                     </i> Aggiungi
                 </li>
                 <li class="sidebarElement">
+                    <i class="fa fa-pencil" aria-hidden="true" 
+                        id="yellow"></i> Modifica
+                </li>
+                <li class="sidebarElement">
                     <i class="fa fa-tags" aria-hidden="true" 
-                        id="yellow"></i> Categorie
+                        id="purple"></i> Categorie
                 </li>
                 <li class="sidebarElement" data-toggle="modal" data-target="#myModal2">
                     <i class="fa fa-paint-brush" aria-hidden="true"
@@ -339,11 +343,23 @@
 
                 <div class="col-xs-12 no-text">
                 </div>
+
+                <div class="blockNoteContainer col-xs-12 no-text">
+                    <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}" >
+                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">Senza Titolo</h1>
+                        <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
+                            Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili. Se si decide di utilizzare un passaggio del Lorem Ipsum, è bene essere certi che non contenga nulla di imbarazzante. In genere, i generatori di testo segnaposto disponibili su internet tendono a ripetere paragrafi predefiniti, rendendo questo il primo vero generatore automatico su intenet. Infatti utilizza un dizionario di oltre 200 vocaboli latini, combinati con un insieme di modelli di strutture di periodi, per generare passaggi di testo verosimili. Il testo così generato è sempre privo di ripetizioni, parole imbarazzanti o fuori luogo ecc.
+                        </article>
+                    </div>
+                </div>
+                <div class="editArea">
+
+                
                 <input type="text" class="col-xs-12 inputArea no-text"
-                    maxlength="80"
+                    maxlength="80" placeholder="Senza titolo"
                     ng-model="title" />
                 <input type="text" class="col-xs-12 inputCategory no-text"
-                    maxlength="80"
+                    maxlength="80" placeholder="Categoria"
                     ng-model="category" />
 
                 <div class="no-show" style="float: none;
@@ -359,6 +375,7 @@
                         Salva</button>
 
                 </div>
+                    </div>
 
                 <span class="col-xs-6 col-md-5 crea out">
                     Crea
