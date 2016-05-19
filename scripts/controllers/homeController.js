@@ -11,6 +11,7 @@ angular.module('routerApp')
     ) {
 
         $scope.title = "Senza titolo";
+        $scope.category = "Categoria";
 
         var debugging = true;
         var autoSaveEnabled = false;
@@ -429,20 +430,22 @@ angular.module('routerApp')
                 container: "body"
             });
 
-           $(function () {
+           
                $('[data-tooltip="tooltip"]').click(function () {
                     $(this).tooltip("destroy");
                 })
-            });
- 
-           $(function () {
-               $('[data-toggle=offcanvas]').click(function () {
+            
+               $('.rectFeaturesSettings').click(function () {
                    $('.sidebar-offcanvas').toggleClass('active', 1000);
                });
+           
+            /*.title:not(#sidebarIcon) is not working */
+               $('.logoCentered, .sectionNotes, #addMobile').click(function () {
+               $('.sidebar-offcanvas').removeClass('active', 1000);
            });
-
-           init();
-
+          
         });
+
+        init();
 
     });
