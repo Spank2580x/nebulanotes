@@ -3,28 +3,55 @@
  */
 routerApp.service('AnimationService', function () {
 
-    this.animateAddButton = function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        $("#addFeatures").attr("data-toggle", "tooltip");
-        $("#addFeatures").attr("title", "Crea nota");
-        $("#addFeatures").addClass("hidden-xs hidden-sm");
+    this.init = function () {
+        this.checkAdd = false;
+        this.checkEdit = false;
+    }
 
-        $(".out").hide(300);
-        $("#preview1, #preview2, #preview3").hide(1);
-        $(".asideNotes").addClass("asidev2");
-        /*$(".blockNote").css("display", "block");
-        $(".blockNote").addClass("animated bounceInLeft");*/
-        $("#addFeatures").removeClass("animated infinite bounce");
-        setTimeout(function () {
-            $(".divEditor").css("display", "block");
-            $(".divEditor").addClass("animated fadeIn");
-            $(".no-display").css("display", "block");
-            $(".no-display").addClass("hvr-box-shadow-inset animated rotateIn");
-            $(".no-text").css("display", "block");
-            $(".no-text").addClass("animated bounceInRight");
-            $(".no-show").css("display", "block");
-            $("#sidebarIcon").addClass("visible-xs visible-sm");
-        }, 600);
+    this.animateAddButton = function () {
+        console.log("Edit " + this.checkEdit + " add: " + this.checkAdd);
+        if (this.checkEdit | this.checkAdd) { return; }
+        this.checkAdd = true;
+
+            $('[data-toggle="tooltip"]').tooltip();
+            $("#addFeatures").attr("data-toggle", "tooltip");
+            $("#addFeatures").attr("title", "Crea nota");
+            $("#addFeatures").addClass("hidden-xs hidden-sm");
+
+            $(".out").hide(300);
+            $("#preview1, #preview2, #preview3").hide(1);
+            $(".asideNotes").addClass("asidev2");
+            $(".editArea").css("display", "none");
+            $(".blockNoteContainer").removeClass("animated bounceOutRight");
+            $("#addFeatures").removeClass("animated infinite bounce");
+            setTimeout(function () {
+                $(".divEditor").css("display", "block");
+                $(".divEditor").addClass("animated fadeIn");
+                $(".no-display").css("display", "block");
+                $(".no-display").addClass("hvr-box-shadow-inset animated rotateIn");
+                $(".no-text").css("display", "block");
+                $(".no-text").addClass("animated bounceInRight");
+                $(".no-show").css("display", "block");
+                $("#sidebarIcon").addClass("visible-xs visible-sm");
+                $(".blockNoteContainer").addClass("animated bounceInRight");
+                console.log("Vediamo dio");
+                this.checkAdd = false;
+            }, 600);
+    }
+
+    this.animateEditButton = function () {
+        console.log("Edit " + this.checkEdit + " add: " + this.checkAdd);
+        if (this.checkEdit | this.checkAdd) { return; }
+        this.checkEdit = true;
+
+            $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
+
+            setTimeout(function () {
+                $(".blockNoteContainer").css("display", "none");
+                $(".editArea").stop().css("display", "block");
+                console.log("Cristo cristo");
+                this.checkEdit = false;
+            }, 500);
     }
 
     this.animateBlack = function () {

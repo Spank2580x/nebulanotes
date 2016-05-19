@@ -190,7 +190,7 @@
 
                 <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
                     id="editFeatures" name="personalize"
-                    data-tooltip="tooltip" title="Modifica">
+                    data-tooltip="tooltip" title="Modifica"  ng-click="editButtonPressed()">
                     <i class="fa fa-pencil" aria-hidden="true">
                     </i>
                 </button>
@@ -336,6 +336,9 @@
                         <li><a href="#">Orazio <i class="fa fa-user-secret"
                             aria-hidden="true"></i></a>
                         </li>
+                        <li><a href="#">Alemanno <i class="fa fa-user-secret"
+                            aria-hidden="true"></i></a>
+                        </li>
                     </ul>
                 </div>
                 <!-- campo di testo -->
@@ -346,9 +349,9 @@
 
                 <div class="blockNoteContainer col-xs-12 no-text">
                     <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}" >
-                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">Senza Titolo</h1>
+                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">{{currentNote.doc.title}}</h1>
                         <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
-                            Esistono innumerevoli variazioni dei passaggi del Lorem Ipsum, ma la maggior parte hanno subito delle variazioni del tempo, a causa dell’inserimento di passaggi ironici, o di sequenze casuali di caratteri palesemente poco verosimili. Se si decide di utilizzare un passaggio del Lorem Ipsum, è bene essere certi che non contenga nulla di imbarazzante. In genere, i generatori di testo segnaposto disponibili su internet tendono a ripetere paragrafi predefiniti, rendendo questo il primo vero generatore automatico su intenet. Infatti utilizza un dizionario di oltre 200 vocaboli latini, combinati con un insieme di modelli di strutture di periodi, per generare passaggi di testo verosimili. Il testo così generato è sempre privo di ripetizioni, parole imbarazzanti o fuori luogo ecc.
+                            {{currentNote.doc.content}}
                         </article>
                     </div>
                 </div>
