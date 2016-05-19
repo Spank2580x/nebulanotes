@@ -144,8 +144,8 @@
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
                         <h4 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
-                            Creato il {{x.doc.creationDate}}
-                            - Ultima modifica il 13/06/2016
+                            Creato il {{x.doc.creationDate.day}}/{{x.doc.creationDate.month}}/{{x.doc.creationDate.year}}
+                            - Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
                         </h4>
                         <h3 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.previewContent}}</h3>

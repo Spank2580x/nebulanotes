@@ -46,8 +46,8 @@ angular.module('routerApp')
                 content: "",
                 previewContent: "",
                 title: "Senza titolo",
-                creationDate: (new Date()).getFullYear(),
-                lastEditDate: (new Date()).getFullYear(),
+                creationDate: getNow(),
+                lastEditDate: getNow(),
                 //color: "rgba(255, 255, 255, .0);"
                 color: ColorService.getRandomColor()
             };
@@ -79,7 +79,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().getFullYear(),
+                lastEditDate: getNow(),
                 color: $scope.currentNote.color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -125,7 +125,7 @@ angular.module('routerApp')
                 previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
-                lastEditDate: new Date().getFullYear(),
+                lastEditDate: getNow(),
                 color: color
             };
             dbLocal.put(t, function callback(err, result) {
@@ -343,7 +343,7 @@ angular.module('routerApp')
 
         $scope.sortByLastEdit = function(){
             $scope.localStoredNotes.sort(function(a,b) {
-                return (a.doc.lastEditDate < b.doc.lastEditDate) ? 1 : ((b.doc.lastEditDate < a.doc.lastEditDate) ? -1 : 0);}
+                return (a.doc.lastEditDate.millis < b.doc.lastEditDate.millis) ? 1 : ((b.doc.lastEditDate.millis < a.doc.lastEditDate.millis) ? -1 : 0);}
             );
         }
 
@@ -412,15 +412,34 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
+        function getNow(){
+            var d = new Date();
+            return {
+                day: d.getDate(),
+                year: d.getFullYear(),
+                hours: d.getHours(),
+                minute: d.getMinutes(),
+                seconds: d.getSeconds(),
+                month: d.getMonth() + 1,
+                millis: d.getTime()
+            }
+        }
+
+        function previewText(x){
+            return x.content.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : "")
+        }
+
         $scope.formatLastEditTime = function(time){
-            var t = (new Date()).getDate();
-            console.log(time);
-            var e = time.getDate();
-            var difference = e - t;
-            //var day = time.getDate();
-            //var month = time.getMonth();
-            //var year = time.getFullYear();
-            console.log(difference);
+            var now = getNow();
+            var difference = now.millis - time.millis;
+            difference = Math.round(difference / 1000);
+            if (difference < 60) return "Pochi secondi fa";
+            if (difference < 120) return "Un minuto di fa";
+            if (difference < 3600) return Math.round(difference / 60) + " minuti fa";
+            if (difference < 7200) return "Un ora fa";
+            if (difference < 86400) return Math.round(difference / 3600) + " ore fa";
+            if (difference < 172800) return "Ieri";
+            else return Math.round(difference / 86400) + " giorni fa";
             return difference;
         }
 
