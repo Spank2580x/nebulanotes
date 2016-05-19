@@ -651,7 +651,7 @@ footer {
         z-index: 51;
         margin: 0;
         padding: 0;
-        position: fixed;
+        position: absolute;
         top: 58px;
         left: -60%;
         font-size: 18pt;

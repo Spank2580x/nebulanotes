@@ -20,7 +20,7 @@
                     <i class="fa fa-search"></i>
                 </a>
                 <input type="text" placeholder="Ricerca note ..."
-                    class="form-control hidden-xs hidden-sm">
+                    class="form-control hidden-xs hidden-sm" ng-model="searchText">
             </div>
 
         </div>
@@ -48,7 +48,7 @@
                 id="affix" class="nav nav-stacked">
                 <li>
                     <input type="text" placeholder="Ricerca note ..."
-                        class="form-control">
+                        class="form-control" ng-model="searchText">
                 </li>
                 <li class="sidebarElement" ng-click="addButtonPressed()" id="addMobile">
                     <i class="fa fa-plus" aria-hidden="true">
@@ -142,7 +142,7 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
-                <div class="blockNote" ng-repeat="x in localStoredNotes"
+                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
                     style="-webkit-transition:all 0.3s ease-in-out; background: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
