@@ -47,7 +47,6 @@ angular.module('routerApp')
             var t = {
                 _id: new Date().toISOString(),
                 content: "",
-                previewContent: "",
                 title: "Senza titolo",
                 creationDate: getNow(),
                 lastEditDate: getNow(),
@@ -79,12 +78,13 @@ angular.module('routerApp')
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
                 content: $scope.text,
-                previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
-                color: $scope.currentNote.color
+                color: $scope.currentNote.doc.color
             };
+            console.log("T ha anche ");
+            console.log(t.color);
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
@@ -125,7 +125,6 @@ angular.module('routerApp')
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
                 content: $scope.text,
-                previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
@@ -194,7 +193,7 @@ angular.module('routerApp')
                 console.log("Aspetta il tuo turno!");
                 noteOnQueue = obj;
                 if (!TrafficLightService.enabled && hasBeenEdited()){
-                    console.error("Buh io cambio pero' guarda che ci sono modifiche non salvate");
+                    console.log("Buh io cambio pero' guarda che ci sono modifiche non salvate");
                 }
                 else return;
             }
@@ -236,7 +235,6 @@ angular.module('routerApp')
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
                 content: $scope.text,
-                previewContent: $scope.text.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : ""),   //TODO farlo localmente, bisogna fare sta roba nell' ng-repeat tipo
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
