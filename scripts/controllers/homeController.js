@@ -22,6 +22,7 @@ angular.module('routerApp')
 
         $scope.localStoredNotes = [];
         $scope.currentNote;
+        $scope.showingNote = false;
 
         $scope.searchText;
         $scope.noSearchResult = false;
@@ -342,6 +343,7 @@ angular.module('routerApp')
                 firstTimeApp = false;
             }
             else AnimationService.animateEditButton(1);
+            $scope.showingNote = false;;
             $scope.write();
             backRead(function (err, notes) {
                 $scope.currentNote = notes[0];
@@ -352,6 +354,7 @@ angular.module('routerApp')
 
         $scope.editButtonPressed = function () {
             AnimationService.animateEditButton();
+            $scope.showingNote = !$scope.showingNote;
         }
 
         $scope.goRed = function () {
