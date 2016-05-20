@@ -41,6 +41,15 @@
     <script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
     <script src='bower_components/textAngular/dist/textAngular.min.js'></script>
 
+    <!-- AWS SDK -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+
+        var creds=new AWS.Credentials({
+            accessKeyId: 'AKIAJXMWOEJ62OX2JD3Q', secretAccessKey: '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', sessionToken: null
+        });
+        AWS.config.credentials = creds;
+
+
     <!-- Main app js -->
 
     <script type="text/javascript"
@@ -73,6 +82,8 @@
     <script type="text/javascript"
             src="scripts/services/colorService.js"></script>
 
+    <script type="text/javascript"
+            src="scripts/services/uploadService.js"></script>
     <!-- Miscellaneous -->
 
     <link rel="stylesheet" href="styles/font-awesome/css/font-awesome.min.css">

@@ -7,7 +7,8 @@ angular.module('routerApp')
                                             NotesService,
                                             AnimationService,
                                             TrafficLightService,
-                                            ColorService
+                                            ColorService,
+                                            uploadS3
     ) {
 
         $scope.title = "Senza titolo";
@@ -206,6 +207,10 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
+        $scope.checkBucket=function(){
+            uploadS3.bucket.uploadit(function (err,data){
+            });
+        }
         function backRead(callback) {
             console.log("Lettura");
             dbLocal.allDocs({ include_docs: true, descending: true }, function (err, doc) {
