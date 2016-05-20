@@ -209,7 +209,7 @@ angular.module('routerApp')
         }
 
         $scope.checkBucket=function(){
-            uploadS3.bucket.uploadit(function (err,data){
+            uploadS3.uploadit(function (err,data){
             });
         }
         function backRead(callback) {
@@ -371,6 +371,7 @@ angular.module('routerApp')
             //alert("Vai");
             TrafficLightService.init(autoSaveEnabled);
             AnimationService.init();
+            uploadS3.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
             NotesService.isFirstTimeUsingApp(dbLocal, function (err, result) {
