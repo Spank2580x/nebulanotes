@@ -58,12 +58,13 @@ routerApp.service('AnimationService', function () {
         }
         setCheckEdit(true);
 
-        $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
+        $(".blockNoteContainer").addClass("animated bounceOutRight");
 
         setTimeout(function () {
             $(".blockNoteContainer").css("display", "none");
             $(".editArea").stop().css("display", "block");
             console.log("Adesso checkEdit diventera' false");
+            $(".blockNoteContainer").removeClass("animated bounceOutRight");
             setCheckEdit(false);
         }, 500, this.checkEdit, this.checkAdd);
 
@@ -74,13 +75,11 @@ routerApp.service('AnimationService', function () {
 
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckEdit(true);
-        $(".editArea").removeClass("animated bounceInRight");
-        $(".editArea").addClass("animated bounceOutRight"); // se non fa l'animazione chiedi a raggio , aggiungi il removeclass
+        
         $(".editArea").css("display", "none");
-
-        setTimeout(function () {
-            $(".blockNoteContainer").css("display", "normal");
+        setTimeout(function () {           
             $(".blockNoteContainer").addClass("animated bounceInRight");
+            $(".blockNoteContainer").css("display", "block");
             console.log("Adesso checkEdit diventera' false");
             setCheckEdit(false);
         }, 500);
