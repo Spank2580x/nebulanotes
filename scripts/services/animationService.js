@@ -44,11 +44,11 @@ routerApp.service('AnimationService', function () {
         }, 600, this.checkEdit, this.checkAdd, this.showing);
     }
 
-    this.animateEditButton = function () {
+    this.animateEditButton = function (argu) {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
 
         if (getCheckEdit() || getCheckAdd()) return;
-        if (getShowing()){
+        if (argu == undefined ? getShowing() : true){
             setShowing(false);
         }
         else {
@@ -100,7 +100,7 @@ routerApp.service('AnimationService', function () {
         this.checkAdd = b;
     }
 
-    function getCheckAdd(b) {
+    function getCheckAdd() {
         return this.checkAdd;
     }
 
