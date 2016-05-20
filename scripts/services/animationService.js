@@ -66,7 +66,7 @@ routerApp.service('AnimationService', function () {
             console.log("Adesso checkEdit diventera' false");
             $(".blockNoteContainer").removeClass("animated bounceOutRight");
             setCheckEdit(false);
-        }, 500, this.checkEdit, this.checkAdd);
+        }, 400, this.checkEdit, this.checkAdd);
 
     }
 
@@ -76,13 +76,15 @@ routerApp.service('AnimationService', function () {
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckEdit(true);
         
-        $(".editArea").css("display", "none");
-        setTimeout(function () {           
+        $(".editArea").addClass("animated bounceOutRight");
+        setTimeout(function () {
+            $(".editArea").css("display","none");
             $(".blockNoteContainer").addClass("animated bounceInRight");
             $(".blockNoteContainer").css("display", "block");
             console.log("Adesso checkEdit diventera' false");
+            $(".editArea").removeClass("animated bounceOutRight");
             setCheckEdit(false);
-        }, 500);
+        }, 400);
 
     }
 
