@@ -28,6 +28,7 @@ routerApp.service('AnimationService', function () {
         $(".asideNotes").addClass("asidev2");
         $(".editArea").css("display", "block");
         $(".blockNoteContainer").css("display", "none");
+
         setTimeout(function () {
             $("#testMobile").css("display", "none");
             $(".divEditor").css("display", "block");
