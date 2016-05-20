@@ -332,7 +332,11 @@ angular.module('routerApp')
         };
 
         $scope.addButtonPressed = function () {
-            AnimationService.animateEditButton(1);
+            if (firstTimeApp) {
+                AnimationService.animateAddButton();
+                firstTimeApp = false;
+            }
+            else AnimationService.animateEditButton(1);
             $scope.write();
             backRead(function (err, notes) {
                 $scope.currentNote = notes[0];
