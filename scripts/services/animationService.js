@@ -10,14 +10,14 @@ routerApp.service('AnimationService', function () {
     this.init = function () {
         setCheckAdd(false);
         setCheckEdit(false);
-        setShowing(false);
+        setShowing(true);
     }
 
     this.animateAddButton = function () {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckAdd(true);
-
+        setShowing(true);
         $('[data-toggle="tooltip"]').tooltip();
         $("#addFeatures").attr("data-toggle", "tooltip");
         $("#addFeatures").attr("title", "Crea nota");
@@ -48,6 +48,14 @@ routerApp.service('AnimationService', function () {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
 
         if (getCheckEdit() || getCheckAdd()) return;
+        if (getShowing()){
+            setShowing(false);
+        }
+        else {
+            setShowing(true);
+            this.backToAdd();
+            return;
+        }
         setCheckEdit(true);
 
         $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
@@ -59,15 +67,23 @@ routerApp.service('AnimationService', function () {
             setCheckEdit(false);
         }, 500, this.checkEdit, this.checkAdd);
 
-        /*    
-   $(".editArea").addClass("animated bounceOutRight"); // se non fa l'animazione chiedi a raggio , aggiungi il removeclass
-   $(".fullPageNotes").css("display", "none");
+    }
 
-   setTimeout(function () {
+    this.backToAdd = function () {
+        console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
+
+        if (getCheckEdit() || getCheckAdd()) return;
+        setCheckEdit(true);
+        $(".editArea").removeClass("animated bounceInRight");
+        $(".editArea").addClass("animated bounceOutRight"); // se non fa l'animazione chiedi a raggio , aggiungi il removeclass
+        $(".editArea").css("display", "none");
+
+        setTimeout(function () {
             $(".blockNoteContainer").css("display", "normal");
             $(".blockNoteContainer").addClass("animated bounceInRight");
-            },500);
-   */
+            console.log("Adesso checkEdit diventera' false");
+            setCheckEdit(false);
+        }, 500);
 
     }
 
