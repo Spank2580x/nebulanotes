@@ -484,7 +484,7 @@ angular.module('routerApp')
                });
            
             /*.title:not(#sidebarIcon) is not working */
-               $('.logoCentered, .sectionNotes, #addMobile').click(function () {
+               $('.logoCentered, .sectionNotes, #addMobile, #editMobile').click(function () {
                $('.sidebar-offcanvas').removeClass('active', 1000);
            });
           
