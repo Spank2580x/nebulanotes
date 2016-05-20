@@ -371,7 +371,7 @@ angular.module('routerApp')
             //alert("Vai");
             TrafficLightService.init(autoSaveEnabled);
             AnimationService.init();
-            uploadS3.init();
+            //uploadS3.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
             NotesService.isFirstTimeUsingApp(dbLocal, function (err, result) {
