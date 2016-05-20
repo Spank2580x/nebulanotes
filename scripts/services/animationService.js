@@ -24,11 +24,12 @@ routerApp.service('AnimationService', function () {
         $("#addFeatures").addClass("hidden-xs hidden-sm");
 
         $(".out").hide(300);
-        $("#preview1, #preview2, #preview3").hide(1);
+        $("#preview1").hide(1);
         $(".asideNotes").addClass("asidev2");
-        $(".editArea").css("display", "normal");
-        $(".blockNoteContainer").css("display","none");
+        $(".editArea").css("display", "block");
+        $(".blockNoteContainer").css("display", "none");
         setTimeout(function () {
+            $("#testMobile").css("display", "none");
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
             $(".no-display").css("display", "block");
@@ -37,6 +38,7 @@ routerApp.service('AnimationService', function () {
             $(".no-text").addClass("animated bounceInRight");
             $(".no-show").css("display", "block");
             $("#sidebarIcon").addClass("visible-xs visible-sm");
+            $(".editArea").css("display", "block");
             //$(".blockNoteContainer").addClass("animated bounceInRight");
             console.log("Adesso checkAdd diventera' false!");
             setCheckAdd(false);

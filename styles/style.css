@@ -261,7 +261,7 @@ body {
 }
 
 #editFeatures {
-    background: #fddf00;
+    background: #89f646;
     margin-left: 10px;
 }
 
@@ -270,7 +270,7 @@ body {
 }
 
 #customFeatures {
-    background: #89f646;
+    background: #fddf00;
     margin-left: 10px;
 }
 
@@ -547,6 +547,10 @@ footer {
 
 .editArea {
     display: none;
+}
+
+.blockNoteContainer {
+    display:none;
 }
 
 .blockNotePreview {
@@ -843,23 +847,4 @@ footer {
         width: 80%;
         height: 400px;
     }
-}
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
 }
