@@ -136,11 +136,14 @@ body {
     }
 
 #blockNoteError {
-    display:none;
+    display:block;
     background: #d4d4d4;
     color: black;
     height: 900px;
     text-align: center;
+    margin-left:-15px;
+    margin-right:-15px;
+    margin-top:-20px;
 }
 
     #blockNoteError h2 i {
@@ -664,7 +667,7 @@ footer {
         margin: 0;
         padding: 0;
         position: absolute;
-        top: 58px;
+        top: 57px;
         left: -60%;
         font-size: 18pt;
         padding-left: 10px;

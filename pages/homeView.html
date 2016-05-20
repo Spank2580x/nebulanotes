@@ -54,7 +54,7 @@
                     <i class="fa fa-plus" aria-hidden="true">
                     </i> Aggiungi
                 </li>
-                <li class="sidebarElement">
+                <li class="sidebarElement" ng-click="editButtonPressed()">
                     <i class="fa fa-pencil" aria-hidden="true" 
                         id="yellow"></i> Modifica
                 </li>
@@ -142,8 +142,8 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
-                <div ng-show="noSearchResult">
-                    <h2><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note quindi AMMAZZATI</h2>
+                <div id="blockNoteError" ng-show="noSearchResult">
+                    <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
                 </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
                     style="transition:background 0.3s ease-in-out; background: {{x.doc.color}}">
@@ -193,7 +193,7 @@
 
                 <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
                     id="editFeatures" name="personalize"
-                    data-tooltip="tooltip" title="Modifica"  ng-click="editButtonPressed()">
+                    data-tooltip="tooltip" title="Modifica" ng-click="editButtonPressed()">
                     <i class="fa fa-pencil" aria-hidden="true">
                     </i>
                 </button>
