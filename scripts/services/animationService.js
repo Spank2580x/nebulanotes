@@ -18,30 +18,30 @@ routerApp.service('AnimationService', function () {
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckAdd(true);
 
-            $('[data-toggle="tooltip"]').tooltip();
-            $("#addFeatures").attr("data-toggle", "tooltip");
-            $("#addFeatures").attr("title", "Crea nota");
-            $("#addFeatures").addClass("hidden-xs hidden-sm");
+        $('[data-toggle="tooltip"]').tooltip();
+        $("#addFeatures").attr("data-toggle", "tooltip");
+        $("#addFeatures").attr("title", "Crea nota");
+        $("#addFeatures").addClass("hidden-xs hidden-sm");
 
-            $(".out").hide(300);
-            $("#preview1, #preview2, #preview3").hide(1);
-            $(".asideNotes").addClass("asidev2");
-            $(".editArea").css("display", "none");
-            $(".blockNoteContainer").removeClass("animated bounceOutRight");
-            $("#addFeatures").removeClass("animated infinite bounce");
-            setTimeout(function () {
-                $(".divEditor").css("display", "block");
-                $(".divEditor").addClass("animated fadeIn");
-                $(".no-display").css("display", "block");
-                $(".no-display").addClass("hvr-box-shadow-inset animated rotateIn");
-                $(".no-text").css("display", "block");
-                $(".no-text").addClass("animated bounceInRight");
-                $(".no-show").css("display", "block");
-                $("#sidebarIcon").addClass("visible-xs visible-sm");
-                $(".blockNoteContainer").addClass("animated bounceInRight");
-                console.log("Adesso checkAdd diventera' false!");
-                setCheckAdd(false);
-            }, 600, this.checkEdit, this.checkAdd, this.showing);
+        $(".out").hide(300);
+        $("#preview1, #preview2, #preview3").hide(1);
+        $(".asideNotes").addClass("asidev2");
+        $(".editArea").css("display", "none");
+        $(".blockNoteContainer").removeClass("animated bounceOutRight");
+        $("#addFeatures").removeClass("animated infinite bounce");
+        setTimeout(function () {
+            $(".divEditor").css("display", "block");
+            $(".divEditor").addClass("animated fadeIn");
+            $(".no-display").css("display", "block");
+            $(".no-display").addClass("hvr-box-shadow-inset animated rotateIn");
+            $(".no-text").css("display", "block");
+            $(".no-text").addClass("animated bounceInRight");
+            $(".no-show").css("display", "block");
+            $("#sidebarIcon").addClass("visible-xs visible-sm");
+            $(".blockNoteContainer").addClass("animated bounceInRight");
+            console.log("Adesso checkAdd diventera' false!");
+            setCheckAdd(false);
+        }, 600, this.checkEdit, this.checkAdd, this.showing);
     }
 
     this.animateEditButton = function () {
@@ -50,29 +50,40 @@ routerApp.service('AnimationService', function () {
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckEdit(true);
 
-            $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
+        $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
 
-            setTimeout(function () {
-                $(".blockNoteContainer").css("display", "none");
-                $(".editArea").stop().css("display", "block");
-                console.log("Adesso checkEdit diventera' false");
-                setCheckEdit(false);
-            }, 500, this.checkEdit, this.checkAdd);
+        setTimeout(function () {
+            $(".blockNoteContainer").css("display", "none");
+            $(".editArea").stop().css("display", "block");
+            console.log("Adesso checkEdit diventera' false");
+            setCheckEdit(false);
+        }, 500, this.checkEdit, this.checkAdd);
+
+        /*    
+   $(".editArea").addClass("animated bounceOutRight"); // se non fa l'animazione chiedi a raggio , aggiungi il removeclass
+   $(".fullPageNotes").css("display", "none");
+
+   setTimeout(function () {
+            $(".blockNoteContainer").css("display", "normal");
+            $(".blockNoteContainer").addClass("animated bounceInRight");
+            },500);
+   */
+
     }
 
-    function setCheckEdit(b){
+    function setCheckEdit(b) {
         this.checkEdit = b;
     }
 
-    function getCheckEdit(){
+    function getCheckEdit() {
         return this.checkEdit;
     }
 
-    function setCheckAdd(b){
+    function setCheckAdd(b) {
         this.checkAdd = b;
     }
 
-    function getCheckAdd(b){
+    function getCheckAdd(b) {
         return this.checkAdd;
     }
 
@@ -108,12 +119,12 @@ routerApp.service('AnimationService', function () {
         $("#addFeatures").attr("data-toggle", "tooltip");
         $("#addFeatures").attr("title", "Crea nota");
         $("#addFeatures").addClass("hidden-xs hidden-sm");
-        
+
         $(".asideNotes").addClass("asidev2");
-       
+
         $(".fullPageNotes").css("display", "block");
         $(".fullPageNotes").fadeIn(500);
-        setTimeout(function () {         
+        setTimeout(function () {
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
             $(".no-display").css("display", "block");
@@ -129,7 +140,5 @@ routerApp.service('AnimationService', function () {
         $(".fullPageNotes").css("display", "block");
         $(".fullPageNotes").fadeIn(500);
     }
-
-
 
 });
