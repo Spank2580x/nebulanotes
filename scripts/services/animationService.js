@@ -10,14 +10,14 @@ routerApp.service('AnimationService', function () {
     this.init = function () {
         setCheckAdd(false);
         setCheckEdit(false);
-        setShowing(false);
+        setShowing(true);
     }
 
     this.animateAddButton = function () {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckAdd(true);
-
+        setShowing(true);
         $('[data-toggle="tooltip"]').tooltip();
         $("#addFeatures").attr("data-toggle", "tooltip");
         $("#addFeatures").attr("title", "Crea nota");
@@ -26,9 +26,8 @@ routerApp.service('AnimationService', function () {
         $(".out").hide(300);
         $("#preview1, #preview2, #preview3").hide(1);
         $(".asideNotes").addClass("asidev2");
-        $(".editArea").css("display", "none");
-        $(".blockNoteContainer").removeClass("animated bounceOutRight");
-        $("#addFeatures").removeClass("animated infinite bounce");
+        $(".editArea").css("display", "normal");
+        $(".blockNoteContainer").css("display","none");
         setTimeout(function () {
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
@@ -38,36 +37,53 @@ routerApp.service('AnimationService', function () {
             $(".no-text").addClass("animated bounceInRight");
             $(".no-show").css("display", "block");
             $("#sidebarIcon").addClass("visible-xs visible-sm");
-            $(".blockNoteContainer").addClass("animated bounceInRight");
+            //$(".blockNoteContainer").addClass("animated bounceInRight");
             console.log("Adesso checkAdd diventera' false!");
             setCheckAdd(false);
         }, 600, this.checkEdit, this.checkAdd, this.showing);
     }
 
-    this.animateEditButton = function () {
+    this.animateEditButton = function (argu) {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
 
         if (getCheckEdit() || getCheckAdd()) return;
+        if (argu == undefined ? getShowing() : true){
+            setShowing(false);
+        }
+        else {
+            setShowing(true);
+            this.backToAdd();
+            return;
+        }
         setCheckEdit(true);
 
-        $(".blockNoteContainer").stop().addClass("animated bounceOutRight");
+        $(".blockNoteContainer").addClass("animated bounceOutRight");
 
         setTimeout(function () {
             $(".blockNoteContainer").css("display", "none");
             $(".editArea").stop().css("display", "block");
             console.log("Adesso checkEdit diventera' false");
+            $(".blockNoteContainer").removeClass("animated bounceOutRight");
             setCheckEdit(false);
-        }, 500, this.checkEdit, this.checkAdd);
+        }, 400, this.checkEdit, this.checkAdd);
 
-        /*    
-   $(".editArea").addClass("animated bounceOutRight"); // se non fa l'animazione chiedi a raggio , aggiungi il removeclass
-   $(".fullPageNotes").css("display", "none");
+    }
 
-   setTimeout(function () {
-            $(".blockNoteContainer").css("display", "normal");
+    this.backToAdd = function () {
+        console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
+
+        if (getCheckEdit() || getCheckAdd()) return;
+        setCheckEdit(true);
+        
+        $(".editArea").addClass("animated bounceOutRight");
+        setTimeout(function () {
+            $(".editArea").css("display","none");
             $(".blockNoteContainer").addClass("animated bounceInRight");
-            },500);
-   */
+            $(".blockNoteContainer").css("display", "block");
+            console.log("Adesso checkEdit diventera' false");
+            $(".editArea").removeClass("animated bounceOutRight");
+            setCheckEdit(false);
+        }, 400);
 
     }
 
@@ -83,7 +99,7 @@ routerApp.service('AnimationService', function () {
         this.checkAdd = b;
     }
 
-    function getCheckAdd(b) {
+    function getCheckAdd() {
         return this.checkAdd;
     }
 

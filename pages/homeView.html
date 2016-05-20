@@ -20,7 +20,7 @@
                     <i class="fa fa-search"></i>
                 </a>
                 <input type="text" placeholder="Ricerca note ..."
-                    class="form-control hidden-xs hidden-sm" ng-model="searchText">
+                    class="form-control hidden-xs hidden-sm" ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchFilter).length == 0">
             </div>
 
         </div>
@@ -54,7 +54,7 @@
                     <i class="fa fa-plus" aria-hidden="true">
                     </i> Aggiungi
                 </li>
-                <li class="sidebarElement">
+                <li class="sidebarElement" ng-click="editButtonPressed()" id="editMobile">
                     <i class="fa fa-pencil" aria-hidden="true" 
                         id="yellow"></i> Modifica
                 </li>
@@ -142,8 +142,8 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
-                <div class="blockNote" id="blockNoteError">
-                    <h2><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <br />Oops, non ho trovato note quindi AMMAZZATI</h2>
+                <div id="blockNoteError" ng-show="noSearchResult">
+                    <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
                 </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
                     style="transition:background 0.3s ease-in-out; background: {{x.doc.color}}">
@@ -193,7 +193,7 @@
 
                 <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
                     id="editFeatures" name="personalize"
-                    data-tooltip="tooltip" title="Modifica"  ng-click="editButtonPressed()">
+                    data-tooltip="tooltip" title="Modifica" ng-click="editButtonPressed()">
                     <i class="fa fa-pencil" aria-hidden="true">
                     </i>
                 </button>
@@ -240,40 +240,40 @@
                             </div>
                             <div class="modal-body">
                                 <button class="modalColors btn circleFeatures black"
-                                    ng-click="editColor('rgb(0,0,0)')">
+                                    ng-click="editColor('rgb(0,0,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures dark"
-                                    ng-click="editColor('rgb(68,68,68)')">
+                                    ng-click="editColor('rgb(68,68,68)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures grey"
-                                    ng-click="editColor('rgb(190,190,190)')">
+                                    ng-click="editColor('rgb(190,190,190)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures red"
-                                    ng-click="editColor('rgb(255,0,0)')">
+                                    ng-click="editColor('rgb(255,0,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures orange"
-                                    ng-click="editColor('rgb(255,128,0)')">
+                                    ng-click="editColor('rgb(255,128,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures yellow"
-                                    ng-click="editColor('rgb(255,255,0)')">
+                                    ng-click="editColor('rgb(255,255,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures green"
-                                    ng-click="editColor('rgb(102,204,0)')">
+                                    ng-click="editColor('rgb(102,204,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures blue"
-                                    ng-click="editColor('rgb(140,158,255)')">
+                                    ng-click="editColor('rgb(140,158,255)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures beige"
-                                    ng-click="editColor('rgb(198, 142, 71)')">
+                                    ng-click="editColor('rgb(198, 142, 71)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures darkblue"
-                                    ng-click="editColor('rgb(0,0,102)')">
+                                    ng-click="editColor('rgb(0,0,102)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures purple"
-                                    ng-click="editColor('rgb(160, 0, 255)')">
+                                    ng-click="editColor('rgb(160, 0, 255)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures pink"
-                                    ng-click="editColor('rgb(255,51,255)')">
+                                    ng-click="editColor('rgb(255,51,255)')" data-dismiss="modal">
                                 </button>
 
                             </div>
@@ -429,8 +429,8 @@
                 style="margin-top: 1%">
                 <h1 class="col-xs-12">
                     <i class="fa fa-sticky-note-o"
-                        aria-hidden="true"></i>Scopri
-                    i nostri servizi
+                        aria-hidden="true"></i> <span style="margin-left:15px;">Scopri
+                    i nostri servizi</span>
                 </h1>
                 <div class="col-xs-12 col-md-3 col-lg-4 notesExamples centered hvr-curl-top-right"
                     id="firstImg">
