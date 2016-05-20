@@ -23,6 +23,7 @@ angular.module('routerApp')
         $scope.currentNote;
 
         $scope.searchText;
+        $scope.noSearchResult = false;
 
         var dbLocal = {};
         var firstTimeApp;
@@ -460,7 +461,7 @@ angular.module('routerApp')
         }
 
         $scope.searchFilter = function(x){
-            if ($scope.searchText == undefined || $scope.searchText == "") return true;
+            if ($scope.searchText == undefined || $scope.searchText.length <= 1) return true;
             var title = x.doc.title.toLowerCase();
             var content = x.doc.content.toLowerCase();
             var toSearch = $scope.searchText.toLowerCase();

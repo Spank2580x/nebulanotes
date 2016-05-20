@@ -20,7 +20,7 @@
                     <i class="fa fa-search"></i>
                 </a>
                 <input type="text" placeholder="Ricerca note ..."
-                    class="form-control hidden-xs hidden-sm" ng-model="searchText">
+                    class="form-control hidden-xs hidden-sm" ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchFilter).length == 0">
             </div>
 
         </div>
@@ -142,8 +142,8 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
-                <div class="blockNote" id="blockNoteError">
-                    <h2><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <br />Oops, non ho trovato note quindi AMMAZZATI</h2>
+                <div ng-show="noSearchResult">
+                    <h2><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note quindi AMMAZZATI</h2>
                 </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
                     style="transition:background 0.3s ease-in-out; background: {{x.doc.color}}">
