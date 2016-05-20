@@ -435,8 +435,14 @@ angular.module('routerApp')
             }
         }
 
-        function previewText(x){
-            return x.content.substring(0, $scope.text.length > 40 ? 40 : $scope.text.length) + ($scope.text.length > 40 ? "..." : "")
+        $scope.previewText = function(x){
+            return removeTags(x.substring(0, x.length > 40 ? 40 : x.length) + (x.length > 40 ? "..." : ""));
+        }
+
+        function removeTags(html) {
+            var tmp = document.createElement("DIV");
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || "";
         }
 
         $scope.formatLastEditTime = function(time){

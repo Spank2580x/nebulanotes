@@ -5,12 +5,12 @@ routerApp.service('AnimationService', function () {
 
     this.checkAdd;
     this.checkEdit;
-    this.secondCheckEdit;
+    this.showing;
 
     this.init = function () {
         setCheckAdd(false);
         setCheckEdit(false);
-        setSecondCheckEdit(false);
+        setShowing(false);
     }
 
     this.animateAddButton = function () {
@@ -41,19 +41,11 @@ routerApp.service('AnimationService', function () {
                 $(".blockNoteContainer").addClass("animated bounceInRight");
                 console.log("Adesso checkAdd diventera' false!");
                 setCheckAdd(false);
-            }, 600, this.checkEdit, this.checkAdd, this.secondCheckEdit);
+            }, 600, this.checkEdit, this.checkAdd, this.showing);
     }
 
     this.animateEditButton = function () {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
-
-        if (getSecondCheckEdit()) {
-            $(".editArea").stop().css("display", "none");
-            $(".blockNoteContainer").addClass("animated bounceInRight");
-            setSecondCheckEdit(false);
-            setCheckEdit(false);
-            console.log("porco");
-        }
 
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckEdit(true);
@@ -65,7 +57,6 @@ routerApp.service('AnimationService', function () {
                 $(".editArea").stop().css("display", "block");
                 console.log("Adesso checkEdit diventera' false");
                 setCheckEdit(false);
-                setSecondCheckEdit(true);
             }, 500, this.checkEdit, this.checkAdd);
     }
 
@@ -85,12 +76,12 @@ routerApp.service('AnimationService', function () {
         return this.checkAdd;
     }
 
-    function setSecondCheckEdit(b) {
-        this.secondCheckEdit = b;
+    function setShowing(b) {
+        this.showing = b;
     }
 
-    function getSecondCheckEdit() {
-        return this.secondCheckEdit;
+    function getShowing() {
+        return this.showing;
     }
 
 

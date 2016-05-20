@@ -152,10 +152,10 @@
                             {{x.doc.title}}</h1>
                         <h4 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             Creato il {{x.doc.creationDate.day}}/{{x.doc.creationDate.month}}/{{x.doc.creationDate.year}}
-                            - Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
+                            <br/> Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
                         </h4>
                         <h3 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
-                            {{x.doc.previewContent}}</h3>
+                            {{previewText(x.doc.content)}}</h3>
                     </div>
                 </div>
             </div>
