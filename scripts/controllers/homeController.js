@@ -501,8 +501,17 @@ angular.module('routerApp')
             $('.selectCategories').select2({
                 tags: true,
                 tokenSeparators: [',', ' '],
-                placeholder: "Inserisci una categoria..."
+                placeholder: "Inserisci una categoria...",
+                minimumResultsForSearch: Infinity
             });
+            $('.insertCategories').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                maximumSelectionLength: 2,
+                placeholder: "Cerca una categoria...",
+                minimumResultsForSearch: Infinity
+            });
+
             console.log("Jquery merda");
         }
 
@@ -526,6 +535,24 @@ angular.module('routerApp')
             var content = x.doc.content.toLowerCase();
             var toSearch = $scope.searchText.toLowerCase();
             return title.includes(toSearch) || content.includes(toSearch);
+        }
+
+        $scope.tagFilter = function(x){
+            var tagsToSearch = $('.insertCategories').val();
+            //console.log("Ma scusate eh");
+            //console.log(tagsToSearch);
+            if (tagsToSearch == null) return true;
+            var tags = x.doc.tags;
+            //console.log("Confronto con ");
+            //console.log("I tag invece sono");
+            //console.log(tags);
+            for (var i = 0; i < tags.length; i++){
+                for (var y = 0; y < tagsToSearch.length; y++){
+                    //console.log(tags[i] + " e' uguale a " + tagsToSearch[i]);
+                    if (tags[i] == tagsToSearch[y]) return true;
+                }
+            }
+            return false;
         }
 
         $(document).ready(function () {
