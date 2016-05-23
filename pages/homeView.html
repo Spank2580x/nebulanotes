@@ -47,43 +47,48 @@
             <ul data-spy="affix" data-offset-top="120"
                 id="affix" class="nav nav-stacked">
                 <li>
-                    <input type="text" placeholder="Ricerca note ..."
+                    <input type="text" placeholder="Ricerca note e categorie..."
                         class="form-control" ng-model="searchText">
                 </li>
-                <li class="sidebarElement" ng-click="addButtonPressed()" id="addMobile">
+                <li class="sidebarElement" ng-click="addButtonPressed()" id="addMobile" style="margin-left:8px;">
                     <i class="fa fa-plus" aria-hidden="true">
-                    </i> Aggiungi
+                    </i> 
                 </li>
                 <li class="sidebarElement" ng-click="editButtonPressed()" id="editMobile">
                     <i class="fa fa-pencil" aria-hidden="true" 
-                        id="yellow"></i> Modifica
+                        id="yellow"></i> 
                 </li>
-                <li class="sidebarElement">
-                    <i class="fa fa-tags" aria-hidden="true" 
-                        id="purple"></i> Categorie
-                </li>
+                                
                 <li class="sidebarElement" data-toggle="modal" data-target="#myModal2">
                     <i class="fa fa-paint-brush" aria-hidden="true"
-                        id="light"></i> Colora
+                        id="purple"></i> 
                 </li>
-                <li class="sidebarElement">
+                <li class="sidebarElement" data-toggle="modal" data-target="#myAttachModal">
                     <i class="fa fa-paperclip" aria-hidden="true"
-                        id="grey"></i> Allega
+                        id="grey"></i> 
                 </li>
                 <li class="sidebarElement">
                     <i class="fa fa-share-alt" aria-hidden="true"
-                        id="white"></i> Condividi
-                </li>
-                <hr />
-                <li class="sidebarElement" data-toggle="modal" data-target="#myModal">
-
+                        id="light"></i>
+                </li>             
+                 
+                <li class="sidebarElement" style="float:none;" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-trash" aria-hidden="true"
-                        id="orange"></i> Elimina
+                        id="orange"></i> 
                 </li>
-
-                <li style="margin-bottom: 10px;">[...]
-                </li>
+                
             </ul>
+            
+            <div class="noteMobileContainer">
+            <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter"
+                    style="transition:background 0.3s ease-in-out; background-color: {{x.doc.color}}">
+                    <div ng-click="open(x)">
+                        <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
+                            {{x.doc.title}} <span> Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}</span></h1>
+                        
+                    </div>
+                </div>
+                </div>
         </div>
 
 
@@ -145,8 +150,15 @@
                 <div id="blockNoteError" ng-show="noSearchResult">
                     <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
                 </div>
+                <div class="searchCategories no-text">
+
+                        <select class="insertCategories js-example-responsive" multiple="multiple" style="width:30%;">
+            
+                        </select>
+
+                    </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
-                    style="transition:background 0.3s ease-in-out; background: {{x.doc.color}}">
+                    style="transition:background 0.3s ease-in-out; background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
@@ -162,17 +174,6 @@
 
             <div id="preview1" class="col-md-4 col-lg-4 notesExamples">
             </div>
-
-            <!--<div id="preview2" class="col-md-4 col-lg-4 notesExamples hvr-curl-top-right">
-            </div>-->
-
-            <!-- <div class="col-xs-12 col-md-4 col-lg-4 notesExamples">
-                    <img src="images/post_used_2.png" class="centered" />
-                </div>
-                <div class="col-xs-12 col-md-4 col-lg-4 notesExamples">
-                    <img src="images/post_used_3.png" class="centered" />
-                </div>-->
-
 
         </aside>
 
@@ -398,17 +399,26 @@
                 <input type="text" class="col-xs-12 inputArea no-text"
                     maxlength="80" placeholder="Senza titolo"
                     ng-model="title" />
-                <input type="text" class="col-xs-12 inputCategory no-text"
+                <!-- <input type="text" class="col-xs-12 inputCategory no-text"
                     maxlength="80" placeholder="Categoria"
-                    ng-model="category" />
+                    ng-model="category" /> -->
 
                 <div class="no-show" style="float: none;
                     clear: both;">
+                    
+                    <div style="position:relative;" class="no-text">
 
+                        <select class="col-xs-12 selectCategories js-example-responsive" multiple="multiple" style="width:60%;">
+            
+                        </select>
+
+                    </div>
+                       
                     <div class="no-text textField"
                         text-angular
                         ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
                         placeholder="{{text}}" ng-model="text">
+                      
                     </div>
                     <button type="button" class="btn saveButton"
                         ng-click="edit()">
