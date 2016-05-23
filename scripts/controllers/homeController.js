@@ -371,6 +371,7 @@ angular.module('routerApp')
             //alert("Vai");
             TrafficLightService.init(autoSaveEnabled);
             AnimationService.init();
+            initSelect2();
             //uploadS3.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
@@ -455,6 +456,13 @@ angular.module('routerApp')
             var tmp = document.createElement("DIV");
             tmp.innerHTML = html;
             return tmp.textContent || tmp.innerText || "";
+        }
+
+        function initSelect2(){
+            $('select').select2({
+                placeholder: 'Select an option'
+            });
+            console.log("Jquery merda");
         }
 
         $scope.formatLastEditTime = function(time){
