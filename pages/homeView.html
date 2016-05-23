@@ -163,17 +163,6 @@
             <div id="preview1" class="col-md-4 col-lg-4 notesExamples">
             </div>
 
-            <!--<div id="preview2" class="col-md-4 col-lg-4 notesExamples hvr-curl-top-right">
-            </div>-->
-
-            <!-- <div class="col-xs-12 col-md-4 col-lg-4 notesExamples">
-                    <img src="images/post_used_2.png" class="centered" />
-                </div>
-                <div class="col-xs-12 col-md-4 col-lg-4 notesExamples">
-                    <img src="images/post_used_3.png" class="centered" />
-                </div>-->
-
-
         </aside>
 
 
@@ -402,17 +391,21 @@
                     maxlength="80" placeholder="Categoria"
                     ng-model="category" /> -->
 
-                    <select>
-
-                    </select>
-
                 <div class="no-show" style="float: none;
                     clear: both;">
+                    
+                    <div style="position:relative;" class="no-text">
+                        <select>
 
+                        </select>
+
+                    </div>
+                       
                     <div class="no-text textField"
                         text-angular
                         ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
                         placeholder="{{text}}" ng-model="text">
+                      
                     </div>
                     <button type="button" class="btn saveButton"
                         ng-click="edit()">
