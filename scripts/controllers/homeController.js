@@ -231,10 +231,8 @@ angular.module('routerApp')
             //$(".js-programmatic-multi-clear").on("click", function () { $exampleMulti.val(null).trigger("change"); });
         }
 
-        $scope.checkBucket = function(){
-            uploadS3.uploadit(function (err,data){
-
-            });
+        $scope.checkBucket = function () {
+            uploadS3.uploadit($scope.currentNote);
         }
 
         function backRead(callback) {

@@ -20,7 +20,7 @@ routerApp.service('ColorService', function() {
 
     this.isOpaque = function(color){
         var values = this.getRGBFromColor(color);
-        return values[0] + values[1] + values[2] < 330;
+        return values[0] + values[1] + values[2] < 366;
     }
 
 });
