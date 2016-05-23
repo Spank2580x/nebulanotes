@@ -13,11 +13,11 @@ routerApp.service('AnimationService', function () {
         setShowing(true);
     }
 
-    this.animateAddButton = function () {
+    this.animateAddButton = function (argu) {
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckAdd(true);
-        setShowing(true);
+        if (argu != undefined) setShowing(false);
         $('[data-toggle="tooltip"]').tooltip();
         $("#addFeatures").attr("data-toggle", "tooltip");
         $("#addFeatures").attr("title", "Crea nota");
@@ -129,7 +129,7 @@ routerApp.service('AnimationService', function () {
         /*$(".out").css("position", "absolute");
         $(".out").css("margin-left", "-999px");*/
         $(".out").css("display", "none");
-
+        setShowing(false);
         /*$("#preview1, #preview2, #preview3").css("position", "absolute");
         $("#preview1, #preview2, #preview3").css("display", "none");*/
         $("#preview1, #preview2, #preview3").css("margin-left", "-999px");
@@ -156,6 +156,7 @@ routerApp.service('AnimationService', function () {
     }
 
     this.isFirstTouch = function () {
+        setShowing(false);
         $(".fullPageNotes").css("display", "block");
         $(".fullPageNotes").fadeIn(500);
     }
