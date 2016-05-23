@@ -74,13 +74,25 @@ body {
 
 .asideNotes {
     border-top-color: transparent;
-    max-height: 900px;
+    height: 900px;
 }
 
-    .asideNotes::-webkit-scrollbar-button:vertical {
-        background-color: red;
-        border: 1px dashed blue;
-    }
+.asidev2::-webkit-scrollbar {
+    height: 120px;
+    width: 10px;
+}
+
+.asidev2::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    border-radius: 1px;
+    background: #f0eded;
+}
+
+.asidev2::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.65);
+    border-radius: 10px;
+    height: 100px;
+}
 
 .logoMinimal {
     width: 55px;
@@ -94,7 +106,8 @@ body {
     border: solid 1px #8C9EFF;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: auto;
+    min-height: 900px;
+    max-height: 900px;
 }
 
 #preview1 {
@@ -127,7 +140,7 @@ body {
 }
 
 select {
-    border:none;
+    border: none;
 }
 
 .blockNote {
@@ -139,51 +152,50 @@ select {
     padding-left: 10px;
     padding-bottom: 10px;
     border-bottom: solid 1px black;
+    opacity: 0.9;
 }
 
 #not {
-    transform:rotate(+90deg);
+    transform: rotate(+90deg);
 }
 
-    .blockNote:hover {
-        -webkit-transition: all 0.3s ease-in-out;
-        cursor: pointer;
-    }
+.blockNote:hover {
+    -webkit-transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    opacity: 1;
+}
 
 .blockNoteMobile {
     margin-top: 1px;
     -webkit-transition: all 0.3s ease-in-out;
-    padding:2px;
-    padding-left:5px;
+    padding: 2px;
+    padding-left: 5px;
     border-bottom: solid 1px black;
 }
 
     .blockNoteMobile:first-child {
-        margin-top:10px;
+        margin-top: 10px;
     }
 
-.blockNoteMobile h1{
-    font-size:15pt;
-    padding-top:-10px;
-}
-
-    .blockNoteMobile h1 span {
-        font-size: 12pt;
-        margin-left:5%;
+    .blockNoteMobile h1 {
+        font-size: 15pt;
+        margin-top: 0px;
+        height: 17px;
+        text-align: center;
     }
 
 .noteMobileContainer {
-    margin-left:-10px;
-    margin-top:10px;
-    overflow-y:scroll;
-    overflow-x:hidden;
-    height:400px;
+    margin-left: -10px;
+    margin-top: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 300px;
 }
 
-    .blockNoteMobile:hover {
-        -webkit-transition: all 0.3s ease-in-out;
-        cursor: pointer;
-    }
+.blockNoteMobile:hover {
+    -webkit-transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
 
 #blockNoteError, #blockNoteErrorMobile {
     display: block;
@@ -206,19 +218,22 @@ select {
     display: none;
 }
 
-/*::-webkit-scrollbar {
-    width: 12px;
+.noteMobileContainer::-webkit-scrollbar {
+    height: 50px;
+    width: 10px;
 }
 
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
+.noteMobileContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+    border-radius: 1px;
+    background: rgb(48,48,48);
 }
 
-::-webkit-scrollbar-thumb {
+.noteMobileContainer::-webkit-scrollbar-thumb {
+    background-color: #d4d4d4;
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}*/
+    height: 20px;
+}
 
 .sectionNotes {
     font-size: 15pt;
@@ -754,8 +769,8 @@ footer {
 
             .sidebar-offcanvas ul li input {
                 width: 90%;
-                height: 50px;
-                font-size: 14pt;
+                height: 30px;
+                font-size: 12pt;
                 padding-left: 15px;
                 color: black;
             }
@@ -781,6 +796,13 @@ footer {
         color: #f0eded;
     }
 
+    .deleteAllMobile {
+        list-style-type: none;
+        color: #ff6a00;
+        border-bottom-right-radius: 25px;
+        padding-left: 15px;
+        margin-top: -5px;
+    }
 
     #light {
         background: #ccd4ff;
@@ -901,25 +923,22 @@ footer {
     }
 
     .sidebarElement i {
-        font-size:10pt;
-        float: left;
-        margin-left: 5px;
+        font-size: 14pt;
         margin-top: 5px;
         color: black;
-        width: 20px;
-        height: 20px;
+        width: 40px;
+        height: 40px;
         border-radius: 25px;
-        padding-top: 3px;
-        padding-left: 5px;
+        padding-top: 11px;
+        padding-left: 13px;
         background: #89f646;
-
     }
 
     .sidebar-offcanvas ul li input {
-                width: 90%;
-                height: 30px;
-                font-size: 12pt;
-                padding-left: 15px;
-                color: black;
-            }
+        width: 90%;
+        height: 30px;
+        font-size: 12pt;
+        padding-left: 15px;
+        color: black;
+    }
 }
