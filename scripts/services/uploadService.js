@@ -1,23 +1,27 @@
 routerApp.service('uploadS3', function() {
-    AWS.config.update({accessKeyId: 'AKIAJWVPLIL77277XEZQ', secretAccessKey: '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'});
-    AWS.config.update({region: 'eu-west-1'});
+    this.bucket;
     this.init=function(){
-       this.S3 = new AWS.S3({params: {Bucket: 'tsac-its'}});
+        this.S3=new AWS.S3();
+        S3.config.credentials.accessKeyId
+        var creds=new AWS.Credentials({
+            accessKeyId: 'AKIAJXMWOEJ62OX2JD3Q', secretAccessKey: '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', sessionToken: null
+        });
+        AWS.config.credentials = creds;
+        this.bucket = new AWS.S3({params: {Bucket: 'uploadproject'}});
     }
-    this.uploadit=function(x){
+    this.uploadit=function(){
         var fileChooser = document.getElementById('filechooser');
         this.button = document.getElementById('upload-button');
         this.results = document.getElementById('results');
-        var bucket=this.S3;
-
+        var bucket=this.bucket;
         var file = fileChooser.files[0];
         if (file) {
-            var params = {Key: "/notnebulas/"+ x.doc._id,ContentType:file.type, Body: file};
+            var params = {Key: file.name, ContentType: file.type, Body: file};
             bucket.upload(params, function (err, data) {
-                results.innerHTML = err ? 'ERROR!' : 'SAVED.';
+                console.log ( err ? 'ERROR!' : 'UPLOADED.');
             });
         } else {
-            results.innerHTML ="Nothing to upload.";
+            console.log("Nothing to upload.");
         }
     }
 

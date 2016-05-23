@@ -214,11 +214,6 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
-
-        $scope.checkBucket=function() {
-            uploadS3.uploadit($scope.currentNote);
-        }
-
         $scope.openTags = function(obj){
             //var $multi = $('select').select2();
             console.log("Cambiero' i tag con:");

@@ -4,7 +4,7 @@
             <img src="images/logo2.png" class="logoMinimal hidden-xs hidden-sm"
                 id="testMobile" />
             <span class="hidden-xs hidden-sm animated fadeIn ">
-                Notenebulas</span>
+                <b id="not">!</b>nebulas</span>
             <button class="btn rectFeaturesSettings visible-xs visible-sm"
                 id="sidebarIcon" name="sidebarEvent"
                 data-toggle="offcanvas">
@@ -80,13 +80,17 @@
             </ul>
             
             <div class="noteMobileContainer">
-            <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter"
+               
+            <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
                     style="transition:background 0.3s ease-in-out; background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
-                            {{x.doc.title}} <span> Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}</span></h1>
+                            {{x.doc.title}} <br /><span> Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}</span></h1>
                         
                     </div>
+                 <div id="blockNoteErrorMobile" ng-show="noSearchResult">
+                    <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
+                </div>
                 </div>
                 </div>
         </div>
@@ -157,7 +161,7 @@
                         </select>
 
                     </div>
-                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
+                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
                     style="transition:background 0.3s ease-in-out; background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">

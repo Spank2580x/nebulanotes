@@ -140,13 +140,16 @@ select {
     border-bottom: solid 1px black;
 }
 
+#not {
+    transform:rotate(+90deg);
+}
+
     .blockNote:hover {
         -webkit-transition: all 0.3s ease-in-out;
         cursor: pointer;
     }
 
 .blockNoteMobile {
-    background-image: url("../images/noise.png");
     margin-top: 1px;
     -webkit-transition: all 0.3s ease-in-out;
     padding:2px;
@@ -160,6 +163,7 @@ select {
 
 .blockNoteMobile h1{
     font-size:15pt;
+    padding-top:-10px;
 }
 
     .blockNoteMobile h1 span {
@@ -180,15 +184,12 @@ select {
         cursor: pointer;
     }
 
-#blockNoteError {
+#blockNoteError, #blockNoteErrorMobile {
     display: block;
     background: #d4d4d4;
     color: black;
-    height: 900px;
+    height: 400px;
     text-align: center;
-    margin-left: -15px;
-    margin-right: -15px;
-    margin-top: -20px;
 }
 
     #blockNoteError h2 i {
@@ -897,4 +898,27 @@ footer {
         width: 80%;
         height: 400px;
     }
+
+    .sidebarElement i {
+        font-size:10pt;
+        float: left;
+        margin-left: 5px;
+        margin-top: 5px;
+        color: black;
+        width: 20px;
+        height: 20px;
+        border-radius: 25px;
+        padding-top: 3px;
+        padding-left: 5px;
+        background: #89f646;
+
+    }
+
+    .sidebar-offcanvas ul li input {
+                width: 90%;
+                height: 30px;
+                font-size: 12pt;
+                padding-left: 15px;
+                color: black;
+            }
 }
