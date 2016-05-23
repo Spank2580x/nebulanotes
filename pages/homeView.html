@@ -66,7 +66,7 @@
                     <i class="fa fa-paint-brush" aria-hidden="true"
                         id="light"></i> Colora
                 </li>
-                <li class="sidebarElement">
+                <li class="sidebarElement" data-toggle="modal" data-target="#myAttachModal">
                     <i class="fa fa-paperclip" aria-hidden="true"
                         id="grey"></i> Allega
                 </li>
@@ -145,6 +145,14 @@
                 <div id="blockNoteError" ng-show="noSearchResult">
                     <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
                 </div>
+                <div class="searchCategories no-text">
+
+                        <select class="insertCategories js-example-responsive" multiple="multiple" style="width:60%;">
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
+                        </select>
+
+                    </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter"
                     style="transition:background 0.3s ease-in-out; background: {{x.doc.color}}">
                     <div ng-click="open(x)">
@@ -395,8 +403,10 @@
                     clear: both;">
                     
                     <div style="position:relative;" class="no-text">
-                        <select>
 
+                        <select class="col-xs-12 selectCategories js-example-responsive" multiple="multiple" style="width:30%;">
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
                         </select>
 
                     </div>
