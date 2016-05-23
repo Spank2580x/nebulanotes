@@ -214,10 +214,11 @@ angular.module('routerApp')
             comparingTitle = $scope.title;
         }
 
-<<<<<<< HEAD
-        $scope.checkBucket=function(){
+
+        $scope.checkBucket=function() {
             uploadS3.uploadit($scope.currentNote);
-=======
+        }
+
         $scope.openTags = function(obj){
             //var $multi = $('select').select2();
             console.log("Cambiero' i tag con:");
@@ -239,7 +240,6 @@ angular.module('routerApp')
             uploadS3.uploadit(function (err,data){
 
             });
->>>>>>> 3a096f0689c768795897e61ed3a98abc547392be
         }
 
         function backRead(callback) {
