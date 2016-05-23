@@ -24,7 +24,7 @@ routerApp.service('AnimationService', function () {
         $("#addFeatures").addClass("hidden-xs hidden-sm");
 
         $(".out").hide(300);
-        $("#preview1").hide(1);
+        $("#preview1").css("display","none");
         $(".asideNotes").addClass("asidev2");
         $(".editArea").css("display", "block");
         $(".blockNoteContainer").css("display", "none");
