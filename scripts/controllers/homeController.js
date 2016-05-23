@@ -209,8 +209,7 @@ angular.module('routerApp')
         }
 
         $scope.checkBucket=function(){
-            uploadS3.uploadit(function (err,data){
-            });
+            uploadS3.uploadit($scope.currentNote);
         }
         function backRead(callback) {
             console.log("Lettura");
