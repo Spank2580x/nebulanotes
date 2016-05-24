@@ -607,7 +607,8 @@ angular.module('routerApp')
                $('.logoCentered, .sectionNotes, #addMobile, #editMobile').click(function () {
                $('.sidebar-offcanvas').removeClass('active', 1000);
            });
-          
+
+               $(":file").filestyle({ buttonBefore: true });
         });
 
         init();

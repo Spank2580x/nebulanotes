@@ -11,11 +11,10 @@ routerApp.service('uploadS3', function () {
         var bucket = this.S3;
         var file = fileChooser.files[0];
 
-
         if (file) {
-            if(file.size>2048)
-            {
-                results.innerHTML = "File too large!(2Mb maximum)";
+            if(file.size>204800)
+            {   
+                results.innerHTML = "File troppo pesante!(2 MB max)";
                 $("#results").removeClass("alert alert-info");
                 $("#results").addClass("alert alert-danger");
             }
