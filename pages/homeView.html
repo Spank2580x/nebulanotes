@@ -132,8 +132,8 @@
                         <h4>Ripristina cestino
                         </h4>
                         <button class="col-xs-12 btn btn-warning"
-                            type="button" style="color:black;">
-                            <i class="fa fa-trash-o" aria-hidden="true" style="font-size:17pt;">
+                            type="button" style="color:black; " ng-click="restoreTrashed()">
+                            <i class="fa fa-trash-o" aria-hidden="true" style="font-size:17pt;" >
                     </i> <b class="badge" style="color:white; background:black;">{{trashedNumber}}</b>
                         </button>
                         <div class="modal-footer">
@@ -429,7 +429,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-warning delete-yes"
-                                    ng-click="delete()" data-dismiss="modal">
+                                    ng-click="trash()" data-dismiss="modal">
                                     Si, eliminala</button>
                             </div>
                         </div>

@@ -130,7 +130,7 @@ angular.module('routerApp')
         $scope.editColor = function(color){
             console.log("Modifica colore di ")
             console.log($scope.currentNote);
-            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            if ($scope.currentNote == undefined) console.error("Si sta cercando di modificare una nota che non esiste wtf");
             var t = {
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
@@ -177,7 +177,7 @@ angular.module('routerApp')
         $scope.trash = function(){
             console.log("Cestinazione di ");
             console.log($scope.currentNote);
-            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            if ($scope.currentNote == undefined) console.error("Si sta cercando di modificare una nota che non esiste wtf");
             var t = {
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
@@ -301,6 +301,9 @@ angular.module('routerApp')
                     console.log(doc);
                     //$scope.text = doc.rows[0].doc.txt;
                     $scope.localStoredNotes = doc.rows;
+                    $scope.trashedNumber = $scope.localStoredNotes.filter(function(x){
+                        return x.doc.trashed
+                    }).length;
                     //$scope.$apply()
                     callback(null, doc.rows);
                 }
@@ -450,6 +453,44 @@ angular.module('routerApp')
             $scope.localStoredNotes.sort(function(a,b) {
                 return (a.doc.lastEditDate.millis < b.doc.lastEditDate.millis) ? 1 : ((b.doc.lastEditDate.millis < a.doc.lastEditDate.millis) ? -1 : 0);}
             );
+        }
+
+        $scope.restoreTrashed = function(){
+            console.log("Ehi...");
+            var docs = [];
+            backRead(function(err, data){
+                if (err) {
+                    alert("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHH!!!!!!!!!!!!");
+                    alert(err);
+                }
+                else {
+                    for (var i = 0; i < data.length; i++){
+                        console.log("Eccone uno");
+                        console.log(data[i]);
+                        docs.push(data[i].doc);
+                    }
+                    docs.forEach(function(x){
+                        x.trashed = false;
+                    })
+                    console.log("Allora ecco la gente");
+                    console.log(data);
+                    dbLocal.bulkDocs(docs, function(err, data){
+                        if (err) {
+                            alert("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHH!!!!!!!!!!!!");
+                            alert(err);
+                        }
+                        else {
+                            console.log("Tutto fatto sembra...");
+                            console.log(data);
+                            backRead(function(err, data){
+                                $scope.currentNote = $scope.localStoredNotes[0];
+                                $scope.open($scope.currentNote);
+                                $scope.sortByLastEdit();
+                            });
+                        }
+                    })
+                }
+            });
         }
 
         function init() {
@@ -620,6 +661,7 @@ angular.module('routerApp')
         }
 
         $scope.searchAndTagFilter = function(x){
+            if (x.doc.trashed) return false;
             if ($scope.searchText == undefined) return true;
             var title = x.doc.title.toLowerCase();
             var content = x.doc.content.toLowerCase();
