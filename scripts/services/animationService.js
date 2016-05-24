@@ -152,6 +152,9 @@ routerApp.service('AnimationService', function () {
             $(".no-text").addClass("animated bounceInRight");
             $(".no-show").css("display", "block");
             $("#sidebarIcon").addClass("visible-xs visible-sm");
+            $(".editArea").css("display", "none");
+            $(".blockNoteContainer").addClass("animated bounceInRight");
+            $(".blockNoteContainer").css("display", "block");
         
     }
 

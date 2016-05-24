@@ -510,7 +510,7 @@ angular.module('routerApp')
                 showingFirstTime = result;
                 if (!showingFirstTime) {
                     AnimationService.checkFirstTouch();
-                    AnimationService.animateEditButton();
+                    //AnimationService.animateEditButton();
                 }
                 else {
                     AnimationService.isFirstTouch();
@@ -605,8 +605,9 @@ angular.module('routerApp')
             $('.selectCategories').select2({
                 tags: true,
                 tokenSeparators: [',', ' '],
-                placeholder: "Inserisci una categoria...",
-                minimumResultsForSearch: Infinity
+                placeholder: "Assegna la categoria",
+                minimumResultsForSearch: Infinity,
+                allowClear: true
             });
             $('.insertCategories').select2({
                 tags: true,
@@ -703,6 +704,9 @@ angular.module('routerApp')
            });
 
                $(":file").filestyle({ buttonBefore: true });
+
+               $('select').select2({ width: 'resolve' });
+              
         });
 
         init();

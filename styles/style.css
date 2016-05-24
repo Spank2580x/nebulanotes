@@ -139,6 +139,7 @@ body {
 
 select {
     border: none;
+    width: 200px;
 }
 
 .blockNote {
