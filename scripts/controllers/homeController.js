@@ -36,8 +36,6 @@ angular.module('routerApp')
         $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
         $scope.title;
 
-        $scope.trashedNumber = 0;
-
         var comparingText;
         var comparingTitle;
         var comparingTags;
@@ -57,8 +55,7 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 //color: "rgba(255, 255, 255, .0);"
                 color: null,//ColorService.getRandomColor(),
-                tags: [],
-                trashed: false
+                tags: []
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -90,8 +87,7 @@ angular.module('routerApp')
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
-                tags: $('.selectCategories').val(),
-                trashed: false
+                tags: $('.selectCategories').val()
             };
             console.log("T ha anche ");
             console.log(t.color);
@@ -139,8 +135,7 @@ angular.module('routerApp')
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
                 color: color,
-                tags: $('.selectCategories').val(),
-                trashed: false
+                tags: $('.selectCategories').val()
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -185,7 +180,7 @@ angular.module('routerApp')
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
-                color: $scope.currentNote.doc.color,
+                color: color,
                 tags: $('.selectCategories').val(),
                 trashed: true
             };
@@ -301,7 +296,6 @@ angular.module('routerApp')
                     console.log(doc);
                     //$scope.text = doc.rows[0].doc.txt;
                     $scope.localStoredNotes = doc.rows;
-                    $scope.trashedNumber = $scope.localStoredNotes.filter(function(x){return x.doc.trashed}).length;
                     //$scope.$apply()
                     callback(null, doc.rows);
                 }
@@ -325,8 +319,7 @@ angular.module('routerApp')
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
-                tags: $('.selectCategories').val(),
-                trashed: false
+                tags: $('.selectCategories').val()
             };
             console.log("T ha anche ");
             console.log(t.color);
@@ -661,6 +654,8 @@ angular.module('routerApp')
                $('.logoCentered, .sectionNotes, #addMobile, #editMobile').click(function () {
                $('.sidebar-offcanvas').removeClass('active', 1000);
            });
+
+               $(":file").filestyle({ buttonBefore: true });
         });
 
         init();
