@@ -33,6 +33,8 @@ angular.module('routerApp')
 
         $scope.footerMessage = "Tutto a posto ^.^";
 
+        $scope.trashedNumber = 0;
+
         $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
         $scope.title;
 
@@ -55,7 +57,8 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 //color: "rgba(255, 255, 255, .0);"
                 color: null,//ColorService.getRandomColor(),
-                tags: []
+                tags: [],
+                trashed: false
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -87,7 +90,8 @@ angular.module('routerApp')
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
-                tags: $('.selectCategories').val()
+                tags: $('.selectCategories').val(),
+                trashed: false
             };
             console.log("T ha anche ");
             console.log(t.color);
@@ -135,7 +139,8 @@ angular.module('routerApp')
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
                 color: color,
-                tags: $('.selectCategories').val()
+                tags: $('.selectCategories').val(),
+                trashed: false
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -180,7 +185,7 @@ angular.module('routerApp')
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
-                color: color,
+                color: $scope.currentNote.doc.color,
                 tags: $('.selectCategories').val(),
                 trashed: true
             };
@@ -619,7 +624,7 @@ angular.module('routerApp')
             var title = x.doc.title.toLowerCase();
             var content = x.doc.content.toLowerCase();
             var tags = x.doc.tags;
-            tags = tags != null ? tags.forEach(function(x){x.toLowerCase()}) : [];
+            //tags = tags != null ? tags.forEach(function(x){x.toLowerCase()}) : [];
             var toSearch = $scope.searchText.toLowerCase();
             /*var check1 = title.includes(toSearch);
             var check2 = content.includes(toSearch);
