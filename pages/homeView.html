@@ -43,7 +43,7 @@
             <img src="images/logo2.png" class="logoMinimal right"
                 style="margin-left: 75px;" />
         </div>
-        <!-- sidebar -->
+        <!-- sidebar MOBILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE CAPITO?!?! -->
         <div class="col-xs-6 col-sm-4 no-text sidebar-offcanvas hidden-md hidden-lg">
             <ul data-spy="affix" data-offset-top="120"
                 id="affix" class="nav nav-stacked">
@@ -87,7 +87,7 @@
 
             <div class="noteMobileContainer">
 
-                <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
+                <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
                     style="transition: background 0.3s ease-in-out;
                     background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
@@ -112,7 +112,7 @@
                 Elimina tutto
             </li>
         </div>
-
+        <!-- FINE MOBILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
 
         <!-- Modal -->
         <div id="myModal3" class="modal fade modal-vertical-centered"
@@ -339,17 +339,18 @@
                             </div>
                             <div class="modal-body">
                                 <h4>
-                                    Seleziona un file di massimo 2Mb da allegare alla tua nota.
+                                    Seleziona un file di massimo 2 MB da allegare alla tua nota.
                                 </h4>
                             </div>
                             <div class="modal-footer">
                                     <div id="results" class="alert alert-info" role="alert">...</div>
-                                    <span class="btn btn-info btn-file">
-                                    Scegli File<input type="file" id="filechooser">
-                                    </span>
-                                    <span class="btn btn-info btn-file">
-                                    Upload<input type="button" id="upload-button" ng-click="checkBucket()">
-                                    </span>
+                                    
+                                    <input type="file" class="btn btn-default filestyle" data-buttonBefore="true">
+                                    
+                                    <button class="btn btn-info btn-file" type="button" id="upload-button" ng-click="checkBucket()">
+                                        Upload
+                                    </button>
+                                   
                             </div>
                         </div>
                     </div>
@@ -505,10 +506,7 @@
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
                             placeholder="{{text}}" ng-model="text">
                         </div>
-                        <button ng-hide="autoSaveEnabled" type="button" class="btn saveButton"
-                            ng-click="edit()">
-                            Salva</button>
-
+                       
                     </div>
                 </div>
 
