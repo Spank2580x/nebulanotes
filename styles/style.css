@@ -84,11 +84,11 @@ body {
 
 .asidev2::-webkit-scrollbar-track {
     
-    background: #8C9EFF;
+    background: #ccd4ff;
 }
 
 .asidev2::-webkit-scrollbar-thumb {
-    background-color: #f0eded;
+    background-color: rgb(38,38,38);
     border-radius: 10px;
     height: 100px;
 }
@@ -194,6 +194,14 @@ select {
 .blockNoteMobile:hover {
     -webkit-transition: all 0.3s ease-in-out;
     cursor: pointer;
+}
+
+#results {
+    
+}
+
+#filechooser {
+    cursor:pointer;
 }
 
 #blockNoteError, #blockNoteErrorMobile {
