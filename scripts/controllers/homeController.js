@@ -169,6 +169,53 @@ angular.module('routerApp')
             });
         }
 
+        $scope.trash = function(){
+            console.log("Cestinazione di ");
+            console.log($scope.currentNote);
+            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            var t = {
+                _id: $scope.currentNote.doc._id,
+                _rev: $scope.currentNote.doc._rev,
+                content: $scope.text,
+                title: $scope.title,
+                creationDate: $scope.currentNote.doc.creationDate,
+                lastEditDate: getNow(),
+                color: color,
+                tags: $('.selectCategories').val(),
+                trashed: true
+            };
+            dbLocal.put(t, function callback(err, result) {
+                if (!err) {
+                    //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    /*dbLocal.changes().on('change', function () {
+                     $scope.read();                                  //<---- flickera
+                     });*/
+                    console.log("Cestinazione riuscita?")
+                    console.log(result);
+                    backRead(function(err, result){
+                        if (err){
+                            alert(err);
+                            alert("Fail");
+                        }
+                        else {
+                            singleRead(t._id, function (err, data) {
+                                if (!err) {
+                                    $scope.open({ doc: data });
+                                    $scope.sortByLastEdit();
+                                }
+                                //$scope.$apply()
+                            });
+                        }
+                    });
+                }
+                else {
+                    alert(err);
+                    alert("Fail");
+                }
+
+            });
+        }
+
         $scope.isNoteOpaque = function(x){
             if (x == undefined || x.doc == undefined || x.doc.color == undefined) return;
             return ColorService.isOpaque(x.doc.color);
@@ -488,8 +535,8 @@ angular.module('routerApp')
             }
         }
 
-        $scope.previewText = function(x){
-            return removeTags(x.substring(0, x.length > 40 ? 40 : x.length) + (x.length > 40 ? "..." : ""));
+        $scope.previewText = function(x, limit){
+            return removeTags(x.substring(0, x.length > limit ? limit : x.length) + (x.length > limit ? "..." : ""));
         }
 
         function removeTags(html) {
