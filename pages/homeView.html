@@ -176,7 +176,7 @@
                         <br />
                         Oops, non ho trovato note</h2>
                 </div>
-                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
+                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
                     style="transition: background 0.3s ease-in-out;
                     background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">

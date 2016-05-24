@@ -572,9 +572,15 @@ angular.module('routerApp')
             var title = x.doc.title.toLowerCase();
             var content = x.doc.content.toLowerCase();
             var tags = x.doc.tags;
-            tags.forEach(function(x){x.toLowerCase()});
+            tags = tags != null ? tags.forEach(function(x){x.toLowerCase()}) : [];
             var toSearch = $scope.searchText.toLowerCase();
-            var check1 = title.includes
+            /*var check1 = title.includes(toSearch);
+            var check2 = content.includes(toSearch);
+            var check3 = tags.filter(function(x){
+                    return x.includes(toSearch);
+                }).length > 0;
+            console.log(title + " " + check1 + " " + check2 + " " + check3);
+            return check1 || check2 || check3;      //TODO si si lo so*/
             return title.includes(toSearch) ||
                 content.includes(toSearch) ||
                 tags.filter(function(x){
