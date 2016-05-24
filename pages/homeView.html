@@ -91,7 +91,7 @@
                     style="background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
-                            {{x.doc.title}}</h1>
+                           {{previewText(x.doc.title,15)}}</h1>
 
                     </div>
                     <div id="blockNoteErrorMobile"
@@ -187,7 +187,7 @@
                             Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
                         </h4>
                         <h3 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
-                            {{previewText(x.doc.content)}}
+                            {{previewText(x.doc.content,50)}}
                         </h3>
                     </div>
                 </div>
