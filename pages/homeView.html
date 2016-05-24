@@ -10,7 +10,7 @@
                 data-toggle="offcanvas">
                 <i class="fa fa-bars" aria-hidden="true">
                 </i>
-
+                
             </button>
         </h1>
         <div class="col-xs-4 col-md-6 divEditor"
@@ -20,8 +20,7 @@
                     <i class="fa fa-search"></i>
                 </a>
                 <input type="text" placeholder="Ricerca note ..."
-                    class="form-control hidden-xs hidden-sm"
-                    ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchFilter).length == 0">
+                    class="form-control hidden-xs hidden-sm" ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchFilter).length == 0">
             </div>
 
         </div>
@@ -51,66 +50,53 @@
                     <input type="text" placeholder="Ricerca note e categorie..."
                         class="form-control" ng-model="searchText">
                 </li>
-                <li class="sidebarElement" ng-click="addButtonPressed()"
-                    id="addMobile" style="margin-left: 8px;">
+                <li class="sidebarElement" ng-click="addButtonPressed()" id="addMobile" style="margin-left:8px;">
                     <i class="fa fa-plus" aria-hidden="true">
-                    </i>
+                    </i> 
                 </li>
-                <li class="sidebarElement" ng-click="editButtonPressed()"
-                    id="editMobile">
-                    <i class="fa fa-pencil" aria-hidden="true"
-                        id="yellow"></i>
+                <li class="sidebarElement" ng-click="editButtonPressed()" id="editMobile">
+                    <i class="fa fa-pencil" aria-hidden="true" 
+                        id="yellow"></i> 
                 </li>
-
-                <li class="sidebarElement" data-toggle="modal"
-                    data-target="#myModal2">
+                                
+                <li class="sidebarElement" data-toggle="modal" data-target="#myModal2">
                     <i class="fa fa-paint-brush" aria-hidden="true"
-                        id="purple"></i>
+                        id="purple"></i> 
                 </li>
-                <li class="sidebarElement" data-toggle="modal"
-                    data-target="#myAttachModal">
+                <li class="sidebarElement" data-toggle="modal" data-target="#myAttachModal">
                     <i class="fa fa-paperclip" aria-hidden="true"
-                        id="grey"></i>
+                        id="grey"></i> 
                 </li>
-                <li class="sidebarElement">
+                <li class="sidebarElement" data-toggle="modal" data-target="#myShareModal">
                     <i class="fa fa-share-alt" aria-hidden="true"
                         id="light"></i>
-                </li>
-
-                <li class="sidebarElement" style="float: none;"
-                    data-toggle="modal" data-target="#myModal">
+                </li>             
+                 
+                <li class="sidebarElement" style="float:none;" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-trash" aria-hidden="true"
-                        id="orange"></i>
+                        id="orange"></i> 
                 </li>
-
+                
             </ul>
-
+            
             <div class="noteMobileContainer">
-
-                <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
-                    style="transition: background 0.3s ease-in-out;
-                    background-color: {{x.doc.color}}">
+               
+            <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
+                    style="transition:background 0.3s ease-in-out; background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
-
+                        
                     </div>
-                    <div id="blockNoteErrorMobile"
-                        ng-show="noSearchResult">
-                        <h2>
-                            <br />
-                            <i class="fa fa-exclamation-circle">
-                            </i>
-                            <br />
-                            Oops, non ho trovato note</h2>
-                    </div>
+                 <div id="blockNoteErrorMobile" ng-show="noSearchResult">
+                    <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
                 </div>
-            </div>
+                </div>
+                </div>
             <hr />
-            <li class="sidebarElement deleteAllMobile"
-                data-toggle="modal" data-target="#myModal">
-                Elimina tutto
-            </li>
+            <li class="sidebarElement deleteAllMobile" data-toggle="modal" data-target="#myModal">
+                    Elimina tutto
+                </li>
         </div>
 
 
@@ -130,20 +116,30 @@
                     </div>
                     <div class="modal-body">
 
-                        <h4>Ripristina cestino
+                        <h4>Visualizzazione
                         </h4>
-                        <button class="col-xs-12 btn btn-warning"
-                            type="button" style="color:black;">
-                            <i class="fa fa-trash-o" aria-hidden="true" style="font-size:17pt;">
-                    </i> <b class="badge" style="color:white; background:black;">0</b>
-                        </button>
+
+                        <button class="btn btn-default col-xs-12 btnOptions">
+                            Modalit&agrave; light</button>
+                        <button class="btn btn-default col-xs-12 btnOptions">
+                            Modalit&agrave; notte</button>
+
+                        <h4>Categorie
+                        </h4>
+
+                        <button class="btn btn-default col-xs-12 btnOptions">
+                            Ordina per
+                                data</button>
+                        <button class="btn btn-default col-xs-12 btnOptions">
+                            Ordina per
+                                sto cazzo</button>
                         <div class="modal-footer">
                             <h4 style="float: left;">Area Temibile
                             </h4>
                             <button class="btn btn-danger col-xs-12 btnOptions"
-                                style="color: white;"
-                                data-tooltip="tooltip" data-placement="bottom" data-dismiss="modal"
-                                title="Attenzione! Questa azione &egrave irreversibile" data-toggle="modal" data-target="#myLastDeleteModal">
+                                style="color: white;" ng-click="deleteAll()"
+                                data-tooltip="tooltip" data-placement="bottom"
+                                title="Attenzione! Questa azione &egrave irreversibile">
                                 Distruggi
                             tutto!</button>
                         </div>
@@ -159,36 +155,27 @@
         <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
             <!-- hidden-xs -->
             <div class="no-text">
-                
+                <div id="blockNoteError" ng-show="noSearchResult">
+                    <h2><br /><i class="fa fa-exclamation-circle"></i> <br />Oops, non ho trovato note</h2>
+                </div>
                 <div class="searchCategories no-text">
 
-                    <select class="insertCategories js-example-responsive"
-                        multiple="multiple" style="width: 30%;">
-                    </select>
+                        <select class="insertCategories js-example-responsive" multiple="multiple" style="width:30%;">
+            
+                        </select>
 
-                </div>
-                <div id="blockNoteError" ng-show="noSearchResult">
-                    <h2>
-                        <br />
-                        <i class="fa fa-exclamation-circle">
-                        </i>
-                        <br />
-                        Oops, non ho trovato note</h2>
-                </div>
+                    </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
-                    style="transition: background 0.3s ease-in-out;
-                    background-color: {{x.doc.color}}">
+                    style="transition:background 0.3s ease-in-out; background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
                         <h4 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             Creato il {{x.doc.creationDate.day}}/{{x.doc.creationDate.month}}/{{x.doc.creationDate.year}}
-                            <br />
-                            Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
+                            <br/> Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
                         </h4>
                         <h3 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
-                            {{previewText(x.doc.content)}}
-                        </h3>
+                            {{previewText(x.doc.content)}}</h3>
                     </div>
                 </div>
             </div>
@@ -211,10 +198,9 @@
                     </i>
                 </button>
 
-                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                 <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
                     id="editFeatures" name="personalize"
-                    data-tooltip="tooltip" title="Visualizza/Modifica"
-                    ng-click="editButtonPressed()">
+                    data-tooltip="tooltip" title="Visualizza/Modifica" ng-click="editButtonPressed()">
                     <i class="fa fa-pencil" aria-hidden="true">
                     </i>
                 </button>
@@ -232,10 +218,7 @@
 
                 <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
                     id="uploadFeatures" name="attachfile"
-                    data-tooltip="tooltip" data-toggle="modal"
-                    data-target="#myAttachModal"
-                    title="Allega file">
-                    <!--mio -->
+                    data-tooltip="tooltip" data-toggle="modal" data-target="#myAttachModal" title="Allega file"><!--mio -->
                     <i class="fa fa-paperclip" aria-hidden="true">
                     </i>
                 </button>
@@ -264,52 +247,40 @@
                             </div>
                             <div class="modal-body">
                                 <button class="modalColors btn circleFeatures black"
-                                    ng-click="editColor('rgb(0,0,0)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(0,0,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures dark"
-                                    ng-click="editColor('rgb(68,68,68)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(68,68,68)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures grey"
-                                    ng-click="editColor('rgb(190,190,190)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(190,190,190)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures red"
-                                    ng-click="editColor('rgb(255,0,0)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(255,0,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures orange"
-                                    ng-click="editColor('rgb(255,128,0)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(255,128,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures yellow"
-                                    ng-click="editColor('rgb(255,255,0)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(255,255,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures green"
-                                    ng-click="editColor('rgb(102,204,0)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(102,204,0)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures blue"
-                                    ng-click="editColor('rgb(140,158,255)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(140,158,255)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures beige"
-                                    ng-click="editColor('rgb(198, 142, 71)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(198, 142, 71)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures darkblue"
-                                    ng-click="editColor('rgb(0,0,102)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(0,0,102)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures purple"
-                                    ng-click="editColor('rgb(160, 0, 255)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(160, 0, 255)')" data-dismiss="modal">
                                 </button>
                                 <button class="modalColors btn circleFeatures pink"
-                                    ng-click="editColor('rgb(255,51,255)')"
-                                    data-dismiss="modal">
+                                    ng-click="editColor('rgb(255,51,255)')" data-dismiss="modal">
                                 </button>
 
                             </div>
@@ -326,54 +297,58 @@
                 </div>
                 <!-- Modal -->
                 <div id="myAttachModal" class="modal fade"
-                    role="dialog">
+                     role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close"
-                                    data-dismiss="modal">
+                                        data-dismiss="modal">
                                     &times;</button>
-                                <h2 class="modal-title">Allega un
-                                    file a questa nota.</h2>
+                                <h2 class="modal-title">Allega un file a questa nota.</h2>
                             </div>
                             <div class="modal-body">
-                                <h4>Seleziona un file di massimo 2Mb
-                                    da allegare alla tua nota.
+                                <h4>
+                                    Seleziona un file di massimo 2Mb da allegare alla tua nota.
                                 </h4>
                             </div>
                             <div class="modal-footer">
-                                <span class="btn btn-info btn-file">
-                                    <div id="results"></div>
-                                </span>
-                                <span class="btn btn-info btn-file">
+                                    <div id="results" class="alert alert-info" role="alert">...</div>
+                                    <span class="btn btn-info btn-file">
                                     Scegli File<input type="file" id="filechooser">
-                                </span>
-                                <span class="btn btn-info btn-file">
-                                    Upload<input type="button" id="upload-button"
-                                        ng-click="checkBucket()">
-                                </span>
+                                    </span>
+                                    <span class="btn btn-info btn-file">
+                                    Upload<input type="button" id="upload-button" ng-click="checkBucket()">
+                                    </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Modal -->
-                <div id="myLastDeleteModal" class="modal fade"
-                    role="dialog">
+                <div id="myShareModal" class="modal fade"
+                     role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close"
-                                    data-dismiss="modal">
+                                        data-dismiss="modal">
                                     &times;</button>
-                                <h2 class="modal-title">Sei sicuro di eliminare tutte le note?</h2>
+                                <h2 class="modal-title">Condividi questa nota con qualcuno!</h2>
                             </div>
-                            
+                            <div class="modal-body">
+                                <h4>
+                                    <a href="#">Facebook <i class="fa fa-facebook-square"
+                                                            aria-hidden="true"></i></a>
+                                    <a href="#">Twitter <i class="fa fa-twitter-square"
+                                                           aria-hidden="true"></i></a>
+                                    <a href="#">Orazio <i class="fa fa-user-secret"
+                                                          aria-hidden="true"></i></a>
+
+                                </h4>
+                            </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default" data-dismiss="modal">No</button>
-                                <button class="btn btn-danger" ng-click="deleteAll()">Si</button>
+
                             </div>
                         </div>
                     </div>
@@ -441,9 +416,8 @@
                 </div>
 
                 <div class="blockNoteContainer col-xs-12">
-                    <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}">
-                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
-                            {{currentNote.doc.title}}</h1>
+                    <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}" >
+                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">{{currentNote.doc.title}}</h1>
                         <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
                             {{currentNote.doc.content}}
                         </article>
@@ -451,37 +425,37 @@
                 </div>
                 <div class="editArea no-show">
 
-
-                    <input type="text" class="col-xs-12 inputArea no-text"
-                        maxlength="80" placeholder="Senza titolo"
-                        ng-model="title" />
-                    <!-- <input type="text" class="col-xs-12 inputCategory no-text"
+                
+                <input type="text" class="col-xs-12 inputArea no-text"
+                    maxlength="80" placeholder="Senza titolo"
+                    ng-model="title" />
+                <!-- <input type="text" class="col-xs-12 inputCategory no-text"
                     maxlength="80" placeholder="Categoria"
                     ng-model="category" /> -->
 
-                    <div class="no-show" style="float: none;
-                        clear: both;">
+                <div class="no-show" style="float: none;
+                    clear: both;">
+                    
+                    <div style="position:relative;" class="no-text">
 
-                        <div style="position: relative;"
-                            class="no-text">
-
-                            <select class="col-xs-12 selectCategories js-example-responsive"
-                                multiple="multiple" style="width: 300px;">
-                            </select>
-
-                        </div>
-
-                        <div class="no-text textField"
-                            text-angular
-                            ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
-                            placeholder="{{text}}" ng-model="text">
-                        </div>
-                        <button type="button" class="btn saveButton"
-                            ng-click="edit()">
-                            Salva</button>
+                        <select class="col-xs-12 selectCategories js-example-responsive" multiple="multiple" style="width:60%;">
+            
+                        </select>
 
                     </div>
+                       
+                    <div class="no-text textField"
+                        text-angular
+                        ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
+                        placeholder="{{text}}" ng-model="text">
+                      
+                    </div>
+                    <button type="button" class="btn saveButton"
+                        ng-click="edit()">
+                        Salva</button>
+
                 </div>
+                    </div>
 
                 <span class="col-xs-6 col-md-5 crea out">
                     Crea
@@ -495,8 +469,7 @@
                 style="margin-top: 1%">
                 <h1 class="col-xs-12">
                     <i class="fa fa-sticky-note-o"
-                        aria-hidden="true"></i><span style="margin-left: 15px;">
-                            Scopri
+                        aria-hidden="true"></i> <span style="margin-left:15px;">Scopri
                     i nostri servizi</span>
                 </h1>
                 <div class="col-xs-12 col-md-3 col-lg-4 notesExamples centered hvr-curl-top-right"
