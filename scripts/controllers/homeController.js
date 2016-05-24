@@ -36,6 +36,8 @@ angular.module('routerApp')
         $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
         $scope.title;
 
+        $scope.trashedNumber = 0;
+
         var comparingText;
         var comparingTitle;
         var comparingTags;
@@ -299,6 +301,7 @@ angular.module('routerApp')
                     console.log(doc);
                     //$scope.text = doc.rows[0].doc.txt;
                     $scope.localStoredNotes = doc.rows;
+                    $scope.trashedNumber = $scope.localStoredNotes.filter(function(x){return x.doc.trashed}).length;
                     //$scope.$apply()
                     callback(null, doc.rows);
                 }
