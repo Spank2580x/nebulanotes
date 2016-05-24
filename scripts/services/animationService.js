@@ -72,13 +72,14 @@ routerApp.service('AnimationService', function () {
 
     }
 
-    this.backToAdd = function () {
+    this.backToAdd = function () { // NON QUI, sai cosa tu chiami questa funzione
         console.log("Edit " + getCheckEdit() + " Add: " + getCheckAdd());
 
         if (getCheckEdit() || getCheckAdd()) return;
         setCheckEdit(true);
         
         $(".editArea").addClass("animated bounceOutRight");
+       
         setTimeout(function () {
             $(".editArea").css("display","none");
             $(".blockNoteContainer").addClass("animated bounceInRight");
@@ -142,8 +143,7 @@ routerApp.service('AnimationService', function () {
         $(".asideNotes").addClass("asidev2");
 
         $(".fullPageNotes").css("display", "block");
-        $(".fullPageNotes").fadeIn(500);
-        setTimeout(function () {
+       
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
             $(".no-display").css("display", "block");
@@ -152,13 +152,14 @@ routerApp.service('AnimationService', function () {
             $(".no-text").addClass("animated bounceInRight");
             $(".no-show").css("display", "block");
             $("#sidebarIcon").addClass("visible-xs visible-sm");
-        }, 1);
+        
     }
 
     this.isFirstTouch = function () {
         setShowing(false);
         $(".fullPageNotes").css("display", "block");
         $(".fullPageNotes").fadeIn(500);
+        
     }
 
 });
