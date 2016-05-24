@@ -91,7 +91,7 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
                 tags: $('.selectCategories').val(),
-                trashed: false
+                trashed: $scope.currentNote.doc.trashed
             };
             console.log("T ha anche ");
             console.log(t.color);
@@ -140,7 +140,7 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 color: color,
                 tags: $('.selectCategories').val(),
-                trashed: false
+                trashed: $scope.currentNote.doc.trashed
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -203,13 +203,17 @@ angular.module('routerApp')
                             alert("Fail");
                         }
                         else {
-                            singleRead(t._id, function (err, data) {
+                            /*singleRead(t._id, function (err, data) {
                                 if (!err) {
                                     $scope.open({ doc: data });
                                     $scope.sortByLastEdit();
                                 }
                                 //$scope.$apply()
-                            });
+                            });*/
+                            console.log("Quando tutte le ombre cadranno!")
+                            console.log($scope.localStoredNotes.length);
+                            if ($scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length > 0) openLastReadable();
+                            else location.reload();
                         }
                     });
                 }
@@ -219,6 +223,10 @@ angular.module('routerApp')
                 }
 
             });
+        }
+
+        $scope.thereAreNotes = function(){
+            return $scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length > 0;
         }
 
         $scope.isNoteOpaque = function(x){
@@ -246,7 +254,7 @@ angular.module('routerApp')
 
         $scope.open = function (obj) {
             console.log("Provo ad aprire " + obj.doc.title);
-            /*if (TrafficLightService.busy() || hasBeenEdited()) {
+            if (TrafficLightService.busy() || hasBeenEdited()) {
                 if (TrafficLightService.busy()) console.log("Ci sono semafori attivi quindi...");
                 if (hasBeenEdited()) console.log("E' stato modificato quindi...");
                 console.log("Ehi tu!");
@@ -257,7 +265,7 @@ angular.module('routerApp')
                     console.log("Buh io cambio pero' guarda che ci sono modifiche non salvate");
                 }
                 else return;
-            }*/
+            }
             console.log("Visualizzazione di ")
             console.log(obj);
             $scope.currentNote = obj;
@@ -301,6 +309,7 @@ angular.module('routerApp')
                     console.log(doc);
                     //$scope.text = doc.rows[0].doc.txt;
                     $scope.localStoredNotes = doc.rows;
+
                     $scope.trashedNumber = $scope.localStoredNotes.filter(function(x){
                         return x.doc.trashed
                     }).length;
@@ -510,7 +519,6 @@ angular.module('routerApp')
                 showingFirstTime = result;
                 if (!showingFirstTime) {
                     AnimationService.checkFirstTouch();
-                    AnimationService.animateEditButton();
                 }
                 else {
                     AnimationService.isFirstTouch();
@@ -524,15 +532,29 @@ angular.module('routerApp')
                 console.log("Sono il primo backRead");
                 console.log($scope.localStoredNotes);
                 if ($scope.localStoredNotes.length > 0){
-                    $scope.sortByLastEdit();
-                    $scope.currentNote = $scope.localStoredNotes[0];
-                    $scope.open($scope.currentNote);
+                    openLastReadable();
                 }
                 //$scope.delete();
                 //$scope.$apply()
             });
             //dbRemote = new PouchDB('http://localhost:5984/nebulanotes');
             //dbLocal.sync(dbRemote);
+        }
+
+        function openLastReadable(){
+            $scope.sortByLastEdit();
+            var firstNoteReadable;
+            for (var i = 0; i < $scope.localStoredNotes.length; i++){
+                console.log("Vediamo un po");
+                console.log($scope.localStoredNotes[i]);
+                if (!$scope.localStoredNotes[i].doc.trashed){
+                    firstNoteReadable = $scope.localStoredNotes[i];
+                    break;
+                }
+            }
+            $scope.currentNote = firstNoteReadable;
+            updateComparing();
+            $scope.open($scope.currentNote);
         }
 
         $scope.dio = function () {
@@ -553,6 +575,10 @@ angular.module('routerApp')
             backEdit(function (err, data) {
                 TrafficLightService.removeLight("Autosave");
                 updateComparing();
+                if (noteOnQueue != undefined){
+                    $scope.open(noteOnQueue);
+                    noteOnQueue = undefined;
+                }
             }, true)
         }, 1000);
 
