@@ -83,13 +83,12 @@ body {
 }
 
 .asidev2::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-    border-radius: 1px;
-    background: #f0eded;
+    
+    background: #8C9EFF;
 }
 
 .asidev2::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.65);
+    background-color: #f0eded;
     border-radius: 10px;
     height: 100px;
 }
@@ -198,10 +197,13 @@ select {
 }
 
 #blockNoteError, #blockNoteErrorMobile {
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top:-55px;
     display: block;
     background: #d4d4d4;
     color: black;
-    height: 400px;
+    height: 900px;
     text-align: center;
 }
 
@@ -618,6 +620,10 @@ footer {
 
 .blockNoteContainer {
     display: none;
+}
+
+#blockNoteError {
+
 }
 
 .blockNotePreview {
