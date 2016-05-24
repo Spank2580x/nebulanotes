@@ -1,5 +1,5 @@
 routerApp.service('uploadS3', function () {
-    AWS.config.update({ accessKeyId: 'AKIAJWVPLIL77277XEZQ', secretAccessKey: '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' });
+    AWS.config.update({ accessKeyId: '', secretAccessKey: '/' });
     AWS.config.update({ region: 'eu-west-1' });
     this.init = function () {
         this.S3 = new AWS.S3({ params: { Bucket: 'tsac-its' } });
