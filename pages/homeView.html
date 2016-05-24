@@ -475,7 +475,10 @@
                         <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
                             {{currentNote.doc.title}}</h1>
                         <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
-                            {{currentNote.doc.content}}
+                            <ng-bind-html
+                                    ng-bind-html="currentNote.doc.content">
+                            </ng-bind-html>
+                            <!--{{currentNote.doc.content}}-->
                         </article>
                     </div>
                 </div>

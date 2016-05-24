@@ -583,9 +583,9 @@ angular.module('routerApp')
             return check1 || check2 || check3;      //TODO si si lo so*/
             return title.includes(toSearch) ||
                 content.includes(toSearch) ||
-                tags.filter(function(x){
+                (tags != undefined && tags.filter(function(x){
                     return x.includes(toSearch);
-                }).length > 0;
+                }).length > 0);
         }
 
         $(document).ready(function () {
