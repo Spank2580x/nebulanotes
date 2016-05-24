@@ -21,7 +21,7 @@
                 </a>
                 <input type="text" placeholder="Ricerca note e categorie ..."
                     class="form-control hidden-xs hidden-sm"
-                    ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchFilter).length == 0">
+                    ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchAndTagFilter).length == 0">
             </div>
 
         </div>
@@ -87,7 +87,7 @@
 
             <div class="noteMobileContainer">
 
-                <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
+                <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
                     style="transition: background 0.3s ease-in-out;
                     background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
@@ -505,7 +505,7 @@
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
                             placeholder="{{text}}" ng-model="text">
                         </div>
-                        <button type="button" class="btn saveButton"
+                        <button ng-hide="autoSaveEnabled" type="button" class="btn saveButton"
                             ng-click="edit()">
                             Salva</button>
 

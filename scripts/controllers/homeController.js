@@ -417,6 +417,7 @@ angular.module('routerApp')
                 showingFirstTime = result;
                 if (!showingFirstTime) {
                     AnimationService.checkFirstTouch();
+                    AnimationService.animateEditButton();
                 }
                 else {
                     AnimationService.isFirstTouch();
@@ -451,8 +452,8 @@ angular.module('routerApp')
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             if (!autoSaveEnabled) return;
             $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " + JSON.stringify($scope.footerMessage) : "Tutto a posto ^.^";
-            console.log("Sono diverso... o sono gli altri ad esserlo?");
-            console.log(hasBeenEdited());
+            //console.log("Sono diverso... o sono gli altri ad esserlo?");
+            //console.log(hasBeenEdited());
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
             console.log("Autosalvataggio");
             TrafficLightService.addLight("Autosave");
@@ -498,9 +499,6 @@ angular.module('routerApp')
         }
 
         function areArraysEquals(a1, a2){
-            console.log("Il confronto turururu");
-            console.log(a1);
-            console.log(a2);
             if (a1 == null && a2 == null) return true;
             if (a1 == null ^ a2 == null) return false;
             //if (a1 != null ? a1.length : 0 != a2 != null ? a2.length : 0) return false;
@@ -567,6 +565,21 @@ angular.module('routerApp')
                 }
             }
             return false;
+        }
+
+        $scope.searchAndTagFilter = function(x){
+            if ($scope.searchText == undefined) return true;
+            var title = x.doc.title.toLowerCase();
+            var content = x.doc.content.toLowerCase();
+            var tags = x.doc.tags;
+            tags.forEach(function(x){x.toLowerCase()});
+            var toSearch = $scope.searchText.toLowerCase();
+            var check1 = title.includes
+            return title.includes(toSearch) ||
+                content.includes(toSearch) ||
+                tags.filter(function(x){
+                    return x.includes(toSearch);
+                }).length > 0;
         }
 
         $(document).ready(function () {
