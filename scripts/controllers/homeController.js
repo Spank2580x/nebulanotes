@@ -405,7 +405,7 @@ angular.module('routerApp')
             TrafficLightService.init(autoSaveEnabled);
             AnimationService.init();
             initSelect2();
-            //uploadS3.init();
+            uploadS3.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
             comparingTags = [];
