@@ -15,7 +15,7 @@ angular.module('routerApp')
         $scope.category = "Categoria";
 
         var debugging = true;
-        var autoSaveEnabled = false;
+        var autoSaveEnabled = true;
 
         var loadingNotes = true;
         var errorOnLoadingNotes = false;
@@ -54,7 +54,7 @@ angular.module('routerApp')
                 creationDate: getNow(),
                 lastEditDate: getNow(),
                 //color: "rgba(255, 255, 255, .0);"
-                color: ColorService.getRandomColor(),
+                color: null,//ColorService.getRandomColor(),
                 tags: []
             };
             dbLocal.put(t, function callback(err, result) {
@@ -194,7 +194,9 @@ angular.module('routerApp')
 
         $scope.open = function (obj) {
             console.log("Provo ad aprire " + obj.doc.title);
-            if (TrafficLightService.busy() || hasBeenEdited()) {
+            /*if (TrafficLightService.busy() || hasBeenEdited()) {
+                if (TrafficLightService.busy()) console.log("Ci sono semafori attivi quindi...");
+                if (hasBeenEdited()) console.log("E' stato modificato quindi...");
                 console.log("Ehi tu!");
                 console.log(obj);
                 console.log("Aspetta il tuo turno!");
@@ -203,7 +205,7 @@ angular.module('routerApp')
                     console.log("Buh io cambio pero' guarda che ci sono modifiche non salvate");
                 }
                 else return;
-            }
+            }*/
             console.log("Visualizzazione di ")
             console.log(obj);
             $scope.currentNote = obj;
@@ -212,6 +214,7 @@ angular.module('routerApp')
             $scope.openTags(obj);
             comparingText = $scope.text;
             comparingTitle = $scope.title;
+            updateComparing();
         }
 
         $scope.openTags = function(obj){
@@ -257,9 +260,10 @@ angular.module('routerApp')
         }
 
         function backEdit(callbackk, show) {
+            console.log($('.selectCategories').val());
             console.log("Modifica di ")
             console.log($scope.currentNote);
-            if ($scope.currentNote == undefined) console.err("Si sta cercando di modificare una nota che non esiste wtf");
+            if ($scope.currentNote == undefined) console.error("Si sta cercando di modificare una nota che non esiste wtf");
             var t = {
                 _id: $scope.currentNote.doc._id,
                 _rev: $scope.currentNote.doc._rev,
@@ -267,28 +271,33 @@ angular.module('routerApp')
                 title: $scope.title,
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
-                color: $scope.currentNote.color,
+                color: $scope.currentNote.doc.color,
                 tags: $('.selectCategories').val()
             };
+            console.log("T ha anche ");
+            console.log(t.color);
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
-                    dbLocal.changes().on('change', function () {
-                        $scope.read();
-                    });
+                    /*dbLocal.changes().on('change', function () {
+                     $scope.read();                                  //<---- flickera
+                     });*/
                     console.log("Modifica riuscita?")
                     console.log(result);
-                    singleRead(t._id, function (err, data) {
-                        if (!err && show) {
-                            console.log("Ora ti mostro")
-                            $scope.open({ doc: data });
-                            if (noteOnQueue != undefined) {
-                                console.log("Eccomi eccomi arrivo!");
-                                $scope.open(noteOnQueue);
-                                noteOnQueue = undefined;
-                            }
+                    backRead(function(err, result){
+                        if (err){
+                            alert(err);
+                            alert("Fail");
                         }
-                        //$scope.$apply()
+                        else {
+                            singleRead(t._id, function (err, data) {
+                                if (!err) {
+                                    $scope.open({ doc: data });
+                                    $scope.sortByLastEdit();
+                                }
+                                //$scope.$apply()
+                            });
+                        }
                     });
                 }
                 else {
@@ -437,11 +446,13 @@ angular.module('routerApp')
         }
 
         $interval(function () {
-            console.log($('.selectCategories').val());
+            //console.log($('.selectCategories').val());
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             if (!autoSaveEnabled) return;
             $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " + JSON.stringify($scope.footerMessage) : "Tutto a posto ^.^";
+            console.log("Sono diverso... o sono gli altri ad esserlo?");
+            console.log(hasBeenEdited());
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
             console.log("Autosalvataggio");
             TrafficLightService.addLight("Autosave");
@@ -453,14 +464,14 @@ angular.module('routerApp')
 
         function hasBeenEdited() {
             return $scope.text != comparingText ||
-                    $scope.title != comparingTitle ||
-                areArraysEquals($('.selectCategories').val(), comparingTags);
+                    $scope.title != comparingTitle
+                || !areArraysEquals($('.selectCategories').val(), comparingTags);
         }
 
         function updateComparing() {
             comparingText = $scope.text;
             comparingTitle = $scope.title;
-            comparingTags = $('.selectCategories').val();
+            comparingTags = $('.selectCategories').val()
         }
 
         function getNow(){
@@ -487,8 +498,12 @@ angular.module('routerApp')
         }
 
         function areArraysEquals(a1, a2){
-            if (a1 == null || a2 == undefined) return false;
-            if (a1.length != a2.length) return false;
+            console.log("Il confronto turururu");
+            console.log(a1);
+            console.log(a2);
+            if (a1 == null && a2 == null) return true;
+            if (a1 == null ^ a2 == null) return false;
+            //if (a1 != null ? a1.length : 0 != a2 != null ? a2.length : 0) return false;
             for (var i = 0; i < a1.length; i++){
                 if (a1[i] != a2[i]) return false;
             }
@@ -544,6 +559,7 @@ angular.module('routerApp')
             //console.log("Confronto con ");
             //console.log("I tag invece sono");
             //console.log(tags);
+            if (tags == null || tags == undefined) return false;
             for (var i = 0; i < tags.length; i++){
                 for (var y = 0; y < tagsToSearch.length; y++){
                     //console.log(tags[i] + " e' uguale a " + tagsToSearch[i]);
