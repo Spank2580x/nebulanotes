@@ -10,20 +10,27 @@ routerApp.service('uploadS3', function () {
         this.results = document.getElementById('results');
         var bucket = this.S3;
         var file = fileChooser.files[0];
+
+
         if (file) {
-            var params = { Key: "/notnebulas/" + x.doc._id, ContentType: file.type, Body: file };
-            bucket.upload(params, function (err, data) {
-                results.innerHTML = err ? 'ERROR!' : 'SAVED.';
-            });
+            if(file.size>2048)
+            {
+                results.innerHTML = "File too large!(2Mb maximum)";
+                $("#results").removeClass("alert alert-info");
+                $("#results").addClass("alert alert-danger");
+            }
+            else {
+                var params = {Key: "/notnebulas/" + x.doc._id, ContentType: file.type, Body: file};
+                bucket.upload(params, function (err, data) {
+                    results.innerHTML = err ? 'ERROR!' : 'SAVED.';
+                });
+            }
         } else {
             results.innerHTML = "Nothing to upload.";
+            $("#results").removeClass("alert alert-info");
+            $("#results").addClass("alert alert-danger");
         }
+
     }
 });
 
-/*
-Access Key ID:
-AKIAJXMWOEJ62OX2JD3Q
-Secret Access Key:
-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
-*/
