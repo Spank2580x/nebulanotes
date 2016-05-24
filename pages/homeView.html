@@ -175,8 +175,9 @@
                         <br />
                         Oops, non ho trovato note</h2>
                 </div>
-                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchFilter | filter:tagFilter"
-                    style="background-color: {{x.doc.color}}">
+                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
+                    style="transition: background 0.3s ease-in-out;
+                    background-color: {{x.doc.color}}">
                     <div ng-click="open(x)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
@@ -429,7 +430,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-warning delete-yes"
-                                    ng-click="delete()" data-dismiss="modal">
+                                    ng-click="trash()" data-dismiss="modal">
                                     Si, eliminala</button>
                             </div>
                         </div>
@@ -505,9 +506,9 @@
                         <div class="no-text textField"
                             text-angular
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
-                            placeholder="{{text}}" ng-model="text" data-toggle="popover" data-trigger="focus" data-content="Cristo">
+                            placeholder="{{text}}" ng-model="text">
                         </div>
-                       <p class="no-text">Salvato</p>
+                       
                     </div>
                 </div>
 
