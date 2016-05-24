@@ -132,8 +132,8 @@
                         <h4>Ripristina cestino
                         </h4>
                         <button class="col-xs-12 btn btn-warning"
-                            type="button" style="color:black; " ng-click="restoreTrashed()">
-                            <i class="fa fa-trash-o" aria-hidden="true" style="font-size:17pt;" >
+                            type="button" style="color:black;" ng-click="restoreTrashed()">
+                            <i class="fa fa-trash-o" aria-hidden="true" style="font-size:17pt;">
                     </i> <b class="badge" style="color:white; background:black;">{{trashedNumber}}</b>
                         </button>
                         <div class="modal-footer">
@@ -424,7 +424,7 @@
                             <div class="modal-body">
                                 <p>
                                     Sicuro di voler eliminare questa
-                                    nota?
+                                    nota?<br /> Potrai recuperarla nel cestino quando vorrai.
                                 </p>
                             </div>
                             <div class="modal-footer">
@@ -480,7 +480,7 @@
                         </article>
                     </div>
                 </div>
-                <div class="editArea no-show">
+                <div class="editArea"><!-- noshow-->
 
                    
                     <input name="tit" id="tit" type="text" class="col-xs-12 inputArea no-text"
@@ -497,7 +497,7 @@
                             class="no-text">
                             <label for="sel"><i class="fa fa-tags" aria-hidden="true"></i></label>
                             <select name="sel" id="sel" class="col-xs-12 selectCategories js-example-responsive"
-                                multiple="multiple" style="width: 300px;">
+                                multiple="multiple">
                             </select>
 
                         </div>

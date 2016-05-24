@@ -139,6 +139,7 @@ body {
 
 select {
     border: none;
+    width: 200px;
 }
 
 .blockNote {
@@ -159,7 +160,7 @@ select {
 }
 
 #not {
-    transform: rotate(+90deg);
+    transform: rotate(+180deg);
 }
 
 .blockNote:hover {
