@@ -19,7 +19,7 @@
                 <a href="#" class="hidden-xs hidden-sm">
                     <i class="fa fa-search"></i>
                 </a>
-                <input type="text" placeholder="Ricerca note ..."
+                <input type="text" placeholder="Ricerca note e categorie ..."
                     class="form-control hidden-xs hidden-sm"
                     ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchFilter).length == 0">
             </div>
@@ -160,13 +160,14 @@
             <!-- hidden-xs -->
             <div class="no-text">
                 
-                <div class="searchCategories no-text">
+               <!-- <div class="searchCategories no-text">
 
                     <select class="insertCategories js-example-responsive"
                         multiple="multiple" style="width: 30%;">
                     </select>
 
                 </div>
+                -->
                 <div id="blockNoteError" ng-show="noSearchResult">
                     <h2>
                         <br />
