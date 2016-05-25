@@ -400,8 +400,8 @@
                             </div>
                             
                             <div class="modal-footer">
-                                <button class="btn btn-default" data-dismiss="modal">No</button>
-                                <button class="btn btn-danger" ng-click="deleteAll()">Si</button>
+                                <button class="btn btn-default" data-dismiss="modal" style="width:100px;">No</button>
+                                <button class="btn btn-danger" style="width:40px;" ng-click="deleteAll()">Si</button>
                             </div>
                         </div>
                     </div>
@@ -507,7 +507,7 @@
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
                             placeholder="{{text}}" ng-model="text" data-toggle="popover" data-trigger="focus" data-content="Cristo">
                         </div>
-                       <div class="alert alert-success saveSuccess">
+                       <div class="alert alert-success saveSuccess no-text">
                         <strong><i class="fa fa-smile-o" aria-hidden="true"></i></strong> La nota &egrave stata salvata automaticamente
                         </div>
                     </div>

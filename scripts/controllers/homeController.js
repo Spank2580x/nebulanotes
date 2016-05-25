@@ -35,7 +35,7 @@ angular.module('routerApp')
 
         $scope.trashedNumber = 0;
 
-        $scope.text = "Ricorda che la vita e' un uragano di speranza che giace spento all'orizzonte... e che fa schifo";
+        $scope.text = "Ricorda che la vita e' un uragano di speranza che col tempo rallenta fino a cadere nell'orizzonte.";
         $scope.title;
 
         var comparingText;
