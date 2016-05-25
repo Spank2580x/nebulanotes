@@ -89,7 +89,7 @@
 
                 <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
                     style="background-color: {{x.doc.color}}">
-                    <div ng-click="open(x)">
+                    <div ng-click="open(x, true)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                            {{previewText(x.doc.title,15)}}</h1>
 
@@ -177,7 +177,7 @@
                 </div>
                 <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
                     style="background-color: {{x.doc.color}}">
-                    <div ng-click="open(x)">
+                    <div ng-click="open(x, true)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
                             {{x.doc.title}}</h1>
                         <h4 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
@@ -485,7 +485,7 @@
                    
                     <input name="tit" id="tit" type="text" class="col-xs-12 inputArea no-text"
                         maxlength="80" placeholder="Senza titolo"
-                        ng-model="title" />
+                        ng-model="title" ng-disabled="!thereAreNotes()"/>
                     <!-- <input type="text" class="col-xs-12 inputCategory no-text"
                     maxlength="80" placeholder="Categoria"
                     ng-model="category" /> -->
@@ -497,12 +497,12 @@
                             class="no-text">
                             <label for="sel"><i class="fa fa-tags" aria-hidden="true"></i></label>
                             <select name="sel" id="sel" class="col-xs-12 selectCategories js-example-responsive"
-                                multiple="multiple">
+                                multiple="multiple" ng-disabled="!thereAreNotes()">
                             </select>
 
                         </div>
 
-                        <div class="no-text textField"
+                        <div class="no-text textField" ta-disabled="!thereAreNotes()"
                             text-angular
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
                             placeholder="{{text}}" ng-model="text" data-toggle="popover" data-trigger="focus" data-content="Cristo">

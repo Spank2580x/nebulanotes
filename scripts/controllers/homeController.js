@@ -35,7 +35,7 @@ angular.module('routerApp')
 
         $scope.trashedNumber = 0;
 
-        $scope.text = "Ricorda che la vita e' un uragano di speranza che col tempo rallenta fino a cadere nell'orizzonte.";
+        $scope.text = "Ricorda che la vita e' un uragano di speranza che col tempo rallenta fino a cadere nell'orizzonte. (E che fa schifo)";
         $scope.title;
 
         var comparingText;
@@ -213,7 +213,7 @@ angular.module('routerApp')
                             console.log("Quando tutte le ombre cadranno!")
                             console.log($scope.localStoredNotes.length);
                             if ($scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length > 0) openLastReadable();
-                            else location.reload();
+                            //else location.reload();
                         }
                     });
                 }
@@ -252,7 +252,8 @@ angular.module('routerApp')
             });
         };
 
-        $scope.open = function (obj) {
+        $scope.open = function (obj, switching) {
+            //if (switching) AnimationService.animateEditButton(2);
             console.log("Provo ad aprire " + obj.doc.title);
             if (TrafficLightService.busy() || hasBeenEdited()) {
                 if (TrafficLightService.busy()) console.log("Ci sono semafori attivi quindi...");
