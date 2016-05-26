@@ -42,6 +42,8 @@ angular.module('routerApp')
         var comparingTitle;
         var comparingTags;
 
+        var noteToRestore = [];
+
         $scope.write = function () {
             console.log("Creazione nuova nota");
             if (TrafficLightService.busy()) {
@@ -68,8 +70,7 @@ angular.module('routerApp')
 
                 }
                 else {
-                    alert(err);
-                    alert("Fail");
+                    notifyError(err);
                 }
                 TrafficLightService.removeLight("Create");
             });
@@ -105,8 +106,7 @@ angular.module('routerApp')
                     console.log(result);
                     backRead(function(err, result){
                         if (err){
-                            alert(err);
-                            alert("Fail");
+                            notifyError(err);
                         }
                         else {
                             singleRead(t._id, function (err, data) {
@@ -120,8 +120,7 @@ angular.module('routerApp')
                     });
                 }
                 else {
-                    alert(err);
-                    alert("Fail");
+                    notifyError(err);
                 }
 
             });
@@ -152,8 +151,7 @@ angular.module('routerApp')
                     console.log(result);
                     backRead(function(err, result){
                         if (err){
-                            alert(err);
-                            alert("Fail");
+                            notifyError(err);
                         }
                         else {
                             singleRead(t._id, function (err, data) {
@@ -167,8 +165,7 @@ angular.module('routerApp')
                     });
                 }
                 else {
-                    alert(err);
-                    alert("Fail");
+                    notifyError(err);
                 }
 
             });
@@ -199,8 +196,7 @@ angular.module('routerApp')
                     console.log(result);
                     backRead(function(err, result){
                         if (err){
-                            alert(err);
-                            alert("Fail");
+                            notifyError(err);
                         }
                         else {
                             /*singleRead(t._id, function (err, data) {
@@ -218,8 +214,7 @@ angular.module('routerApp')
                     });
                 }
                 else {
-                    alert(err);
-                    alert("Fail");
+                    notifyError(err);
                 }
 
             });
@@ -351,8 +346,7 @@ angular.module('routerApp')
                     console.log(result);
                     backRead(function(err, result){
                         if (err){
-                            alert(err);
-                            alert("Fail");
+                            notifyError(err);
                         }
                         else {
                             singleRead(t._id, function (err, data) {
@@ -366,8 +360,7 @@ angular.module('routerApp')
                     });
                 }
                 else {
-                    alert(err);
-                    alert("Fail");
+                    notifyError(err);
                 }
                 callbackk(err, result);
             });
@@ -479,7 +472,10 @@ angular.module('routerApp')
                         console.log(data[i]);
                         docs.push(data[i].doc);
                     }
-                    docs.forEach(function(x){
+                    docs.filter(function(x){
+                        return isInRestoring(x);
+                    })
+                        .forEach(function(x){
                         x.trashed = false;
                     })
                     console.log("Allora ecco la gente");
@@ -493,12 +489,14 @@ angular.module('routerApp')
                             console.log("Tutto fatto sembra...");
                             console.log(data);
                             backRead(function(err, data){
-                                $scope.currentNote = $scope.localStoredNotes[0];
-                                $scope.open($scope.currentNote);
                                 $scope.sortByLastEdit();
+                                /*$scope.currentNote = $scope.localStoredNotes[0];
+                                $scope.open($scope.currentNote);
+                                */
                             });
                         }
                     })
+                    noteToRestore = [];
                 }
             });
         }
@@ -560,8 +558,8 @@ angular.module('routerApp')
             $scope.open($scope.currentNote);
         }
 
-        $scope.dio = function () {
-            alert("Dio");
+        $scope.dio = function (n) {
+            alert(n ? n : "Dio");
         }
 
         $interval(function () {
@@ -642,7 +640,7 @@ angular.module('routerApp')
                 tags: true,
                 tokenSeparators: [',', ' '],
                 maximumSelectionLength: 2,
-                placeholder: "Cerca una categoria...",
+                placeholder: "Categorie...",
                 minimumResultsForSearch: Infinity
             });
 
@@ -710,6 +708,48 @@ angular.module('routerApp')
                 (tags != undefined && tags.filter(function(x){
                     return x.includes(toSearch);
                 }).length > 0);
+        }
+
+        $scope.checkBoxPressed = function(action, x){
+            if (action) $scope.addToRestoring(x);
+            else $scope.removeToRestoring(x);
+        }
+
+        $scope.trashedFilter = function(x){
+            return x.doc.trashed;
+        }
+
+        $scope.addToRestoring = function(x){
+            console.log(x.doc.title + " aggiunto al ripristino");
+            noteToRestore.push(x);
+        }
+
+        $scope.removeToRestoring = function(x){
+            console.log(x.doc.title + " rimosso dal ripristino");
+            for (var i = 0; i < noteToRestore.length; i++){
+                if (noteToRestore[i].doc._id == x.doc._id){
+                    noteToRestore.splice(i, 1);
+                    return;
+                }
+            }
+        }
+
+        function isInRestoring(x){
+            for (var i = 0; i < noteToRestore.length; i++){
+                //console.log("Confronto");
+                //console.log(noteToRestore[i].doc._id);
+                //console.log(x._id);
+                if (noteToRestore[i].doc._id == x._id) {
+                    console.log("Sto per restorare " + x.title);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function notifyError(err){
+            $scope.footerMessage = "Ops la nota non e' stata modificata o.o";
+            console.error(err);
         }
 
         $(document).ready(function () {
