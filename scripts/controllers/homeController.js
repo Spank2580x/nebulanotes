@@ -8,7 +8,8 @@ angular.module('routerApp')
                                             AnimationService,
                                             TrafficLightService,
                                             ColorService,
-                                            uploadS3
+                                            uploadS3,
+                                            VideoService
     ) {
 
         $scope.title = "Senza titolo";
@@ -560,6 +561,10 @@ angular.module('routerApp')
                     noteToRestore = [];
                 }
             });
+        }
+
+        $scope.initVideo = function(){
+            VideoService.init();
         }
 
         function init() {
