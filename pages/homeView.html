@@ -417,7 +417,7 @@
                                     </i>
                                 </button>
                                 <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
-                                    id="sharePhoto"
+                                    id="sharePhoto" ng-click="initVideo()"
                                     data-tooltip="tooltip" data-placement="right"
                                     data-title="Scatta foto" data-toggle="modal" data-target="#myPhotoModal" data-dismiss="modal">
                                     <i class="fa fa-camera-retro" aria-hidden="true">
@@ -539,6 +539,9 @@
                                 <h2 class="modal-title">Sorridi e... scatta!
                                 </h2>
                             </div>
+                            <video id="video"></video>
+                            <button id="startbutton">Scatta</button>
+                            <canvas id="canvas"></canvas>
                             <div class="modal-footer">
                                 <h4>
                                    
