@@ -1,4 +1,4 @@
-<div class="container-fluid fullPageNotes"><!-- http://stackoverflow.com/questions/31570798/how-to-make-html-div-with-text-over-image-downloadable-savable-for-users -->
+<div class="container-fluid fullPageNotes">
     <div class="row row-navbar-menuPrincipal">
         <h1 class="col-xs-4 col-md-3 title">
             <img src="images/logo2.png" class="logoMinimal hidden-xs hidden-sm"
@@ -109,8 +109,8 @@
             </div>
             <hr />
             <li class="sidebarElement deleteAllMobile"
-                data-toggle="modal" data-target="#myModal">
-                Elimina tutto
+                data-toggle="modal" data-target="#myModal3">
+                Impostazioni
             </li>
         </div>
         <!-- FINE MOBILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
@@ -352,7 +352,9 @@
                             </div>
                             <div class="modal-footer">
                                 <div id="results" class="alert alert-info"
-                                    role="alert">...</div>
+                                    role="alert">
+                                    ...
+                                </div>
 
                                 <input type="file" id="filechooser"
                                     class="filestyle" data-buttonbefore="true">
@@ -429,19 +431,23 @@
                             <div class="modal-body">
                                 <div class="porcodio" ng-repeat="x in localStoredNotes | filter:trashedFilter">
                                     <div>
-                                        <h1>{{previewText(x.doc.title, 15)}}</h1>
+                                        <h1>{{previewText(x.doc.title, 15)}}
+                                        </h1>
                                     </div>
-                                    <div class="checkbox trashRepeat"><!-- ng-repeat="s on trashContainer" -->
-                                        <label><input type="checkbox"
-                                                      ng-model = "checkValue"
-                                                      ng-true-value= "1"
-                                                      ng-false-value= "0"
-                                                      ng-click="checkBoxPressed(checkValue, x)">Ripristina</label>
+                                    <div class="checkbox trashRepeat">
+                                        <!-- ng-repeat="s on trashContainer" -->
+                                        <label>
+                                            <input type="checkbox"
+                                                ng-model="checkValue"
+                                                ng-true-value="1"
+                                                ng-false-value="0"
+                                                ng-click="checkBoxPressed(checkValue, x)">Ripristina</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-success" ng-click="restoreTrashed()">
+                                <button class="btn btn-success"
+                                    ng-click="restoreTrashed()">
                                     Ripristina note selezionate
                                 </button>
                             </div>
@@ -465,19 +471,55 @@
                             </div>
                             <div class="modal-footer">
                                 <h4>
-                                    <button class="btn shareButtonsModal bordered hvr-box-shadow-inset" id="fbColor">
-                                    <i class="fa fa-facebook-square"
+                                    <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
+                                        id="fbColor">
+                                        <i class="fa fa-facebook-square"
                                             aria-hidden="true"></i>
                                     </button>
-                                    <button class="btn shareButtonsModal bordered hvr-box-shadow-inset" id="twColor">
-                                    <i class="fa fa-twitter-square"
-                                        aria-hidden="true"></i>
+                                    <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
+                                        id="twColor">
+                                        <i class="fa fa-twitter-square"
+                                            aria-hidden="true"></i>
                                     </button>
-                                    <button class="btn shareButtonsModal bordered hvr-box-shadow-inset" id="alColor">
-                                    <span>Alemanno</span>
+                                    <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
+                                        id="alColor">
+                                        <span>Alemanno</span>
                                     </button>
-                                    
+
                                 </h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myDownloadModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Download in
+                                    corso
+                                </h2>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active"
+                                        role="progressbar"
+                                        aria-valuenow="90" aria-valuemin="0"
+                                        aria-valuemax="100" style="width: 80%">                                        
+                                    </div>
+                                </div>
+                                <button class="btn btn-default"
+                                    data-dismiss="modal" disabled
+                                    style="width: 100px;">
+                                    <!-- quando ha finito il rendering removeAttr disabled -->
+                                    Scarica</button>
                             </div>
 
                         </div>
@@ -543,13 +585,23 @@
                     </div>
                 </div>
 
-                    <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
-                        type="button" data-toggle="modal" data-target="#myShareModal"
-                        id="shareFeatures" name="share"
-                        data-tooltip="tooltip" title="Condividi">
-                        <i class="fa fa-share-alt" aria-hidden="true">
-                        </i>
-                    </button>
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    type="button"
+                    id="shareFeatures" name="share"
+                    data-toggle="modal" data-target="#myDownloadModal"
+                    data-tooltip="tooltip" title="Scarica">
+                    <i class="fa fa-download" aria-hidden="true">
+                    </i>
+                </button>
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    type="button" data-toggle="modal"
+                    data-target="#myShareModal"
+                    id="shareFeatures" name="share"
+                    data-tooltip="tooltip" title="Condividi">
+                    <i class="fa fa-share-alt" aria-hidden="true">
+                    </i>
+                </button>
 
                 <div class="col-xs-12 no-text">
                 </div>
@@ -583,8 +635,10 @@
 
                         <div style="position: relative;"
                             class="no-text">
-                            <label for="sel"><i class="fa fa-tags"
-                                aria-hidden="true"></i></label>
+                            <label for="sel">
+                                <i class="fa fa-tags"
+                                    aria-hidden="true"></i>
+                            </label>
                             <select name="sel" id="sel" class="col-xs-12 selectCategories js-example-responsive"
                                 multiple="multiple" ng-disabled="!thereAreNotes()">
                             </select>
