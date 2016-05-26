@@ -44,6 +44,9 @@ angular.module('routerApp')
 
         var noteToRestore = [];
 
+
+        $scope.downloadedNote = false;
+
         $scope.write = function () {
             console.log("Creazione nuova nota");
             if (TrafficLightService.busy()) {
@@ -546,8 +549,8 @@ angular.module('routerApp')
             $scope.sortByLastEdit();
             var firstNoteReadable;
             for (var i = 0; i < $scope.localStoredNotes.length; i++){
-                console.log("Vediamo un po");
-                console.log($scope.localStoredNotes[i]);
+                //console.log("Vediamo un po");
+                //console.log($scope.localStoredNotes[i]);
                 if (!$scope.localStoredNotes[i].doc.trashed){
                     firstNoteReadable = $scope.localStoredNotes[i];
                     break;
@@ -567,7 +570,7 @@ angular.module('routerApp')
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             if (!autoSaveEnabled) return;
-            $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " + JSON.stringify($scope.footerMessage) : "Tutto a posto ^.^";
+            $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " : "Tutto a posto ^.^";
             //console.log("Sono diverso... o sono gli altri ad esserlo?");
             //console.log(hasBeenEdited());
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
@@ -732,6 +735,19 @@ angular.module('routerApp')
                     return;
                 }
             }
+        }
+
+
+        $scope.downloadNote = function(){
+            $scope.downloadedNote = false;
+            html2canvas(document.getElementsByClassName("blockNotePreview"), {
+                onrendered: function(canvas) {
+                    var image = canvas.toDataURL("image/png");
+                    document.getElementById("downloadLink").href = image;
+                    $scope.downloadedNote = true;
+                },
+                useCORS: true
+            });
         }
 
         function isInRestoring(x){
