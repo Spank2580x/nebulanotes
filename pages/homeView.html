@@ -323,25 +323,25 @@
                                 
                             </div>
                            
-                            <div class="modal-footer">
-                                <button class="btn fontButtonsModal bordered raleway"
-                                    data-dismiss="modal" ng-click="editFont('raleway')">
+                             <div class="modal-footer">
+                                <button class="btn fontButtonsModal bordered raleway hvr-sweep-to-bottom"
+                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('raleway')">
                                     Raleway
                                 </button>
-                                 <button class="btn fontButtonsModal bordered gloria"
-                                    data-dismiss="modal" ng-click="editFont('gloria')">
+                                 <button class="btn fontButtonsModal bordered gloria hvr-sweep-to-bottom"
+                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('gloria')">
                                     Gloria Hallelujah
                                 </button>
-                                 <button class="btn fontButtonsModal bordered poiret"
-                                    data-dismiss="modal" ng-click="editFont('poiret')">
-                                    Poiret One
+                                 <button class="btn fontButtonsModal bordered noto hvr-sweep-to-bottom"
+                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('noto')">
+                                    Noto Sans
                                 </button>
-                                 <button class="btn fontButtonsModal bordered open"
-                                    data-dismiss="modal" ng-click="editFont('open')">
+                                 <button class="btn fontButtonsModal bordered open hvr-sweep-to-bottom"
+                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('open')">
                                     Open Sans Condensed
                                 </button>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -411,7 +411,7 @@
                                 <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
                                     id="sharePhoto"
                                     data-tooltip="tooltip" data-placement="right"
-                                    data- title="Scatta foto">
+                                    data-title="Scatta foto" data-toggle="modal" data-target="#myPhotoModal" data-dismiss="modal">
                                     <i class="fa fa-camera-retro" aria-hidden="true">
                                     </i>
                                 </button>
@@ -509,6 +509,33 @@
                                     <button class="btn shareButtonsModal bordered"
                                         id="alColor">
                                         <span>Alemanno</span>
+                                    </button>
+
+                                </h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myPhotoModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Sorridi e... scatta!
+                                </h2>
+                            </div>
+                            <div class="modal-footer">
+                                <h4>
+                                   
+                                    <button class="btn btn-default">
+                                        Basta
                                     </button>
 
                                 </h4>
