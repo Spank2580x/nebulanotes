@@ -428,20 +428,27 @@
                                 <h2 class="modal-title">Ripristina
                                     note</h2>
                             </div>
-                            <div class="modal-body">
-                                <div class="porcodio" ng-repeat="x in localStoredNotes | filter:trashedFilter">
+                            <div class="modal-body trashBar">
+                                <div class="trashList" ng-repeat="x in localStoredNotes | filter:trashedFilter">
                                     <div>
-                                        <h1>{{previewText(x.doc.title, 15)}}
-                                        </h1>
-                                    </div>
-                                    <div class="checkbox trashRepeat">
-                                        <!-- ng-repeat="s on trashContainer" -->
                                         <label>
-                                            <input type="checkbox"
+                                        <input type="checkbox"
                                                 ng-model="checkValue"
                                                 ng-true-value="1"
                                                 ng-false-value="0"
-                                                ng-click="checkBoxPressed(checkValue, x)">Ripristina</label>
+                                                ng-click="checkBoxPressed(checkValue, x)">
+                                            {{previewText(x.doc.title, 45)}}
+                                            
+                                        </label>
+                                        <span class="lastEdit">
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Cancellata: {{formatLastEditTime(x.doc.lastEditDate)}}
+                                            </span>
+                                    </div>
+                                    <div class="checkbox trashRepeat">
+                                        <!-- ng-repeat="s on trashContainer" -->
+                                        
+                                            
+                                        <hr style="border-bottom:solid 1px black"/>
                                     </div>
                                 </div>
                             </div>
@@ -512,7 +519,7 @@
                                     <div class="progress-bar progress-bar-striped active"
                                         role="progressbar"
                                         aria-valuenow="90" aria-valuemin="0"
-                                        aria-valuemax="100" style="width: 80%">                                        
+                                        aria-valuemax="100" style="width:100%">                                        
                                     </div>
                                 </div>
                                 <button class="btn btn-default"
@@ -607,7 +614,8 @@
                 </div>
 
                 <div class="blockNoteContainer col-xs-12">
-                    <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}">
+                    <div class="blockNotePreview" 
+                        style="overflow-y:scroll; max-height:751px; background-color:{{currentNote.doc.color}}">
                         <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
                             {{currentNote.doc.title}}</h1>
                         <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
