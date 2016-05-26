@@ -16,8 +16,8 @@ body {
     font-family: Raleway;
 }
 
-.poiret {
-    font-family: Poiret One;
+.noto {
+    font-family: Noto Sans;
 }
 
 .gloria {
@@ -553,7 +553,7 @@ select {
 }
 
 .blue {
-    background: #89f646;
+    background: #5897fb;
 }
 
 .blueNoteAll {
