@@ -428,20 +428,27 @@
                                 <h2 class="modal-title">Ripristina
                                     note</h2>
                             </div>
-                            <div class="modal-body">
-                                <div class="porcodio" ng-repeat="x in localStoredNotes | filter:trashedFilter">
+                            <div class="modal-body trashBar">
+                                <div class="trashList" ng-repeat="x in localStoredNotes | filter:trashedFilter">
                                     <div>
-                                        <h1>{{previewText(x.doc.title, 15)}}
-                                        </h1>
-                                    </div>
-                                    <div class="checkbox trashRepeat">
-                                        <!-- ng-repeat="s on trashContainer" -->
                                         <label>
-                                            <input type="checkbox"
+                                        <input type="checkbox"
                                                 ng-model="checkValue"
                                                 ng-true-value="1"
                                                 ng-false-value="0"
-                                                ng-click="checkBoxPressed(checkValue, x)">Ripristina</label>
+                                                ng-click="checkBoxPressed(checkValue, x)">
+                                            {{previewText(x.doc.title, 45)}}
+                                            
+                                        </label>
+                                        <span class="lastEdit">
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Cancellata: {{formatLastEditTime(x.doc.lastEditDate)}}
+                                            </span>
+                                    </div>
+                                    <div class="checkbox trashRepeat">
+                                        <!-- ng-repeat="s on trashContainer" -->
+                                        
+                                            
+                                        <hr style="border-bottom:solid 1px black"/>
                                     </div>
                                 </div>
                             </div>
@@ -503,25 +510,23 @@
                                 <button type="button" class="close"
                                     data-dismiss="modal">
                                     &times;</button>
-                                <h2 class="modal-title">{{downloadedNote ? "Nota caricata!" : "Caricamento della nota..."}}
+                                <h2 class="modal-title">Download in
+                                    corso
                                 </h2>
                             </div>
                             <div class="modal-footer">
                                 <div class="progress">
-                                    <div class="progress-bar"
-                                         ng-class="downloadedNote ? 'progress-bar-success' : 'progress-bar-info progress-bar-striped active'"
+                                    <div class="progress-bar progress-bar-striped active"
                                         role="progressbar"
-                                        aria-valuenow="100" aria-valuemin="0"
-                                        aria-valuemax="100" style="width: 100%">
+                                        aria-valuenow="90" aria-valuemin="0"
+                                        aria-valuemax="100" style="width:100%">                                        
                                     </div>
                                 </div>
-                                <a class="btn btn-default"
-                                     ng-disabled="!downloadedNote"
-                                        id="downloadLink" download="note.png"
+                                <button class="btn btn-default"
+                                    data-dismiss="modal" disabled
                                     style="width: 100px;">
                                     <!-- quando ha finito il rendering removeAttr disabled -->
-
-                                    Scarica</a>
+                                    Scarica</button>
                             </div>
 
                         </div>
@@ -591,7 +596,7 @@
                     type="button"
                     id="shareFeatures" name="share"
                     data-toggle="modal" data-target="#myDownloadModal"
-                    data-tooltip="tooltip" title="Scarica" ng-click="downloadNote()">
+                    data-tooltip="tooltip" title="Scarica">
                     <i class="fa fa-download" aria-hidden="true">
                     </i>
                 </button>
@@ -609,7 +614,8 @@
                 </div>
 
                 <div class="blockNoteContainer col-xs-12">
-                    <div class="blockNotePreview" style="background-color: {{currentNote.doc.color}}">
+                    <div class="blockNotePreview" 
+                        style="overflow-y:scroll; max-height:751px; background-color:{{currentNote.doc.color}}">
                         <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
                             {{currentNote.doc.title}}</h1>
                         <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
