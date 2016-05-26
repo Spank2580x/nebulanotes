@@ -227,6 +227,10 @@ angular.module('routerApp')
             return $scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length > 0;
         }
 
+        $scope.thereAreTrashed = function(){
+            return $scope.localStoredNotes.filter(function(x){return x.doc.trashed}).length > 0;
+        }
+
         $scope.isNoteOpaque = function(x){
             if (x == undefined || x.doc == undefined || x.doc.color == undefined) return;
             return ColorService.isOpaque(x.doc.color);
@@ -461,7 +465,9 @@ angular.module('routerApp')
             );
         }
 
-        $scope.restoreTrashed = function(){
+        $scope.restoreTrashed = function(all){
+            if (all && !$scope.thereAreTrashed()) return;
+            if (!all && $scope.isRestoringEmpty()) return;
             console.log("Ehi...");
             var docs = [];
             backRead(function(err, data){
@@ -476,7 +482,7 @@ angular.module('routerApp')
                         docs.push(data[i].doc);
                     }
                     docs.filter(function(x){
-                        return isInRestoring(x);
+                        return all ? true : isInRestoring(x);
                     })
                         .forEach(function(x){
                         x.trashed = false;
@@ -761,6 +767,10 @@ angular.module('routerApp')
                 }
             }
             return false;
+        }
+
+        $scope.isRestoringEmpty = function(){
+            return noteToRestore.length == 0;
         }
 
         function notifyError(err){

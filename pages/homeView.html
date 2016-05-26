@@ -467,13 +467,14 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-default blueNoteAll" data-dismiss="modal">
+                                <button class="btn btn-default" ng-disabled = "!thereAreTrashed()" ng-click="restoreTrashed(true)">
                                     Ripristina tutte le note
                                 </button>
-                                <button class="btn btn-success"
+                                <a class="btn btn-success"
+                                        ng-disabled = "isRestoringEmpty()"
                                     ng-click="restoreTrashed()">
                                     Ripristina note selezionate
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
