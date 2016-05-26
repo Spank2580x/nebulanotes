@@ -776,6 +776,17 @@ footer {
         color: black;
     }
 
+.scrollable {
+    overflow-y: scroll;
+    max-height: 751px;
+}
+
+.not-scrollable {
+    overflow-y: visible;
+    max-height: auto;
+}
+
+
 .trashBar::-webkit-scrollbar {
     height: 120px;
     width: 5px;
