@@ -13,19 +13,19 @@ body {
 }
 
 .raleway {
-    font-family:Raleway;
+    font-family: Raleway;
 }
 
 .poiret {
-    font-family:Poiret One;
+    font-family: Poiret One;
 }
 
 .gloria {
-    font-family:Gloria Hallelujah;
+    font-family: Gloria Hallelujah;
 }
 
 .open {
-    font-family:Open Sans Condensed;
+    font-family: Open Sans Condensed;
 }
 
 .center {
@@ -347,11 +347,29 @@ select {
     margin-right: 15%;
 }
 
-    .shareButtonsModal:hover {
-        transition: all 0.3s ease-in-out;
-        color: black;
-        opacity: 1;
-    }
+.fontButtonsModal {
+    transition: all 0.3s ease-in-out;
+    font-size: 20pt;
+    text-align: center;
+    margin-top: 5px;
+    color: black;
+    min-width: 75px;
+    min-height: 75px;
+    padding: 5px;
+    border-radius: 3%;
+    background: white;
+    margin-left: 5px;
+    opacity: 0.9;
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.shareButtonsModal:hover {
+    transition: all 0.3s ease-in-out;
+    color: black;
+    opacity: 1;
+}
 
 #shareFile {
     background: #ded8d8;
@@ -755,8 +773,8 @@ footer {
         pointer-events: none;
         position: absolute;
         content: '';
-        height: 50px;
-        width: 50px;
+        height: 35px;
+        width: 35px;
         top: 0;
         right: 0px;
         background: white;
@@ -781,7 +799,7 @@ footer {
 
     .blockNotePreview article {
         margin-top: 2%;
-        font-family: Gloria Hallelujah; /*Gloria Hallelujah*/
+         /*Gloria Hallelujah*/
         padding-left: 20px;
         padding-right: 20px;
         text-align: justify;
@@ -1054,6 +1072,10 @@ footer {
         height: 25px;
         padding: 10px 16px;
         border-radius: 25px;
+    }
+
+    .fontButtonsModal {
+        font-size:12pt;
     }
 
     .notesExamples img {
