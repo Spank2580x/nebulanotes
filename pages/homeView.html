@@ -72,6 +72,11 @@
                     <i class="fa fa-paperclip" aria-hidden="true"
                         id="grey"></i>
                 </li>
+                <li class="sidebarElement" style="float: none;"
+                    data-toggle="modal" data-target="#myDownloadModal">
+                    <i class="fa fa-download" aria-hidden="true">
+                    </i>
+                </li>
                 <li class="sidebarElement" data-toggle="modal"
                     data-target="#myShareModal">
                     <i class="fa fa-share-alt" aria-hidden="true"
@@ -83,6 +88,13 @@
                     <i class="fa fa-trash" aria-hidden="true"
                         id="orange"></i>
                 </li>
+
+                <li class="sidebarElement" style="float: none;"
+                    data-toggle="modal" data-target="#myModal3">
+                    <i class="fa fa-cog" aria-hidden="true">
+                </i>
+                </li>
+                
 
             </ul>
 
@@ -107,11 +119,7 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <li class="sidebarElement deleteAllMobile"
-                data-toggle="modal" data-target="#myModal3">
-                Impostazioni
-            </li>
+            
         </div>
         <!-- FINE MOBILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
 
@@ -371,11 +379,11 @@
                                 </div>
 
                                 <input type="file" id="filechooser"
-                                    class="filestyle" data-buttonbefore="true">
+                                    class="filestyle" data-buttonbefore="true" />
 
                                 <button class="btn btn-info btn-file"
                                     type="button" id="upload-button"
-                                    ng-click="checkBucket()">
+                                    ng-click="upBucket()">
                                     Upload
                                 </button>
 

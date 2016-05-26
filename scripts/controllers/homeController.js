@@ -348,8 +348,9 @@ angular.module('routerApp')
             //$(".js-programmatic-multi-clear").on("click", function () { $exampleMulti.val(null).trigger("change"); });
         }
 
-        $scope.checkBucket = function () {
-            uploadS3.uploadit($scope.currentNote);
+        $scope.upBucket = function(){
+            alert("bhotftfyfyfyf");
+            //uploadS3.buf(notes.doc._id);
         }
 
         function backRead(callback) {
@@ -567,7 +568,7 @@ angular.module('routerApp')
             TrafficLightService.init(autoSaveEnabled);
             AnimationService.init();
             initSelect2();
-            uploadS3.init();
+            //uploadS3.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
             comparingTags = [];
@@ -693,7 +694,7 @@ angular.module('routerApp')
             $('.selectCategories').select2({
                 tags: true,
                 tokenSeparators: [',', ' '],
-                placeholder: "Assegna categoria...",
+                placeholder: "Categoria...",
                 minimumResultsForSearch: Infinity,
                 allowClear: true
             });
