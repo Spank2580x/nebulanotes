@@ -64,7 +64,8 @@ angular.module('routerApp')
                 //color: "rgba(255, 255, 255, .0);"
                 color: null,//ColorService.getRandomColor(),
                 tags: [],
-                trashed: false
+                trashed: false,
+                font: "gloria"
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -96,7 +97,8 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
                 tags: $('.selectCategories').val(),
-                trashed: $scope.currentNote.doc.trashed
+                trashed: $scope.currentNote.doc.trashed,
+                font: $scope.currentNote.doc.font
             };
             console.log("T ha anche ");
             console.log(t.color);
@@ -143,7 +145,8 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 color: color,
                 tags: $('.selectCategories').val(),
-                trashed: $scope.currentNote.doc.trashed
+                trashed: $scope.currentNote.doc.trashed,
+                font: $scope.currentNote.doc.font
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -152,6 +155,52 @@ angular.module('routerApp')
                      $scope.read();                                  //<---- flickera
                      });*/
                     console.log("Modifica del colore riuscita?")
+                    console.log(result);
+                    backRead(function(err, result){
+                        if (err){
+                            notifyError(err);
+                        }
+                        else {
+                            singleRead(t._id, function (err, data) {
+                                if (!err) {
+                                    $scope.open({ doc: data });
+                                    $scope.sortByLastEdit();
+                                }
+                                //$scope.$apply()
+                            });
+                        }
+                    });
+                }
+                else {
+                    notifyError(err);
+                }
+
+            });
+        }
+
+        $scope.editFont = function(font){
+            console.log("Modifica font di ")
+            console.log($scope.currentNote);
+            if ($scope.currentNote == undefined) console.error("Si sta cercando di modificare una nota che non esiste wtf");
+            var t = {
+                _id: $scope.currentNote.doc._id,
+                _rev: $scope.currentNote.doc._rev,
+                content: $scope.text,
+                title: $scope.title,
+                creationDate: $scope.currentNote.doc.creationDate,
+                lastEditDate: getNow(),
+                color: $scope.currentNote.doc.color,
+                tags: $('.selectCategories').val(),
+                trashed: $scope.currentNote.doc.trashed,
+                font: font
+            };
+            dbLocal.put(t, function callback(err, result) {
+                if (!err) {
+                    //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
+                    /*dbLocal.changes().on('change', function () {
+                     $scope.read();                                  //<---- flickera
+                     });*/
+                    console.log("Modifica del font riuscito?")
                     console.log(result);
                     backRead(function(err, result){
                         if (err){
@@ -188,7 +237,8 @@ angular.module('routerApp')
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
                 tags: $('.selectCategories').val(),
-                trashed: true
+                trashed: true,
+                font: $scope.currentNote.doc.font
             };
             dbLocal.put(t, function callback(err, result) {
                 if (!err) {
@@ -340,7 +390,8 @@ angular.module('routerApp')
                 creationDate: $scope.currentNote.doc.creationDate,
                 lastEditDate: getNow(),
                 color: $scope.currentNote.doc.color,
-                tags: $('.selectCategories').val()
+                tags: $('.selectCategories').val(),
+                font: $scope.currentNote.doc.font
             };
             console.log("T ha anche ");
             console.log(t.color);

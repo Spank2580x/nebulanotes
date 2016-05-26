@@ -325,19 +325,19 @@
                            
                             <div class="modal-footer">
                                 <button class="btn fontButtonsModal bordered raleway"
-                                    data-dismiss="modal">
+                                    data-dismiss="modal" ng-click="editFont('raleway')">
                                     Raleway
                                 </button>
                                  <button class="btn fontButtonsModal bordered gloria"
-                                    data-dismiss="modal">
+                                    data-dismiss="modal" ng-click="editFont('gloria')">
                                     Gloria Hallelujah
                                 </button>
                                  <button class="btn fontButtonsModal bordered poiret"
-                                    data-dismiss="modal">
+                                    data-dismiss="modal" ng-click="editFont('poiret')">
                                     Poiret One
                                 </button>
                                  <button class="btn fontButtonsModal bordered open"
-                                    data-dismiss="modal">
+                                    data-dismiss="modal" ng-click="editFont('open')">
                                     Open Sans Condensed
                                 </button>
                             </div>
@@ -636,9 +636,9 @@
                 <div class="blockNoteContainer col-xs-12">
                     <div class="blockNotePreview gloria" ng-class="!downloading ? 'scrollable' : ''"
                         style="background-color:{{currentNote.doc.color}}">
-                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
+                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}" ng-class="currentNote.doc.font">
                             {{currentNote.doc.title}}</h1>
-                        <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
+                        <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}" ng-class="currentNote.doc.font">
                             <ng-bind-html
                                 ng-bind-html="currentNote.doc.content">
                             </ng-bind-html>
