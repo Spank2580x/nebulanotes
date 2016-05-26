@@ -427,19 +427,22 @@
                                     note</h2>
                             </div>
                             <div class="modal-body">
-                                <div class="checkbox trashRepeat">
-                                    <!-- ng-repeat="s on trashContainer" -->
-
-                                    <label>
-                                        <input type="checkbox">Option
-                                        1</label>
-
+                                <div class="porcodio" ng-repeat="x in localStoredNotes | filter:trashedFilter">
+                                    <div>
+                                        <h1>{{previewText(x.doc.title, 15)}}</h1>
+                                    </div>
+                                    <div class="checkbox trashRepeat"><!-- ng-repeat="s on trashContainer" -->
+                                        <label><input type="checkbox"
+                                                      ng-model = "checkValue"
+                                                      ng-true-value= "1"
+                                                      ng-false-value= "0"
+                                                      ng-click="checkBoxPressed(checkValue, x)">Ripristina</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-success"
-                                    ng-click="restoreTrashed()">
-                                    Ripristina
+                                <button class="btn btn-success" ng-click="restoreTrashed()">
+                                    Ripristina note selezionate
                                 </button>
                             </div>
                         </div>
