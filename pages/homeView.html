@@ -68,7 +68,7 @@
                         id="purple"></i>
                 </li>
                 <li class="sidebarElement" data-toggle="modal"
-                    data-target="#myAttachModal">
+                    data-target="#myShareChoiceModal">
                     <i class="fa fa-paperclip" aria-hidden="true"
                         id="grey"></i>
                 </li>
@@ -132,7 +132,7 @@
                         <h4>Ripristina cestino
                         </h4>
                         <button class="col-xs-12 btn btn-warning"
-                            type="button" style="color:black;" ng-click="restoreTrashed()">
+                            type="button" style="color:black;" data-dismiss="modal" data-toggle="modal" data-target="#myTrashModal">
                             <i class="fa fa-trash-o" aria-hidden="true" style="font-size:17pt;">
                     </i> <b class="badge" style="color:white; background:black;">{{trashedNumber}}</b>
                         </button>
@@ -232,8 +232,8 @@
                 <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
                     id="uploadFeatures" name="attachfile"
                     data-tooltip="tooltip" data-toggle="modal"
-                    data-target="#myAttachModal"
-                    title="Allega file">
+                    data-target="#myShareChoiceModal"
+                    title="Allega file">  <!-- myattachmodal -->
                     <!--mio -->
                     <i class="fa fa-paperclip" aria-hidden="true">
                     </i>
@@ -349,6 +349,66 @@
                                         Upload
                                     </button>
                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myShareChoiceModal" class="modal fade"
+                     role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                        data-dismiss="modal">
+                                    &times;</button>
+                                <h3 class="modal-title">Carica ci&ograve che vuoi</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="col-xs-4 btn shareButtonsModal hvr-box-shadow-inset" id="shareFile"
+                                     data-tooltip="tooltip" data-placement="bottom" data- title="Scegli file"
+                                    data-toggle="modal" data-target="#myAttachModal" data-dismiss="modal">
+                                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                                </button>
+                                <button class="col-xs-4 btn shareButtonsModal hvr-box-shadow-inset" id="sharePhoto"
+                                     data-tooltip="tooltip" data-placement="bottom" data- title="Scatta foto">
+                                    <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                                </button>
+                                <button class="col-xs-4 btn shareButtonsModal hvr-box-shadow-inset"
+                                     id="shareAudio" data-tooltip="tooltip" data-placement="bottom" data- title="Registra voce">
+                                    <i class="fa fa-microphone" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Modal -->
+                <div id="myTrashModal" class="modal fade"
+                     role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                        data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Ripristina note</h2>
+                            </div>
+                            <div class="modal-body">
+                                <div class="checkbox trashRepeat"><!-- ng-repeat="s on trashContainer" -->
+                                    
+                                 <label><input type="checkbox">Option 1</label>
+                                
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                   <button class="btn btn-success" ng-click="restoreTrashed()">
+                                       Ripristina
+                                   </button>
                             </div>
                         </div>
                     </div>
