@@ -46,6 +46,7 @@ angular.module('routerApp')
 
 
         $scope.downloadedNote = false;
+        $scope.downloading = false;
 
         $scope.write = function () {
             console.log("Creazione nuova nota");
@@ -746,11 +747,13 @@ angular.module('routerApp')
 
         $scope.downloadNote = function(){
             $scope.downloadedNote = false;
+            $scope.downloading = true;
             html2canvas(document.getElementsByClassName("blockNotePreview"), {
                 onrendered: function(canvas) {
                     var image = canvas.toDataURL("image/png");
                     document.getElementById("downloadLink").href = image;
                     $scope.downloadedNote = true;
+                    $scope.downloading = false;
                 },
                 useCORS: true
             });

@@ -620,7 +620,7 @@
                 </div>
 
                 <div class="blockNoteContainer col-xs-12">
-                    <div class="blockNotePreview scrollable" 
+                    <div class="blockNotePreview" ng-class="!downloading ? 'scrollable' : ''"
                         style="background-color:{{currentNote.doc.color}}">
                         <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}">
                             {{currentNote.doc.title}}</h1>
