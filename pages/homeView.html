@@ -381,12 +381,12 @@
                                 <input type="file" id="filechooser"
                                     class="filestyle" data-buttonbefore="true" />
 
-                                <button class="btn btn-info btn-file"
+                                <button class="btn btn-info btn-info"
                                     type="button" id="upload-button"
                                     ng-click="upBucket()">
                                     Upload
                                 </button>
-
+                               
                             </div>
                         </div>
                     </div>
@@ -529,7 +529,7 @@
                 <!-- Modal -->
                 <div id="myPhotoModal" class="modal fade"
                     role="dialog">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog photoScroll">
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -540,16 +540,11 @@
                                 </h2>
                             </div>
                             <video id="video"></video>
-                            <button id="startbutton">Scatta</button>
+                            <button id="startbutton" class="btn btn-warning">Scatta</button>
                             <canvas id="canvas"></canvas>
+                            <button id="upbutton" class="btn btn-info">Carica</button>
                             <div class="modal-footer">
-                                <h4>
-                                   
-                                    <button class="btn btn-default">
-                                        Basta
-                                    </button>
-
-                                </h4>
+                                
                             </div>
 
                         </div>
@@ -578,7 +573,7 @@
                                          aria-valuemax="100" style="width: 100%">
                                     </div>
                                 </div>
-                                <a class="btn btn-default"
+                                <a class="btn btn-info"
                                    ng-disabled="!downloadedNote"
                                    id="downloadLink" download="note.png"
                                    style="width: 100px;">

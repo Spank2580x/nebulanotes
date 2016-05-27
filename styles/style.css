@@ -529,6 +529,39 @@ select {
     color: white;
 }
 
+.photoScroll {
+    max-height:900px;
+    overflow-y:scroll;
+}
+
+#video {
+    margin-top:1%;
+    margin-left:10%;
+    margin-right:10%;
+    max-width:80%;
+    max-height:400px;
+    min-width:50%;
+    min-height:220px;
+}
+
+#canvas {
+    margin-top:1%;
+    margin-left:10%;
+    margin-right:10%;
+    max-width:80%;
+    max-height:400px;
+    min-width:50%;
+    min-height:220px;
+}
+
+#startbutton, #upbutton {
+    font-size:14pt;
+    width:80%;
+    text-align:center;
+    margin-left:10%;
+    margin-right:10%;
+}
+
 .orange {
     background: #ff6a00;
 }
@@ -727,6 +760,20 @@ footer {
     background-color: rgb(38,38,38);
     border-radius: 10px;
 }
+
+.photoScroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.photoScroll::-webkit-scrollbar-track {
+    background: rgb(198,198,198);
+}
+
+.photoScroll::-webkit-scrollbar-thumb {
+    background-color: rgb(38,38,38);
+    border-radius: 1px;
+}
+
 
 #fbColor:hover {
     color: white;
@@ -1046,6 +1093,11 @@ footer {
     .rowExamples h1 {
         font-size: 15pt;
     }
+
+    .photoScroll {
+    max-height:500px;
+    overflow-y:scroll;
+}
 }
 
 @media only screen and (min-device-width : 260px) and (max-device-width : 568px) and (orientation : portrait) {
