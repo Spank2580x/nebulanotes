@@ -37,7 +37,8 @@ angular.module('routerApp')
 
         $scope.trashedNumber = 0;
 
-        $scope.text = "Ricorda che la vita e' un uragano di speranza che col tempo rallenta fino a cadere nell'orizzonte. (E che fa schifo)";
+        $scope.text = "";
+        $scope.place = "Ricorda che la vita e' un uragano di speranza che nel tempo scompare all'orizzonte..."
         $scope.title;
 
         var comparingText;
@@ -884,7 +885,7 @@ angular.module('routerApp')
                });
            
             /*.title:not(#sidebarIcon) is not working */
-               $('.logoCentered, .sectionNotes, #addMobile, #editMobile').click(function () {
+               $('.logoCentered, .sectionNotes, #addMobile, #editMobile, .sidebarElement').click(function () {
                $('.sidebar-offcanvas').removeClass('active', 1000);
            });
 

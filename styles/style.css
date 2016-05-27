@@ -1,7 +1,7 @@
 body {
     font-family: Open Sans Condensed, sans-serif;
     overflow-x: hidden;
-    background:url('../images/pattern1.png');
+    background: url('../images/pattern1.png');
 }
 
 .fullPageNotes {
@@ -51,9 +51,10 @@ body {
     .divEditor input {
         margin-top: 8px;
         height: 40px;
-        font-size: 13pt;
-        color: black;
+        font-size: 14pt;
         width: 100%;
+        outline: none;
+        border: solid 1px transparent;
         /* border-bottom-left-radius:30px;
         border-top-left-radius:30px;
         border-bottom-right-radius:30px;
@@ -86,7 +87,7 @@ body {
 }
 
 .row-navbar-menuPrincipal {
-    background: #8C9EFF;
+    background: #7ad9b0; /*8C9EFF*/
     color: white;
     border-bottom: solid 2px rgb(48,48,48);
 }
@@ -102,7 +103,7 @@ body {
 }
 
 .asidev2::-webkit-scrollbar-track {
-    background: #ccd4ff;
+    background: white;
 }
 
 .asidev2::-webkit-scrollbar-thumb {
@@ -119,8 +120,10 @@ body {
 }
 
 .asidev2 {
-    background-color: #ccd4ff;
-    border: solid 1px #8C9EFF;
+    background: #f0eded; /*#b9c4ff*/
+    background: url('../images/pattern1.png');
+    border-right: solid 1px #7ad9b0;
+    border-bottom: solid 1px #7ad9b0;
     overflow-y: scroll;
     overflow-x: hidden;
     min-height: 900px;
@@ -162,7 +165,7 @@ select {
 }
 
 .blockNote {
-    background-image: url("../images/noise.png");
+    /*background-image: url("../images/noise.png");*/
     margin-left: -15px;
     margin-right: -15px;
     padding-top: 5px;
@@ -173,14 +176,18 @@ select {
 }
 
 .saveSuccess {
-    background: #ccd4ff;
+    background: #7ad9b0;
     width: 85%;
     text-align: center;
+    font-size: 16pt;
+    letter-spacing: 1px;
+    font-family: Noto Sans;
+    color: black;
 }
 
 .rainbow {
-    background-image:url('../images/random.png');
-    background-size:cover;
+    background-image: url('../images/random.png');
+    background-size: cover;
 }
 
 #not {
@@ -297,14 +304,14 @@ select {
     border: solid 1px transparent;
     border-bottom: dotted 1px black;
     margin-bottom: 1%;
-    background:transparent;
+    background: transparent;
 }
 
 #elementUploaded {
-    width:100px;
-    height:90px;
-    background:black;
-    margin-top:800px;
+    width: 100px;
+    height: 90px;
+    background: black;
+    margin-top: 800px;
 }
 
 .inputCategory {
@@ -378,6 +385,14 @@ select {
     margin-right: 5%;
 }
 
+    .fontButtonsModal:hover {
+        transition: all 0.3s ease-in-out;
+        background:#7ad9b0;
+        font-size:18pt;
+        font-weight:bolder;
+    }
+
+
 .shareButtonsModal:hover {
     transition: all 0.3s ease-in-out;
     color: black;
@@ -393,7 +408,7 @@ select {
 }
 
 #shareAudio {
-    background: #5897fb;
+    background: #7ad9b0;
 }
 
 .rectFeaturesSettings {
@@ -436,11 +451,11 @@ select {
 }
 
 #addFeatures {
-    background: #8C9EFF;
+    background: #7ad9b0;
 }
 
 #editFeatures {
-    background: #89f646;
+    background: #fddf00;
     margin-left: 10px;
 }
 
@@ -449,7 +464,7 @@ select {
 }
 
 #customFeatures {
-    background: #fddf00;
+    background: #8C9EFF;
     margin-left: 10px;
 }
 
@@ -462,7 +477,7 @@ select {
     background: rgb(48,48,48);
     margin-left: 10px;
     color: white;
-    float:right;
+    float: right;
     right: 135px;
 }
 
@@ -492,6 +507,7 @@ select {
     letter-spacing: 1px;
     margin-top: -10px;
     margin-left: 20px;
+    font-family: Gloria Hallelujah;
 }
 
 .imageFirstNode {
@@ -527,7 +543,7 @@ select {
 }
 
 .rowExamples h1 {
-    background: #8C9EFF;
+    background: #7ad9b0;
     padding: 1%;
     padding-left: 2%;
     font-size: 25pt;
@@ -549,10 +565,15 @@ select {
         position: absolute;
         display: block;
         margin: 0;
-        top: 7px;
+        top: 10px;
         right: 17px;
-        font-size: 17pt;
-        color: black;
+        font-size: 14pt;
+        color: white;
+    }
+
+    .input-icon input {
+        background: rgb(48,48,48);
+        color: rgb(144, 144, 144);
     }
 
 .modalColors:hover, .modalColors:active, .modalColors:visited, .modalColors:focus {
@@ -604,6 +625,14 @@ select {
 .dark {
     background: rgb(48, 48, 48);
 }
+
+.ocean {
+    background-color: #7ad9b0;
+}
+
+    .ocean:hover, .ocean:active, .ocean:visited, .ocean:focus {
+        background-color: #62bc95;
+    }
 
 .beige {
     background: #c68e47;
@@ -784,7 +813,7 @@ footer {
 }
 
 .blockNotePreview::-webkit-scrollbar-track {
-    background:white;
+    background: white;
 }
 
 .blockNotePreview::-webkit-scrollbar-thumb {
@@ -852,9 +881,8 @@ footer {
         width: 35px;
         top: 0;
         right: 0px;
-        background: white;
         /* IE9 */
-        background: linear-gradient(225deg, white 45%, #aaaaaa 50%, #cccccc 56%, white 80%);
+        background: linear-gradient(225deg, white 45%, #aaaaaa 50%, #cccccc 56%, white 75%);
         box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.4);
         -webkit-transition-duration: 0.3s;
         transition-duration: 0.3s;
@@ -879,7 +907,6 @@ footer {
         padding-right: 20px;
         text-align: justify;
         font-size: 15pt;
-        color: black;
     }
 
 .scrollable {
@@ -892,6 +919,17 @@ footer {
     max-height: auto;
 }
 
+.creditsContent h3 {
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+    background: white;
+    cursor: pointer;
+}
+
+    .creditsContent h3:hover {
+        transition: all 0.2s ease-in-out;
+        background: #7ad9b0;
+    }
 
 .trashBar::-webkit-scrollbar {
     height: 120px;
@@ -1068,6 +1106,10 @@ footer {
         color: #ff6a00;
     }
 
+    #ocean {
+        color: #7ad9b0;
+    }
+
     #white {
         background: white;
         color: black;
@@ -1120,6 +1162,11 @@ footer {
     .active {
         left: 0;
     }
+}
+
+a, a:hover, a:visited, a:focus, a:active {
+    text-decoration: none;
+    color: black;
 }
 
 @media screen and (max-width: 768px) {
@@ -1180,12 +1227,9 @@ footer {
         font-size: 12pt;
     }
 
+
     .notesExamples img {
         height: 250px;
-    }
-
-    .imageFirstNode {
-        height: 60px;
     }
 
     .rowExamples h1 {
@@ -1216,6 +1260,10 @@ footer {
         font-size: 12pt;
         padding-left: 15px;
         color: black;
+    }
+
+    .blockNotePreview h1 {
+        font-size: 30pt;
     }
 }
 

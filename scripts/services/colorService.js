@@ -10,11 +10,11 @@ routerApp.service('ColorService', function() {
         return 'rgb(' + r + ',' + g + ',' + b + ')';*/
         var colors = [
             "rgb(204,212,205)",
-            "rgb(179,190,255)",
-            "rgb(205,179,255)",
-            "rgb(117,138,255)",
-            "rgb(222,204,255)",
-            "rgb(143,160,255)"
+            "rgb(122,217,176)",
+            "rgb(121,170,149)",
+            "rgb(152,213,187)",
+            "rgb(203,234,221)",
+            "rgb(214,229,223)"
         ];
         var c = parseInt(Math.random() * colors.length);
         console.log(colors[c]);

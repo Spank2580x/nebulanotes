@@ -4,7 +4,7 @@
             <img src="images/logo2.png" class="logoMinimal hidden-xs hidden-sm"
                 id="testMobile" />
             <span class="hidden-xs hidden-sm animated fadeIn ">
-                <b id="not">!e</b>nebulas</span>
+                <b id="not">!e</b>Nebula</span>
             <button class="btn rectFeaturesSettings visible-xs visible-sm"
                 id="sidebarIcon" name="sidebarEvent"
                 data-toggle="offcanvas">
@@ -85,7 +85,7 @@
                 <li class="sidebarElement" data-toggle="modal"
                     data-target="#myShareModal">
                     <i class="fa fa-share-alt" aria-hidden="true"
-                        id="beige"></i>
+                        id="ocean"></i>
                 </li>
 
                 <li class="sidebarElement" style="float: none;"
@@ -108,7 +108,7 @@
 
                     </div>
                     <div id="blockNoteErrorMobile"
-                        ng-show="noSearchResult">
+                        ng-show="noSearchResult" class="hidden-xs">
                         <h2>
                             <br />
                             <i class="fa fa-exclamation-circle">
@@ -133,11 +133,16 @@
                         <button type="button" class="close"
                             data-dismiss="modal">
                             &times;</button>
-                        <h4>Impostazioni
+                        <h4>Impostazioni & Credits
                         </h4>
                     </div>
                     <div class="modal-body">
-
+                        <h4>App Developers</h4>
+                        <button class="col-xs-12 btn ocean" data-dismiss="modal" data-toggle="modal"
+                            data-target="#myCreditsModal" style="font-size:14pt;">
+                            Team !eNebula
+                        </button>
+                        
                         <h4>Ripristina cestino
                         </h4>
                         <button class="col-xs-12 btn btn-warning"
@@ -352,20 +357,20 @@
                             </div>
                            
                              <div class="modal-footer">
-                                <button class="btn fontButtonsModal bordered raleway hvr-sweep-to-bottom"
-                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('raleway')">
+                                <button class="btn fontButtonsModal bordered raleway"
+                                    data-dismiss="modal" ng-click="editFont('raleway')">
                                     Raleway
                                 </button>
-                                 <button class="btn fontButtonsModal bordered gloria hvr-sweep-to-bottom"
-                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('gloria')">
+                                 <button class="btn fontButtonsModal bordered gloria"
+                                    data-dismiss="modal" ng-click="editFont('gloria')">
                                     Gloria 
                                 </button>
-                                 <button class="btn fontButtonsModal bordered noto hvr-sweep-to-bottom"
-                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('noto')">
+                                 <button class="btn fontButtonsModal bordered noto"
+                                    data-dismiss="modal" ng-click="editFont('noto')">
                                     Noto Sans
                                 </button>
-                                 <button class="btn fontButtonsModal bordered open hvr-sweep-to-bottom"
-                                    data-dismiss="modal" style="background-color:white" ng-click="editFont('open')">
+                                 <button class="btn fontButtonsModal bordered open"
+                                    data-dismiss="modal" ng-click="editFont('open')">
                                     Open Sans C.
                                 </button>
                                  
@@ -531,6 +536,30 @@
                                     </button>
 
                                 </h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myCreditsModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Gli sviluppatori di questa app
+                                </h2>
+                            </div>
+                            <div class="modal-footer creditsContent">
+                                <a href="http://alessioraggioli.github.io/"><h3 class="col-xs-12 center">Alessio <b>Raggioli</b></h3></a>
+                                <a href="https://github.com/lucacampana"><h3 class="col-xs-12 center">Luca <b>Campana</b></h3></a>
+                                <a href="https://github.com/ildirettore"><h3 class="col-xs-12 center">Dario <b>Maranta</b></h3></a>
+                                <a href="https://github.com/tsac027"><h3 class="col-xs-12 center">Iulian Eugen <b>Buf</b></h3></a>
                             </div>
 
                         </div>
@@ -705,7 +734,7 @@
                             ta-paste="stripFormat($html)"
                             text-angular
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
-                            placeholder="{{text}}" ng-model="text"
+                            placeholder="{{place}}" ng-model="text"
                             data-toggle="popover" data-trigger="focus"
                             data-content="Cristo">
                         </div>
@@ -715,14 +744,14 @@
                     </div>
                     
                 </div>
-                <div id="elementUploaded" class="no-text">
+                <!--<div id="elementUploaded" class="no-text">
 
-                </div>
+                </div>-->
                 <span class="col-xs-6 col-md-5 crea out">
                     Crea
                     la tua prima nota</span>
 
-                <div class="col-xs-3 col-md-4 out hidden-xs">
+                <div class="col-xs-3 col-md-4 hidden-xs out">
                     <img src="images/logo2.png" class="imageFirstNode" />
                 </div>
             </div>

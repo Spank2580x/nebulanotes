@@ -30,7 +30,8 @@ routerApp.service('AnimationService', function () {
         $(".blockNoteContainer").css("display", "none");
 
         setTimeout(function () {
-            $("#testMobile").css("display", "none");
+            $(".imageFirstNode").css("display", "none");
+            //$("#testMobile").css("display", "none");
             $(".divEditor").css("display", "block");
             $(".divEditor").addClass("animated fadeIn");
             $(".no-display").css("display", "block");
