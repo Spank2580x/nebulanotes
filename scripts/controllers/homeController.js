@@ -32,7 +32,7 @@ angular.module('routerApp')
         var firstTimeApp;
         var noteOnQueue;
 
-        $scope.footerMessage = "Tutto a posto ^.^";
+        $scope.footerMessage = "Nota salvata in automatico ^.^";
 
         $scope.trashedNumber = 0;
 
@@ -635,7 +635,7 @@ angular.module('routerApp')
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             if (!autoSaveEnabled) return;
-            $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " : "Tutto a posto ^.^";
+            $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento..." : "Nota salvata in automatico ^.^";
             //console.log("Sono diverso... o sono gli altri ad esserlo?");
             //console.log(hasBeenEdited());
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
@@ -854,7 +854,6 @@ angular.module('routerApp')
                    $('.sidebar-offcanvas').toggleClass('active', 1000);
                });
            
-            /*.title:not(#sidebarIcon) is not working */
                $('.logoCentered, .sectionNotes, #addMobile, #editMobile').click(function () {
                $('.sidebar-offcanvas').removeClass('active', 1000);
            });
