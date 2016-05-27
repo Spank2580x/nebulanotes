@@ -43,7 +43,7 @@ body {
 
 .divEditor {
     /*margin-top: 10px;*/
-    float:right;
+    float: right;
     display: none;
 }
 
@@ -52,7 +52,7 @@ body {
         height: 40px;
         font-size: 13pt;
         color: black;
-        width:100%;
+        width: 100%;
         /* border-bottom-left-radius:30px;
         border-top-left-radius:30px;
         border-bottom-right-radius:30px;
@@ -211,7 +211,7 @@ select {
     overflow-y: scroll;
     overflow-x: hidden;
     height: 300px;
-    margin-bottom:25px;
+    margin-bottom: 25px;
 }
 
 .blockNoteMobile:hover {
@@ -401,17 +401,17 @@ select {
     margin-top: 8px;
     background: rgb(48,48,48);
     color: white;
-    float:right;
-    margin-right:-25px;
+    float: right;
+    margin-right: -25px;
 }
 
     .setting:hover, .setting:active, .setting:visited, .setting:focus {
         color: white;
     }
 
-    .rectFeaturesSettings:hover, .rectFeaturesSettings:visited, .rectFeaturesSettings:active, .rectFeaturesSettings:focus {
-        color: white;
-    }
+.rectFeaturesSettings:hover, .rectFeaturesSettings:visited, .rectFeaturesSettings:active, .rectFeaturesSettings:focus {
+    color: white;
+}
 
 #sidebarIcon {
     margin-left: 2%;
@@ -547,36 +547,36 @@ select {
 }
 
 .photoScroll {
-    max-height:900px;
-    overflow-y:scroll;
+    max-height: 900px;
+    overflow-y: scroll;
 }
 
 #video {
-    margin-top:1%;
-    margin-left:10%;
-    margin-right:10%;
-    max-width:80%;
-    max-height:400px;
-    min-width:50%;
-    min-height:220px;
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
+    max-height: 400px;
+    min-width: 50%;
+    min-height: 220px;
 }
 
 #canvas {
-    margin-top:1%;
-    margin-left:10%;
-    margin-right:10%;
-    max-width:80%;
-    max-height:400px;
-    min-width:50%;
-    min-height:220px;
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
+    max-height: 400px;
+    min-width: 50%;
+    min-height: 220px;
 }
 
 #startbutton, #upbutton {
-    font-size:14pt;
-    width:80%;
-    text-align:center;
-    margin-left:10%;
-    margin-right:10%;
+    font-size: 14pt;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .orange {
@@ -860,7 +860,7 @@ footer {
 
     .blockNotePreview article {
         margin-top: 2%;
-         /*Gloria Hallelujah*/
+        /*Gloria Hallelujah*/
         padding-left: 20px;
         padding-right: 20px;
         text-align: justify;
@@ -1017,7 +1017,6 @@ footer {
         border-radius: 25px;
         padding-top: 10px;
         padding-left: 12px;
-        background: #89f646;
     }
 
     .sidebarElement {
@@ -1035,16 +1034,24 @@ footer {
         margin-top: -5px;
     }
 
+    #addMobile {
+        background: rgb(52,52,52);
+        color: #89f646;
+    }
+
     #light {
+        background: rgb(52,52,52);
         background: #ccd4ff;
     }
 
     #yellow {
-        background: #f9ff26;
+        background: rgb(52,52,52);
+        color: #f9ff26;
     }
 
     #orange {
-        background: #ff6a00;
+        background: rgb(52,52,52);
+        color: #ff6a00;
     }
 
     #white {
@@ -1053,15 +1060,33 @@ footer {
     }
 
     #grey {
-        background: #dfdfdf;
+        color: #dfdfdf;
+        background: rgb(52,52,52);
     }
 
     #green {
-        background: #89f646;
+        background: rgb(52,52,52);
+        color: #89f646;
     }
 
     #purple {
-        background: #a000ff;
+        background: rgb(52,52,52);
+        color: #a000ff;
+    }
+
+    #beige {
+        background: rgb(52,52,52);
+        color: #caa83e;
+    }
+
+    #blue {
+        background: rgb(52,52,52);
+        color: #5897fb;
+    }
+
+    #dark {
+        background: rgb(52,52,52);
+        color: white;
     }
 
     .sidebarElement:hover, .sidebarElement:active {
@@ -1112,9 +1137,9 @@ footer {
     }
 
     .photoScroll {
-    max-height:500px;
-    overflow-y:scroll;
-}
+        max-height: 500px;
+        overflow-y: scroll;
+    }
 }
 
 @media only screen and (min-device-width : 260px) and (max-device-width : 568px) and (orientation : portrait) {
@@ -1138,7 +1163,7 @@ footer {
     }
 
     .fontButtonsModal {
-        font-size:12pt;
+        font-size: 12pt;
     }
 
     .notesExamples img {
@@ -1159,15 +1184,16 @@ footer {
     }
 
     .sidebarElement i {
-        font-size: 14pt;
+        font-size: 16pt;
         margin-top: 5px;
         color: black;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         border-radius: 25px;
-        padding-top: 11px;
-        padding-left: 13px;
+        padding-top: 15px;
+        padding-left: 17px;
         background: #89f646;
+        margin: 0 auto;
     }
 
     .sidebar-offcanvas ul li input {

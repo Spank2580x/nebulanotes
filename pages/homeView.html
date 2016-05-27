@@ -48,13 +48,13 @@
                 id="affix" class="nav nav-stacked">
                 <li>
                     <input type="text" placeholder="Ricerca note e categorie..."
-                        class="form-control" ng-model="searchText">
-                </li>
-                <li class="sidebarElement" ng-click="addButtonPressed()"
-                    id="addMobile" style="margin-left: 8px;">
-                    <i class="fa fa-plus" aria-hidden="true">
+                        class="form-control" ng-model="searchText"><li class="sidebarElement" ng-click="addButtonPressed()"
+                    style="float:none;">
+                    <i class="fa fa-plus" aria-hidden="true"
+                        id="addMobile">
                     </i>
                 </li>
+                </li>               
                 <li class="sidebarElement" ng-click="editButtonPressed()"
                     id="editMobile">
                     <i class="fa fa-pencil" aria-hidden="true"
@@ -66,6 +66,11 @@
                     <i class="fa fa-paint-brush" aria-hidden="true"
                         id="purple"></i>
                 </li>
+                <li class="sidebarElement" style="float: none;"
+                    data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-trash" aria-hidden="true"
+                        id="orange"></i>
+                </li>
                 <li class="sidebarElement" data-toggle="modal"
                     data-target="#myShareChoiceModal">
                     <i class="fa fa-paperclip" aria-hidden="true"
@@ -73,28 +78,23 @@
                 </li>
                 <li class="sidebarElement" style="float: none;"
                     data-toggle="modal" data-target="#myDownloadModal">
-                    <i class="fa fa-download" aria-hidden="true">
+                    <i class="fa fa-download" aria-hidden="true"
+                        id="blue">
                     </i>
                 </li>
                 <li class="sidebarElement" data-toggle="modal"
                     data-target="#myShareModal">
                     <i class="fa fa-share-alt" aria-hidden="true"
-                        id="light"></i>
-                </li>
-
-                <li class="sidebarElement" style="float: none;"
-                    data-toggle="modal" data-target="#myModal">
-                    <i class="fa fa-trash" aria-hidden="true"
-                        id="orange"></i>
+                        id="beige"></i>
                 </li>
 
                 <li class="sidebarElement" style="float: none;"
                     data-toggle="modal" data-target="#myModal3">
-                    <i class="fa fa-cog" aria-hidden="true">
+                    <i class="fa fa-cog" aria-hidden="true"
+                        id="dark">
                 </i>
                 </li>
                 
-
             </ul>
 
             <div class="noteMobileContainer">
@@ -337,7 +337,7 @@
                                 </button>
                                  <button class="btn fontButtonsModal bordered gloria hvr-sweep-to-bottom"
                                     data-dismiss="modal" style="background-color:white" ng-click="editFont('gloria')">
-                                    Gloria Hallelujah
+                                    Gloria 
                                 </button>
                                  <button class="btn fontButtonsModal bordered noto hvr-sweep-to-bottom"
                                     data-dismiss="modal" style="background-color:white" ng-click="editFont('noto')">
@@ -345,7 +345,7 @@
                                 </button>
                                  <button class="btn fontButtonsModal bordered open hvr-sweep-to-bottom"
                                     data-dismiss="modal" style="background-color:white" ng-click="editFont('open')">
-                                    Open Sans Condensed
+                                    Open Sans C.
                                 </button>
                             </div>
 
