@@ -861,6 +861,13 @@ angular.module('routerApp')
             console.error(err);
         }
 
+        $scope.randomColor = function(){
+            var r = (255*Math.random()) | 0,
+             g = (255*Math.random()) | 0,
+             b = (255*Math.random()) | 0;
+             return 'rgb(' + r + ',' + g + ',' + b + ')';
+        }
+
         $(document).ready(function () {
             $('body').tooltip({
                 selector: "[data-tooltip=tooltip]",
