@@ -300,6 +300,13 @@ select {
     background:transparent;
 }
 
+#elementUploaded {
+    width:100px;
+    height:90px;
+    background:black;
+    margin-top:800px;
+}
+
 .inputCategory {
     font-size: 20pt;
     width: 30%;
