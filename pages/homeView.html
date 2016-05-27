@@ -368,6 +368,7 @@
                                     data-dismiss="modal" style="background-color:white" ng-click="editFont('open')">
                                     Open Sans C.
                                 </button>
+                                 
                             </div>
 
                         </div>
@@ -375,38 +376,27 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div id="myAttachModal" class="modal fade"
+                <div id="myAttachModal"class="modal fade"
                     role="dialog">
                     <div class="modal-dialog">
+
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
+                            
                                 <button type="button" class="close"
                                     data-dismiss="modal">
                                     &times;</button>
                                 <h2 class="modal-title">Allega un
                                     file a questa nota.</h2>
+                                
                             </div>
-                            <div class="modal-body">
-                                <h4>Seleziona un file di massimo 2
-                                    MB da allegare alla tua nota.
-                                </h4>
-                            </div>
+                           
                             <div class="modal-footer">
-                                <div id="results" class="alert alert-info"
-                                    role="alert">
-                                    ...
-                                </div>
-
+                                <input type="submit" value="pray" ng-click="dio()" />
                                 <input type="file" id="filechooser"
-                                    class="filestyle" data-buttonbefore="true" />
+                                    class="filestyle" />
 
-                                <button class="btn btn-info btn-info"
-                                    type="button" id="upload-button"
-                                    ng-click="upBucket()">
-                                    Upload
-                                </button>
-                               
                             </div>
                         </div>
                     </div>
