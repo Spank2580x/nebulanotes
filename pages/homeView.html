@@ -99,7 +99,7 @@
 
             <div class="noteMobileContainer">
 
-                <div id="testDiv" class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
+                <div class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
                     style="background-color: {{x.doc.color}}">
                     <div ng-click="open(x, true)">
                         <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
@@ -263,27 +263,6 @@
                     <i class="fa fa-trash-o" aria-hidden="true">
                     </i>
                 </button>
-
-                
-                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
-                    type="button"
-                    id="shareFeatures" name="share"
-                    data-toggle="modal" data-target="#myDownloadModal"
-                    data-tooltip="tooltip" title="Scarica" ng-click="downloadNote()">
-                    <i class="fa fa-download" aria-hidden="true">
-                    </i>
-                </button>
-
-                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
-                    type="button" data-toggle="modal"
-                    data-target="#myShareModal"
-                    id="shareFeatures" name="share"
-                    data-tooltip="tooltip" title="Condividi">
-                    <i class="fa fa-share-alt" aria-hidden="true">
-                    </i>
-                </button>
-                
-
                 <!-- Modal -->
                 <div id="myModal2" class="modal fade"
                     role="dialog">
@@ -665,7 +644,24 @@
                     </div>
                 </div>
 
-                
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    type="button"
+                    id="shareFeatures" name="share"
+                    data-toggle="modal" data-target="#myDownloadModal"
+                    data-tooltip="tooltip" title="Scarica" ng-click="downloadNote()">
+                    <i class="fa fa-download" aria-hidden="true">
+                    </i>
+                </button>
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    type="button" data-toggle="modal"
+                    data-target="#myShareModal"
+                    id="shareFeatures" name="share"
+                    data-tooltip="tooltip" title="Condividi">
+                    <i class="fa fa-share-alt" aria-hidden="true">
+                    </i>
+                </button>
+
                 <div class="col-xs-12 no-text">
                 </div>
 
@@ -710,6 +706,7 @@
                         </div>
 
                         <div class="no-text textField"
+                             ta-paste="stripFormat($html)"
                             ta-disabled="!thereAreNotes()"
                             text-angular
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
@@ -718,7 +715,7 @@
                             data-content="Cristo">
                         </div>
                         <div class="alert alert-success saveSuccess no-text">
-                            <strong>{{footerMessage}}</strong>
+                            <strong>{{hasBeenEdited() && !isBusy() ? "Modifiche da salvare" : footerMessage}}</strong>
                         </div>
                     </div>
                 </div>
