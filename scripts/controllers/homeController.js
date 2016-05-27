@@ -349,11 +349,12 @@ angular.module('routerApp')
             //$(".js-programmatic-multi-clear").on("click", function () { $exampleMulti.val(null).trigger("change"); });
         }
 
-        $scope.upBucket = function(){
+        $scope.upBucket = function (){
             alert("bhotftfyfyfyf");
             //uploadS3.buf(notes.doc._id);
         }
 
+       
         function backRead(callback) {
             console.log("Lettura");
             dbLocal.allDocs({ include_docs: true, descending: true }, function (err, doc) {
