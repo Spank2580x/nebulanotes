@@ -40,7 +40,7 @@
         min-height: 32px;
         user-select: none;
         -webkit-user-select: none;
-        width:300px;
+        width:200px;
     }
 
         .select2-container .select2-selection--multiple .select2-selection__rendered {
