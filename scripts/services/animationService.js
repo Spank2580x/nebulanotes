@@ -131,6 +131,7 @@ routerApp.service('AnimationService', function () {
         $(".out").css("margin-left", "-999px");*/
         $(".out").css("display", "none");
         setShowing(false);
+        this.animateEditButton();
         /*$("#preview1, #preview2, #preview3").css("position", "absolute");
         $("#preview1, #preview2, #preview3").css("display", "none");*/
         $("#preview1, #preview2, #preview3").css("margin-left", "-999px");

@@ -264,7 +264,7 @@ angular.module('routerApp')
                             console.log("Quando tutte le ombre cadranno!")
                             console.log($scope.localStoredNotes.length);
                             if ($scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length > 0) openLastReadable();
-                            //else location.reload();
+                            else location.reload();
                         }
                     });
                 }
@@ -307,7 +307,7 @@ angular.module('routerApp')
         };
 
         $scope.open = function (obj, switching) {
-            //if (switching) AnimationService.animateEditButton(2);
+            if (switching) AnimationService.checkFirstTouch();
             console.log("Provo ad aprire " + obj.doc.title);
             if (TrafficLightService.busy() || hasBeenEdited()) {
                 if (TrafficLightService.busy()) console.log("Ci sono semafori attivi quindi...");
