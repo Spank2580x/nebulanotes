@@ -1,6 +1,7 @@
 body {
     font-family: Open Sans Condensed, sans-serif;
     overflow-x: hidden;
+    background:url('../images/pattern1.png');
 }
 
 .fullPageNotes {
@@ -173,8 +174,13 @@ select {
 
 .saveSuccess {
     background: #ccd4ff;
-    width: 80%;
+    width: 85%;
     text-align: center;
+}
+
+.rainbow {
+    background-image:url('../images/random.png');
+    background-size:cover;
 }
 
 #not {
@@ -281,16 +287,17 @@ select {
 }
 
 .textField {
-    width: 80%;
+    width: 85%;
     margin-top: 2%;
 }
 
 .inputArea {
     font-size: 30pt;
-    width: 80%;
+    width: 85%;
     border: solid 1px transparent;
     border-bottom: dotted 1px black;
     margin-bottom: 1%;
+    background:transparent;
 }
 
 .inputCategory {
@@ -448,8 +455,8 @@ select {
     background: rgb(48,48,48);
     margin-left: 10px;
     color: white;
-    float: right;
-    right: 20px;
+    float:right;
+    right: 135px;
 }
 
 .dropdown-menu-right li a {
@@ -770,7 +777,7 @@ footer {
 }
 
 .blockNotePreview::-webkit-scrollbar-track {
-    background: white;
+    background:white;
 }
 
 .blockNotePreview::-webkit-scrollbar-thumb {
