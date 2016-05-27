@@ -9,7 +9,8 @@ angular.module('routerApp')
                                             TrafficLightService,
                                             ColorService,
                                             uploadS3,
-                                            VideoService
+                                            VideoService,
+                                            AwsService
     ) {
 
         $scope.title = "Senza titolo";
@@ -577,9 +578,11 @@ angular.module('routerApp')
 
         function init() {
             //alert("Vai");
+            AwsService.init();
             TrafficLightService.init(autoSaveEnabled);
             AnimationService.init();
             initSelect2();
+
             //uploadS3.init();
             dbLocal = new PouchDB('nebulanotes');
             noteOnQueue = undefined;
