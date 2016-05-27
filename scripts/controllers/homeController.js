@@ -63,7 +63,7 @@ angular.module('routerApp')
                 creationDate: getNow(),
                 lastEditDate: getNow(),
                 //color: "rgba(255, 255, 255, .0);"
-                color: null,//ColorService.getRandomColor(),
+                color: ColorService.getRandomColor(),
                 tags: [],
                 trashed: false,
                 font: "gloria"
@@ -73,7 +73,7 @@ angular.module('routerApp')
                     //alert("Ce la facciamo a sentire 2 minuti di questo branoooo")
                     console.log("Creazione riuscita?" + result);
                     //$scope.$apply()
-
+                    $scope.footerMessage = "Ho creato una nuova nota";
                 }
                 else {
                     notifyError(err);
@@ -226,6 +226,10 @@ angular.module('routerApp')
         }
 
         $scope.trash = function(){
+            if ($scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length == 1){
+                $scope.footerMessage = "Non puoi cancellare la tua unica nota!";
+                return;
+            }
             console.log("Cestinazione di ");
             console.log($scope.currentNote);
             if ($scope.currentNote == undefined) console.error("Si sta cercando di modificare una nota che non esiste wtf");
@@ -264,7 +268,7 @@ angular.module('routerApp')
                             console.log("Quando tutte le ombre cadranno!")
                             console.log($scope.localStoredNotes.length);
                             if ($scope.localStoredNotes.filter(function(x){return !x.doc.trashed}).length > 0) openLastReadable();
-                            else location.reload();
+                            $scope.footerMessage = "Nota cancellata";
                         }
                     });
                 }
@@ -560,6 +564,8 @@ angular.module('routerApp')
                             });
                         }
                     })
+                    var bestemmio = noteToRestore.length == 1;
+                    $scope.footerMessage = (bestemmio ? "Nota" : "Note") + " " + (bestemmio ? "ripristinata" : "ripristinate");
                     noteToRestore = [];
                 }
             });
@@ -635,7 +641,7 @@ angular.module('routerApp')
             //console.log("Mio padre mi ha insegnato a salvare da solo:")
             //console.log(TrafficLightService.busy() + " " + noteOnQueue);
             if (!autoSaveEnabled) return;
-            $scope.footerMessage = TrafficLightService.busy() ? "Solo un momento... c.c " : "Tutto a posto ^.^";
+            if (TrafficLightService.busy()) $scope.footerMessage =  "Solo un momento... c.c ";
             //console.log("Sono diverso... o sono gli altri ad esserlo?");
             //console.log(hasBeenEdited());
             if (TrafficLightService.busy() || $scope.currentNote == undefined || !hasBeenEdited()) return;
@@ -644,6 +650,7 @@ angular.module('routerApp')
             backEdit(function (err, data) {
                 TrafficLightService.removeLight("Autosave");
                 updateComparing();
+                $scope.footerMessage =  "Modifiche salvate ^.^ ";
                 if (noteOnQueue != undefined){
                     $scope.open(noteOnQueue);
                     noteOnQueue = undefined;
@@ -655,6 +662,14 @@ angular.module('routerApp')
             return $scope.text != comparingText ||
                     $scope.title != comparingTitle
                 || !areArraysEquals($('.selectCategories').val(), comparingTags);
+        }
+
+        $scope.hasBeenEdited = function(){
+            return hasBeenEdited();
+        }
+
+        $scope.isBusy = function(){
+            return TrafficLightService.busy();
         }
 
         function updateComparing() {
@@ -833,6 +848,10 @@ angular.module('routerApp')
         $scope.isRestoringEmpty = function(){
             return noteToRestore.length == 0;
         }
+
+        $scope.stripFormat = function ($html) {
+            return $filter('htmlToPlaintext')($html.replace(/<[^>]+>/gm, ''));
+        };
 
         function notifyError(err){
             $scope.footerMessage = "Ops la nota non e' stata modificata o.o";

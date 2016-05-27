@@ -4,10 +4,21 @@
 routerApp.service('ColorService', function() {
 
     this.getRandomColor = function() {
-        var r = (255*Math.random()) | 0,
+        /*var r = (255*Math.random()) | 0,
             g = (255*Math.random()) | 0,
             b = (255*Math.random()) | 0;
-        return 'rgb(' + r + ',' + g + ',' + b + ')';
+        return 'rgb(' + r + ',' + g + ',' + b + ')';*/
+        var colors = [
+            "rgb(204,212,205)",
+            "rgb(179,190,255)",
+            "rgb(205,179,255)",
+            "rgb(117,138,255)",
+            "rgb(222,204,255)",
+            "rgb(143,160,255)"
+        ];
+        var c = parseInt(Math.random() * colors.length);
+        console.log(colors[c]);
+        return colors[c];
     }
 
     this.getRGBFromColor = function(color){

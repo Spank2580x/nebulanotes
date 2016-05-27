@@ -706,6 +706,7 @@
                         </div>
 
                         <div class="no-text textField"
+                             ta-paste="stripFormat($html)"
                             ta-disabled="!thereAreNotes()"
                             text-angular
                             ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
@@ -714,10 +715,7 @@
                             data-content="Cristo">
                         </div>
                         <div class="alert alert-success saveSuccess no-text">
-                            <strong><i class="fa fa-smile-o"
-                                aria-hidden="true"></i></strong>
-                            La nota &egrave stata salvata
-                            automaticamente
+                            <strong>{{hasBeenEdited() && !isBusy() ? "Modifiche da salvare" : footerMessage}}</strong>
                         </div>
                     </div>
                 </div>
