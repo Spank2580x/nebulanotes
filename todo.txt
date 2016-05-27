@@ -1,0 +1,61 @@
+controllare se и cross browser, check se internet explorer toglie le animazioni
+
+sfogliare le foto per andare avanti
+
+mettere faccine
+
+alert sulla cancellazione e aggiunta e modifica sotto , La nota и stata spostata nel cestino , nell'alert sotto
+
+l'applicazione exe del sito la mettiamo in un bottone export caricata su aws
+
+vedere se tenere il botone impostazioni visto che cми solo il cestino dentro
+
+impedire cancellazione ultima nota per debuggare
+
+fixare colore di sfondo quando si copia roba esterna
+
+mettere di nuovo i colori random delle note , fai vettore con questi 5 colori
+
+#CCD4FF
+#B3BEFF
+#CDB3FF
+#758AFF
+#DECCFF
+#8FA0FF
+
+qua c'и roba che puo servirti per l'upload dei file:
+
+routerApp.service('uploadS3', function () {
+    AWS.config.update({ accessKeyId: 'AKIAJWVPLIL77277XEZQ', secretAccessKey: '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' });
+    AWS.config.region = 'eu-west-1';
+    var bucket = new AWS.S3({ params: { Bucket: 'tsac-its' } });
+
+    var fileChooser = document.getElementById('filechooser');
+    var button = document.getElementById('upload-button');
+    var results = document.getElementById('results');
+    button.addEventListener('click', function () {
+        var file = fileChooser.files[0];
+        if (file) {
+            results.innerHTML = '';
+
+            var params = { Key: file.name, ContentType: file.type, Body: file };
+            bucket.upload(params, function (err, data) {
+                results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+            });
+        } else {
+            results.innerHTML = 'Nothing to upload.';
+        }
+    }, false);
+});
+
+buf fix :
+
+fixare ombre
+
+--------------PER RAGGIO NOTE MODE
+
+merda! togliere il bars quando si eliminano tutte le note!
+
+agigungere il pin alla roba che alleghi
+
+animazioni tamarre sull'aside quanto crea
