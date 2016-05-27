@@ -1,0 +1,784 @@
+<div class="container-fluid fullPageNotes">
+    <div class="row row-navbar-menuPrincipal">
+        <h1 class="col-xs-4 col-md-8 title">
+            <img src="images/logo2.png" class="logoMinimal hidden-xs hidden-sm"
+                id="testMobile" />
+            <span class="hidden-xs hidden-sm animated fadeIn ">
+                <b id="not">!e</b>Nebula</span>
+            <button class="btn rectFeaturesSettings visible-xs visible-sm"
+                id="sidebarIcon" name="sidebarEvent"
+                data-toggle="offcanvas">
+                <i class="fa fa-bars" aria-hidden="true">
+                </i>
+
+            </button>
+        </h1>
+        <div class="col-xs-4 col-md-3 divEditor"
+            id="ricerca">
+            <div class="input-icon">
+                <a href="#" class="hidden-xs hidden-sm">
+                    <i class="fa fa-search"></i>
+                </a>
+                <input type="text" placeholder="Ricerca note e categorie ..."
+                    class="form-control hidden-xs hidden-sm"
+                    ng-model="searchText" ng-change="noSearchResult = localStoredNotes.filter(searchAndTagFilter).length == 0">
+            </div>
+
+        </div>
+        <div class="col-xs-4 col-md-1 divEditor" id="settings">
+
+            <button class="btn setting hidden-xs hidden-sm"
+                data-toggle="modal" data-target="#myModal3"
+                type="button" data-tooltip="tooltip"
+                data-placement="bottom" title="Impostazioni">
+                <i class="fa fa-cog fa-spin" aria-hidden="true">
+                </i>
+            </button>
+
+        </div>
+        <!-- SIDEBAR
+                 visible-xs after clicking -->
+        <div class="col-xs-8 col-md-9 visible-xs visible-sm logoCentered">
+            <img src="images/logo2.png" class="logoMinimal right"
+                style="margin-left: 75px;" />
+        </div>
+        <!-- sidebar MOBILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE CAPITO?!?! -->
+        <div class="col-xs-6 col-sm-4 no-text sidebar-offcanvas hidden-md hidden-lg">
+            <ul data-spy="affix" data-offset-top="120"
+                id="affix" class="nav nav-stacked">
+                <li>
+                    <input type="text" placeholder="Ricerca note e categorie..."
+                        class="form-control" ng-model="searchText"><li class="sidebarElement" ng-click="addButtonPressed()"
+                    style="float:none;">
+                    <i class="fa fa-plus" aria-hidden="true"
+                        id="addMobile">
+                    </i>
+                </li>
+                </li>               
+                <li class="sidebarElement" ng-click="editButtonPressed()"
+                    id="editMobile">
+                    <i class="fa fa-pencil" aria-hidden="true"
+                        id="yellow"></i>
+                </li>
+
+                <li class="sidebarElement" data-toggle="modal"
+                    data-target="#myModal2">
+                    <i class="fa fa-paint-brush" aria-hidden="true"
+                        id="purple"></i>
+                </li>
+                <li class="sidebarElement" style="float: none;"
+                    data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-trash" aria-hidden="true"
+                        id="orange"></i>
+                </li>
+                <li class="sidebarElement" data-toggle="modal"
+                    data-target="#myShareChoiceModal">
+                    <i class="fa fa-paperclip" aria-hidden="true"
+                        id="grey"></i>
+                </li>
+                <li class="sidebarElement" style="float: none;"
+                    data-toggle="modal" data-target="#myDownloadModal">
+                    <i class="fa fa-download" aria-hidden="true"
+                        id="blue">
+                    </i>
+                </li>
+                <li class="sidebarElement" data-toggle="modal"
+                    data-target="#myShareModal">
+                    <i class="fa fa-share-alt" aria-hidden="true"
+                        id="ocean"></i>
+                </li>
+
+                <li class="sidebarElement" style="float: none;"
+                    data-toggle="modal" data-target="#myModal3">
+                    <i class="fa fa-cog" aria-hidden="true"
+                        id="dark">
+                </i>
+                </li>
+                
+            </ul>
+
+            <div class="noteMobileContainer">
+
+                <div id="testDiv" class="blockNoteMobile" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
+                    style="background-color: {{x.doc.color}}">
+                    <div ng-click="open(x, true)">
+                        <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
+                            {{previewText(x.doc.title,15)}}
+                        </h1>
+
+                    </div>
+                    <div id="blockNoteErrorMobile"
+                        ng-show="noSearchResult" class="hidden-xs">
+                        <h2>
+                            <br />
+                            <i class="fa fa-exclamation-circle">
+                            </i>
+                            <br />
+                            Oops, non ho trovato note</h2>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- FINE MOBILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
+
+        <!-- Modal -->
+        <div id="myModal3" class="modal fade modal-vertical-centered"
+            role="dialog">
+            <div class="modal-dialog modal-sm">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                            data-dismiss="modal">
+                            &times;</button>
+                        <h4>Impostazioni & Credits
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>App Developers</h4>
+                        <button class="col-xs-12 btn ocean" data-dismiss="modal" data-toggle="modal"
+                            data-target="#myCreditsModal" style="font-size:14pt;">
+                            Team !eNebula
+                        </button>
+                        
+                        <h4>Ripristina cestino
+                        </h4>
+                        <button class="col-xs-12 btn btn-warning"
+                            type="button" style="color: black;"
+                            data-dismiss="modal" data-toggle="modal"
+                            data-target="#myTrashModal">
+                            <i class="fa fa-trash-o" aria-hidden="true"
+                                style="font-size: 17pt;"></i>
+                            <b class="badge" style="color: white;
+                                background: black;">{{trashedNumber}}</b>
+                        </button>
+                        <div class="modal-footer">
+                            <h4 style="float: left;">Area Temibile
+                            </h4>
+                            <button class="btn btn-danger col-xs-12 btnOptions"
+                                style="color: white;"
+                                data-tooltip="tooltip" data-placement="bottom"
+                                data-dismiss="modal"
+                                title="Attenzione! Questa azione &egrave irreversibile"
+                                data-toggle="modal" data-target="#myLastDeleteModal">
+                                Distruggi
+                            tutto!</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <aside class="col-md-3 hidden-sm hidden-xs asideNotes">
+            <!-- hidden-xs -->
+            <div class="no-text">
+
+                <!-- <div class="searchCategories no-text">
+
+                    <select class="insertCategories js-example-responsive"
+                        multiple="multiple" style="width: 30%;">
+                    </select>
+
+                </div>
+                -->
+                <div id="blockNoteError" ng-show="noSearchResult">
+                    <h2>
+                        <br />
+                        <i class="fa fa-exclamation-circle">
+                        </i>
+                        <br />
+                        Oops, non ho trovato note</h2>
+                </div>
+                <div class="blockNote" ng-repeat="x in localStoredNotes | filter:searchAndTagFilter"
+                    style="background-color: {{x.doc.color}}">
+                    <div ng-click="open(x, true)">
+                        <h1 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
+                            {{x.doc.title}}</h1>
+                        <h4 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
+                            Creato il {{x.doc.creationDate.day}}/{{x.doc.creationDate.month}}/{{x.doc.creationDate.year}}
+                            <br />
+                            Ultima modifica: {{formatLastEditTime(x.doc.lastEditDate)}}
+                        </h4>
+                        <h3 ng-style="{color: isNoteOpaque(x) ? 'white' : 'black'}">
+                            {{previewText(x.doc.content,50)}}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div id="preview1" class="col-md-4 col-lg-4 notesExamples out">
+            </div>
+        </aside>
+
+
+        <div class="col-md-1">
+        </div>
+        <section class="col-md-8 sectionNotes">
+            <div class="row">
+
+                <!-- hidden-xs while clicking -->
+                <button class="col-xs-3 btn circleFeatures hvr-box-shadow-inset"
+                    id="addFeatures" name="add"
+                    data-tooltip="tooltip" title="Crea Nota"
+                    ng-click="addButtonPressed()">
+                    <i class="fa fa-plus" aria-hidden="true">
+                    </i>
+                </button>
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    id="editFeatures" name="personalize"
+                    data-tooltip="tooltip" title="Visualizza/Modifica"
+                    ng-click="editButtonPressed()">
+                    <i class="fa fa-pencil" aria-hidden="true">
+                    </i>
+                </button>
+
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    id="customFeatures" data-tooltip="tooltip"
+                    title="Personalizza"
+                    data-toggle="modal" data-target="#myModal2">
+
+                    <i class="fa fa-paint-brush" aria-hidden="true">
+                    </i>
+                </button>
+
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    id="uploadFeatures" name="attachfile"
+                    data-tooltip="tooltip" data-toggle="modal"
+                    data-target="#myShareChoiceModal"
+                    title="Allega file">
+                    <!-- myattachmodal -->
+                    <!--mio -->
+                    <i class="fa fa-paperclip" aria-hidden="true">
+                    </i>
+                </button>
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    id="deleteFeatures" name="delete"
+                    data-toggle="modal" data-tooltip="tooltip"
+                    title="Cancella"
+                    data-target="#myModal">
+                    <i class="fa fa-trash-o" aria-hidden="true">
+                    </i>
+                </button>
+
+                
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    type="button"
+                    id="shareFeatures" name="share"
+                    data-toggle="modal" data-target="#myDownloadModal"
+                    data-tooltip="tooltip" title="Scarica" ng-click="downloadNote()">
+                    <i class="fa fa-download" aria-hidden="true">
+                    </i>
+                </button>
+
+                <button class="col-xs-3 btn circleFeatures no-display hidden-xs hidden-sm"
+                    type="button" data-toggle="modal"
+                    data-target="#myShareModal"
+                    id="shareFeatures" name="share"
+                    data-tooltip="tooltip" title="Condividi">
+                    <i class="fa fa-share-alt" aria-hidden="true">
+                    </i>
+                </button>
+                
+
+                <!-- Modal -->
+                <div id="myModal2" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h4 class="modal-title">Scegli il
+                                    colore per questa nota</h4>
+                            </div>
+                            <div class="modal-body">
+                                <button class="modalColors btn circleFeatures black"
+                                    ng-click="editColor('rgb(0,0,0)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures grey"
+                                    ng-click="editColor('rgb(190,190,190)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures red"
+                                    ng-click="editColor('rgb(255,0,0)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures orange"
+                                    ng-click="editColor('rgb(255,128,0)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures yellow"
+                                    ng-click="editColor('rgb(255,255,0)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures green"
+                                    ng-click="editColor('rgb(102,204,0)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures blue"
+                                    ng-click="editColor('rgb(140,158,255)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures beige"
+                                    ng-click="editColor('rgb(198, 142, 71)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures darkblue"
+                                    ng-click="editColor('rgb(0,0,102)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures purple"
+                                    ng-click="editColor('rgb(160, 0, 255)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures pink"
+                                    ng-click="editColor('rgb(255,51,255)')"
+                                    data-dismiss="modal">
+                                </button>
+                                <button class="modalColors btn circleFeatures rainbow"
+                                    ng-click="editColor(randomColor())"
+                                    data-dismiss="modal">
+                                </button>
+                                <h4>Cambia font</h4>
+                                
+                            </div>
+                           
+                             <div class="modal-footer">
+                                <button class="btn fontButtonsModal bordered raleway"
+                                    data-dismiss="modal" ng-click="editFont('raleway')">
+                                    Raleway
+                                </button>
+                                 <button class="btn fontButtonsModal bordered gloria"
+                                    data-dismiss="modal" ng-click="editFont('gloria')">
+                                    Gloria 
+                                </button>
+                                 <button class="btn fontButtonsModal bordered noto"
+                                    data-dismiss="modal" ng-click="editFont('noto')">
+                                    Noto Sans
+                                </button>
+                                 <button class="btn fontButtonsModal bordered open"
+                                    data-dismiss="modal" ng-click="editFont('open')">
+                                    Open Sans C.
+                                </button>
+                                 
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div id="myAttachModal"class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Allega un
+                                    file a questa nota.</h2>
+                                
+                            </div>
+                           
+                            <div class="modal-footer">
+                                <input type="submit" value="pray" ng-click="dio()" />
+                                <input type="file" id="filechooser"
+                                    class="filestyle" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myShareChoiceModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h3 class="modal-title">Carica ci&ograve
+                                    che vuoi</h3>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
+                                    id="shareFile"
+                                    data-tooltip="tooltip" data-placement="right"
+                                    data- title="Carica file"
+                                    data-toggle="modal" data-target="#myAttachModal"
+                                    data-dismiss="modal">
+                                    <i class="fa fa-files-o" aria-hidden="true">
+                                    </i>
+                                </button>
+                                <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
+                                    id="sharePhoto" ng-click="initVideo()"
+                                    data-tooltip="tooltip" data-placement="right"
+                                    data-title="Scatta foto" data-toggle="modal" data-target="#myPhotoModal" data-dismiss="modal">
+                                    <i class="fa fa-camera-retro" aria-hidden="true">
+                                    </i>
+                                </button>
+                                <button class="btn shareButtonsModal bordered hvr-box-shadow-inset"
+                                    id="shareAudio" data-tooltip="tooltip"
+                                    data-placement="right" data-
+                                    title="Registra voce">
+                                    <i class="fa fa-microphone" aria-hidden="true">
+                                    </i>
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myTrashModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Ripristina
+                                    note</h2>
+                            </div>
+                            <div class="modal-body trashBar">
+                                <div class="trashList" ng-repeat="x in localStoredNotes | filter:trashedFilter">
+                                    <div>
+                                        <label>
+                                        <input type="checkbox"
+                                                ng-model="checkValue"
+                                                ng-true-value="1"
+                                                ng-false-value="0"
+                                                ng-click="checkBoxPressed(checkValue, x)">
+                                            {{previewText(x.doc.title, 45)}}
+                                            
+                                        </label>
+                                        <span class="lastEdit">
+                                                <i class="fa fa-trash" aria-hidden="true"></i> Cancellata: {{formatLastEditTime(x.doc.lastEditDate)}}
+                                            </span>
+                                    </div>
+                                    <div class="checkbox trashRepeat">
+                                        <!-- ng-repeat="s on trashContainer" -->
+                                        
+                                            
+                                        <hr style="border-bottom:solid 1px black"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default" ng-disabled = "!thereAreTrashed()" ng-click="restoreTrashed(true)">
+                                    Ripristina tutte le note
+                                </button>
+                                <a class="btn btn-success"
+                                        ng-disabled = "isRestoringEmpty()"
+                                    ng-click="restoreTrashed()">
+                                    Ripristina note selezionate
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Modal -->
+                <div id="myShareModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Condividi
+                                    questa nota con gli amici!
+                                </h2>
+                            </div>
+                            <div class="modal-footer">
+                                <h4>
+                                    <button class="btn shareButtonsModal bordered"
+                                        id="fbColor">
+                                        <i class="fa fa-facebook-square"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn shareButtonsModal bordered"
+                                        id="twColor">
+                                        <i class="fa fa-twitter-square"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn shareButtonsModal bordered"
+                                        id="alColor">
+                                        <span>Alemanno</span>
+                                    </button>
+
+                                </h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myCreditsModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Gli sviluppatori di questa app
+                                </h2>
+                            </div>
+                            <div class="modal-footer creditsContent">
+                                <a href="http://alessioraggioli.github.io/"><h3 class="col-xs-12 center">Alessio <b>Raggioli</b></h3></a>
+                                <a href="https://github.com/lucacampana"><h3 class="col-xs-12 center">Luca <b>Campana</b></h3></a>
+                                <a href="https://github.com/ildirettore"><h3 class="col-xs-12 center">Dario <b>Maranta</b></h3></a>
+                                <a href="https://github.com/tsac027"><h3 class="col-xs-12 center">Iulian Eugen <b>Buf</b></h3></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myPhotoModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog photoScroll">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Sorridi e... scatta!
+                                </h2>
+                            </div>
+                            <video id="video"></video>
+                            <button id="startbutton" class="btn btn-warning">Scatta</button>
+                            <canvas id="canvas"></canvas>
+                            <button id="upbutton" class="btn btn-info">Carica</button>
+                            <div class="modal-footer">
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myDownloadModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">{{downloadedNote ? "Nota caricata!" : "Caricamento della nota..."}}
+                                </h2>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="progress">
+                                    <div class="progress-bar"
+                                         ng-class="downloadedNote ? 'progress-bar-success' : 'progress-bar-info progress-bar-striped active'"
+                                         role="progressbar"
+                                         aria-valuenow="100" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 100%">
+                                    </div>
+                                </div>
+                                <a class="btn btn-info"
+                                   ng-disabled="!downloadedNote"
+                                   id="downloadLink" download="note.png"
+                                   style="width: 100px;">
+                                    <!-- quando ha finito il rendering removeAttr disabled -->
+
+                                    Scarica</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myLastDeleteModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h2 class="modal-title">Sei sicuro
+                                    di eliminare tutte le note?
+                                </h2>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-default"
+                                    data-dismiss="modal" style="width: 100px;">
+                                    No</button>
+                                <button class="btn btn-danger"
+                                    style="width: 40px;" ng-click="deleteAll()">
+                                    Si</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade"
+                    role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                    data-dismiss="modal">
+                                    &times;</button>
+                                <h4 class="modal-title">Cancellare
+                                    la nota?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Sicuro di voler eliminare questa
+                                    nota?<br />
+                                    Potrai recuperarla nelle impostazioni
+                                    quando vorrai.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-warning delete-yes"
+                                    ng-click="trash()" data-dismiss="modal">
+                                    Si, eliminala</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+                <div class="col-xs-12 no-text">
+                </div>
+
+                <div class="blockNoteContainer col-xs-12">
+                    <div class="blockNotePreview gloria" ng-class="!downloading ? 'scrollable' : ''"
+                        style="transition:all 0.4s ease-in-out; background-color:{{currentNote.doc.color}}">
+                        <h1 ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}" ng-class="currentNote.doc.font">
+                            {{currentNote.doc.title}}</h1>
+                        <article ng-style="{color: isNoteOpaque(currentNote) ? 'white' : 'black'}" ng-class="currentNote.doc.font">
+                            <ng-bind-html
+                                ng-bind-html="currentNote.doc.content">
+                            </ng-bind-html>
+                            <!--{{currentNote.doc.content}}-->
+                        </article>
+                    </div>
+                </div>
+                <div class="editArea">
+                    <!-- noshow-->
+
+
+                    <input name="tit" id="tit" type="text"
+                        class="col-xs-12 inputArea no-text"
+                        maxlength="80" placeholder="Senza titolo"
+                        ng-model="title" ng-disabled="!thereAreNotes()" />
+                    <!-- <input type="text" class="col-xs-12 inputCategory no-text"
+                    maxlength="80" placeholder="Categoria"
+                    ng-model="category" /> -->
+
+                    <div class="no-show" style="float: none;
+                        clear: both;">
+
+                        <div style="position: relative;"
+                            class="no-text">
+                            <label for="sel">
+                                <i class="fa fa-tags"
+                                    aria-hidden="true"></i>
+                            </label>
+                            <select name="sel" id="sel" class="col-xs-12 selectCategories js-example-responsive"
+                                multiple="multiple" ng-disabled="!thereAreNotes()">
+                            </select>
+
+                        </div>
+
+                        <div class="no-text textField"
+                            ta-disabled="!thereAreNotes()"
+                            ta-paste="stripFormat($html)"
+                            text-angular
+                            ta-toolbar="[['bold','italics','underline','strikeThrough','ul','ol','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]"
+                            placeholder="{{place}}" ng-model="text"
+                            data-toggle="popover" data-trigger="focus"
+                            data-content="Cristo">
+                        </div>
+                        <div class="alert alert-success saveSuccess no-text">
+                            <strong>{{hasBeenEdited() && !isBusy() ? "Modifiche da salvare" : footerMessage}}</strong>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--<div id="elementUploaded" class="no-text">
+
+                </div>-->
+                <span class="col-xs-6 col-md-5 crea out">
+                    Crea
+                    la tua prima nota</span>
+
+                <div class="col-xs-3 col-md-4 hidden-xs out">
+                    <img src="images/logo2.png" class="imageFirstNode" />
+                </div>
+            </div>
+            <div class="row rowExamples out"
+                style="margin-top: 1%">
+                <h1 class="col-xs-12">
+                    <i class="fa fa-sticky-note-o"
+                        aria-hidden="true"></i><span style="margin-left: 15px;">
+                            Scopri
+                    i nostri servizi</span>
+                </h1>
+                <div class="col-xs-12 col-md-3 col-lg-4 notesExamples centered hvr-curl-top-right"
+                    id="firstImg">
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-4 notesExamples centered hvr-curl-top-right"
+                    id="secondImg">
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-4 notesExamples centered hvr-curl-top-right"
+                    id="thirdImg">
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+
+
+
+</div>
